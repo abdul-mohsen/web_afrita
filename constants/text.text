@@ -1,0 +1,29 @@
+{/* <div className="items-container flex flex-col gap-6">
+                <InvoicesItem type={"A"} />
+                <InvoicesItem type={"بيع"} />
+                <InvoicesItem type={"A"} />
+                <InvoicesItem type={"بيع"} />
+            </div> */}
+
+
+            {/* <span className="item-type">
+{`${
+  type === "A"
+  ? type
+  : ""
+}`}
+</span>
+<span className="item-status">مدفوعة</span>
+
+</div>
+<div className='actions flex flex-col justify-center items-center gap-4 w-[50px]'>
+
+{`${
+type === "A"
+? <HiOutlineDotsVertical className="w-6 h-6 text-secondry" />
+: type === "B"
+?<HiTrash className="w-6 h-6 text-red-500" />
+: ""
+}`}
+</div>
+</div> */}
