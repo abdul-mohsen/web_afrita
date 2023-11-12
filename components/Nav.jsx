@@ -7,9 +7,7 @@ import Image from 'next/image'
 const Nav = () => {
    const {dropdownRef,handleClick,isOpen,iconRef} = useDropdown()
 
-  
-
-   console.log(isOpen)
+ 
 
 
     return (
