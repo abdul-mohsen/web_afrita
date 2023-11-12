@@ -84,9 +84,9 @@ const AddProductForm = () => {
                             </div>
                             </div>  
 
-                            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 border-b border-gray-900/10 pb-12">
+                            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-4 border-b border-gray-900/10 pb-12">
                             <h3 className='text-primary text-2xl col-span-4 '>تفاصيل القطعة للفرع 1</h3>
-                            <div class="col-span-full">
+                            <div class="col-span-4">
                                 <label
                                     for="brunch-amount"
                                     class="block text-ld font-medium leading-6 text-gray-900">الكمية للفرع</label>
@@ -101,7 +101,7 @@ const AddProductForm = () => {
                                 </div>
                             </div>
 
-                            <div class="sm:col-span-4 sm:col-start-1 flex flex-row gap-x-6 flex-wrap">
+                            <div class="col-span-4  flex flex-row gap-x-6 flex-wrap">
                                 <label for="item-place" class="block text-lg font-medium leading-6 text-gray-900 basis-full">مكان القطعة</label>
                                 <div class="mt-2 flex-1">
                                     <input
@@ -122,7 +122,7 @@ const AddProductForm = () => {
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
-                            <div class="sm:col-span-4 sm:col-start-1f flex flex-row gap-x-3 items-center">
+                            <div class="col-span-4 sm:col-start-1f flex flex-row gap-x-3 items-center">
                                 <div class="flex h-6 items-center">
                                     <input
                                         id="notifi"
@@ -131,7 +131,7 @@ const AddProductForm = () => {
                                         class="h-4 w-4 rounded border-gray-300 outline-none"/>
                                 </div>
                                 <div class="text-sm leading-6">
-                                    <label for="notifi" class="font-medium text-gray-900">تنبيه عند الوصول الى</label>
+                                    <label for="notifi" class="text-xs lg:text-base whitespace-nowrap  text-gray-900">تنبيه عند الوصول الى</label>
                                 </div>
                                 <div class=" w-24">
                                     <input
