@@ -1,5 +1,5 @@
-import { ProductItem } from "@/components";
-import { SectionNav } from "@/components";
+
+import { ProductItem, SectionNav } from "@/components";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 export default function Products() {
@@ -24,9 +24,6 @@ export default function Products() {
             </div>
             
             <div className="items-container flex flex-col gap-6">
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
                 <ProductItem />
                 <ProductItem />
                 <ProductItem />

@@ -1,39 +1,35 @@
 "use client"
-import { HiOutlineBriefcase, HiChevronDoubleLeft, HiOutlinePlus } from 'react-icons/hi'
+import { HiChevronDoubleLeft } from 'react-icons/hi'
 import { IoReceiptOutline } from 'react-icons/io5'
-// import { SaleInvoice} from '.'
-// import { PurchasesInvoice } from '.'
 import { Tabs } from '.'
 import {useState} from 'react'
 
 const AddInvoiceForm = () => {
     const [selectedTab, setSelectedTab] = useState(0)
-  return (
-    <div>
-        <div className='breadcrumb w-full text-xl flex flex-row gap-5 justify-start items-center mb-6'>
-            <IoReceiptOutline className='text-primary' />
-            <HiChevronDoubleLeft className='text-app-gray' />
-            <h2 className='text-app-gray'>اضافة فاتورة</h2>
-        </div>
-        <div className="add-form w-full bg-white p-8 rounded-xl">
+    return (
+        <div>
+            <div className='breadcrumb w-full text-xl flex flex-row gap-5 justify-start items-center mb-6'>
+                <IoReceiptOutline className='text-primary' />
+                <HiChevronDoubleLeft className='text-app-gray' />
+                <h2 className='text-app-gray'>اضافة فاتورة</h2>
+            </div>
+            <div className="add-form w-full bg-white p-8 rounded-xl">
 
-            <Tabs
-                items = {invoicesTypes}
-                useStateIn = {setSelectedTab}
-                />
-
-            {invoicesTypes.map((item, index) => (
+                <Tabs
+                    items = {invoicesTypes}
+                    useStateIn = {setSelectedTab}
+                    />
+                {invoicesTypes.map((item, index) => (
+                    <div 
+                        className={`${selectedTab === index ? "" : "hidden" }`}
+                    >
+                        {item.content}
+                    </div>
+                ))}
                 
-                <div 
-                    className={`${selectedTab === index ? "" : "hidden" }`}
-                >
-                    {item.content}
-                </div>
-            ))}
-            
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default AddInvoiceForm

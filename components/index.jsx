@@ -14,6 +14,8 @@ import SaleInvoice from "./SaleInvoice";
 import PurchasesInvoice from "./PurchasesInvoice";
 import SupplierItem from "./SupplierItem";
 import Tabs from "./Tabs";
+import DropdownHeading from "./DropdownHeading";
+
 
 
 export {
@@ -32,5 +34,7 @@ export {
     SaleInvoice,
     PurchasesInvoice,
     SupplierItem,
-    Tabs
+    Tabs,
+    DropdownHeading,
+
 }

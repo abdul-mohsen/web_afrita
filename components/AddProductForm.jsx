@@ -17,13 +17,13 @@ const AddProductForm = () => {
                             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 border-b border-gray-900/10 pb-12">
                             <div class="sm:col-span-4">
                                 <label
-                                    for="product-name"
+                                    for="product_named"
                                     class="block text-lg font-medium leading-6 text-gray-900">اضافة قطعة</label>
                                 <div class="mt-2">
                                     <input
                                         type="text"
-                                        name="product-name"
-                                        id="product-name"
+                                        name="product_named"
+                                        id="product_named"
                                         autocomplete="given-name"
                                         placeholder='اسم القطعة'
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
@@ -32,24 +32,24 @@ const AddProductForm = () => {
 
                             <div class="sm:col-span-2">
                                 <label
-                                    for="item-number"
+                                    for="product_number"
                                     class="block text-lg font-medium leading-6 text-gray-900">رقم القطعة</label>
                                 <div class="mt-2">
                                     <input
                                         type="text"
-                                        name="item-number"
-                                        id="item-number"
+                                        name="product_number"
+                                        id="product_number"
                                         autocomplete="family-name"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
 
                             <div class="sm:col-span-2 flex flex-row flex-wrap gap-x-6">
-                                <label for="item-price" class="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">سعر القطعة</label>
+                                <label class="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">سعر القطعة</label>
                                 <div class="mt-2 flex-1">
                                     <input
-                                        id="item-price"
-                                        name="item-price"
+                                        id="purchase_price"
+                                        name="purchase_price"
                                         type="number"
                                         autocomplete="number"
                                         min={0}
@@ -58,8 +58,8 @@ const AddProductForm = () => {
                                 </div>
                                 <div class="mt-2 flex-1">
                                     <input
-                                        id="item-price"
-                                        name="item-price"
+                                        id="selling_price"
+                                        name="selling_price"
                                         type="number"
                                         min={0}
                                         autocomplete="number"
@@ -70,13 +70,13 @@ const AddProductForm = () => {
 
                             <div class="sm:col-span-4">
                                 <label
-                                    for="total-amount"
+                                    for="total_quantity"
                                     class="block text-lg font-medium leading-6 text-gray-900">اجمالى الكمية</label>
                                 <div class="mt-2">
                                     <input
                                         type="number"
-                                        name="total-amount"
-                                        id="total-amount"
+                                        name="total_quantity"
+                                        id="total_quantity"
                                         autocomplete="given-number"
                                         min={0}
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 appearance-none "/>
@@ -88,26 +88,26 @@ const AddProductForm = () => {
                             <h3 className='text-primary text-2xl col-span-4 '>تفاصيل القطعة للفرع 1</h3>
                             <div class="col-span-full">
                                 <label
-                                    for="brunch-amount"
+                                    for="brunch_quantity"
                                     class="block text-ld font-medium leading-6 text-gray-900">الكمية للفرع</label>
                                 <div class="mt-2">
                                     <input
                                         type="number"
-                                        name="brunch-amount"
-                                        id="brunch-amount"
-                                        autocomplete="brunch-amount"
+                                        name="brunch_quantity"
+                                        id="brunch_quantity"
+                                        autocomplete="brunch_quantity"
                                         min={0}
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
 
                             <div class="sm:col-span-4 sm:col-start-1 flex flex-row gap-x-6 flex-wrap">
-                                <label for="item-place" class="block text-lg font-medium leading-6 text-gray-900 basis-full">مكان القطعة</label>
+                                <label for="product-place" class="block text-lg font-medium leading-6 text-gray-900 basis-full">مكان القطعة</label>
                                 <div class="mt-2 flex-1">
                                     <input
                                         type="text"
-                                        name="item-place"
-                                        id="item-place"
+                                        name="product_rack"
+                                        id="product_rack"
                                         min={0}
                                         placeholder='رف'
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
@@ -115,8 +115,8 @@ const AddProductForm = () => {
                                 <div class="mt-2 flex-1">
                                     <input
                                         type="text"
-                                        name="item-place"
-                                        id="item-place"
+                                        name="product_column"
+                                        id="product_column"
                                         min={0}
                                         placeholder='عمود'
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
@@ -125,8 +125,8 @@ const AddProductForm = () => {
                             <div class="sm:col-span-4 sm:col-start-1f flex flex-row gap-x-3 items-center">
                                 <div class="flex h-6 items-center">
                                     <input
-                                        id="notifi"
-                                        name="notifi"
+                                        id="notifi_quantity"
+                                        name="notifi_quantity"
                                         type="checkbox"
                                         class="h-4 w-4 rounded border-gray-300 outline-none"/>
                                 </div>
@@ -135,8 +135,11 @@ const AddProductForm = () => {
                                 </div>
                                 <div class=" w-24">
                                     <input
+                                        id='minimum_quantity'
+                                        name='minimum_quantity'
                                         type="number"
-                                        min={0}
+                                        min={10}
+                                        value={10}
                                         class="w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
