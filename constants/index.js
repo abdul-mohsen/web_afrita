@@ -17,11 +17,13 @@ export const navLinks = [
     },
     {   href: "/orders", 
         label: "الطلبات",
-        icon: <FiBox className="w-5 h-5" />
+        icon: <FiBox className="w-5 h-5" />,
+        count:100
     },
     {   href: "/products", 
         label: "المنتجات",
-        icon: <HiOutlineBriefcase className="w-5 h-5" />
+        icon: <HiOutlineBriefcase className="w-5 h-5" />,
+        count:100
     },
     {   href: "/setting", 
         label: "الإعدادات",
@@ -33,7 +35,8 @@ export const navLinks = [
     },
     {   href: "/messages", 
         label: "الرسائل",
-        icon: <HiOutlineEnvelope className="w-5 h-5" />
+        icon: <HiOutlineEnvelope className="w-5 h-5" />,
+        count:100
     },
     {   href: "/suppliers", 
         label: "العملاء و الموردين",

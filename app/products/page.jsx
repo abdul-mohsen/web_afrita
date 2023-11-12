@@ -1,5 +1,7 @@
 import { ProductItem } from "@/components";
 import { SectionNav } from "@/components";
+import PagesNumber from "@/components/PagesNumber";
+
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 export default function Products() {
@@ -33,6 +35,9 @@ export default function Products() {
                 <ProductItem />
                 <ProductItem />
             </div>
+            <div className="pt-4 flex justify-end">
+                    <PagesNumber />
+                </div>
 
         </section>
     )

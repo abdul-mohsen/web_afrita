@@ -14,23 +14,24 @@ export default function PagesNumber() {
   return (
     <div className="flex items-center gap-x-3">
       <h5>الصفحة</h5>
-      <div className="flex items-center gap-x-2">
+      <div className="flex   items-center gap-x-2">
         {testArray.slice(0, 3).map((_, i) => (
           <a
             key={i}
             href="#"
-            className={`w-[25px] h-[25px] rounded-md  ${selectedLink === i ? "text-white" : "text-app-gray"} text-center border border-2 ${
+            className={` text-xs py-1 px-2  rounded-md  ${selectedLink === i ? "text-white" : "text-app-gray"} text-center  border-2 ${
               selectedLink === i ? "bg-primary" : ""
             }`}
             onClick={() => handleLinkClick(i)}
           >
+           
             {i + 1}
           </a>
         ))}
         <span>...</span>
         <a
           href="#"
-          className={`w-[25px] h-[25px]  rounded-md  ${selectedLink === lastIndex ? "text-white" : "text-app-gray"} text-center border border-2 ${
+          className={`py-1 px-2  text-xs rounded-md  ${selectedLink === lastIndex ? "text-white" : "text-app-gray"} text-center  border-2 ${
             selectedLink === 9 ? "bg-primary" : ""
           }`}
           onClick={() => handleLinkClick(lastIndex)}

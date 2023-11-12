@@ -41,7 +41,7 @@ function FilterNavbar() {
       </div>
       <div className="flex  gap-x-4">
         <button type="button" className="text-primary font-bold">الغاء</button>
-        <Button label="بحث" link="#" addclass="px-20 py-4  md:py-6 rounded-xl"/>
+        <Button label="بحث" link="#" addclass="px-16 py-4  md:py-6 rounded-xl"/>
       </div>
     </div>
    </div>
