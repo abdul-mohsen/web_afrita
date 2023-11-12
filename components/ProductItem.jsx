@@ -1,40 +1,101 @@
-'use client'
+'use client';
 import React, { useState } from "react";
-import { ProductVariety } from '.';
+import { HiOutlinePlus, HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
+import { PiDotsThreeOutlineVerticalLight } from "react-icons/pi"
 import Link from 'next/link';
-import { HiOutlineDotsVertical, HiOutlinePlus } from "react-icons/hi"
+import ProductVariety from './ProductVariety';
+import AddQuantityForm from './AddQuantityForm';
+
 
 const ProductItem = () => {
-    const [isActive, setIsActive] = useState(false);
-    const editeItem = () => {
-        setIsActive(!isActive);
+        
+    const [isItemDetails, setItemDetails] = useState(false);
+    const [isOpenActionsList, setOpenActionsList] = useState(false);
+
+    const itemDetails = () => {
+        setItemDetails(!isItemDetails);
     };
-  return (
-        <div className=" product-row flex flex-col  bg-white" >
+
+    const actionsList = () => {
+        setOpenActionsList(!isOpenActionsList);
+    };
+    
+    const openQtyForm = () => {
+        const qtyFormContain = document.getElementById('qty-form-conta');
+        if (qtyFormContain) {
+            // Check if the element has the specific class
+            if (qtyFormContain.classList.contains('hidden')) {
+                // Remove the class if it exists
+                qtyFormContain.classList.remove('hidden');
+                qtyFormContain.classList.add('flex');
+                
+            } else if (qtyFormContain.classList.contains('flex')) {
+                // Add the class if it doesn't exist
+                qtyFormContain.classList.remove('flex');
+                targetElement.classList.add('hidden');
             
-            <div className={`product-details flex flex-row hover:shadow-md ${isActive ? " shadow-md" : ""}`}>
-                <div onClick={editeItem} className="details cursor-pointer flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(0,_1fr))] text-app-gray pr-4 py-10">
-                    <span className='item-number'>01</span>
-                    <h3 className='item-name text-primary font-bold'>سماعات</h3>
-                    <span className="item-id">#2543</span>
-                    <span className="item-price">500 ر.س</span>
-                    <span className="total-quas font-bold">500 ر.س</span>
-                    <span className="item-place">A1</span>
+            }
+        }
+    
+    }
 
-                </div>
-                    <div className='actions flex flex-col justify-center items-center gap-4 w-[50px]'>
-                    <Link href={"/products/editeProduct"}>
-                        <HiOutlineDotsVertical className="w-6 h-6 text-primary"/>
-                    </Link>
-                    <HiOutlinePlus className="w-6 h-6 text-secondry" />
-                </div>
-            </div>
-            <div className={`${isActive ? "" : "hidden"}`}   >
-                <ProductVariety />
-            </div>
+    return (
+        <>
+            <div className=" product-row flex flex-col  bg-white">
+                <div
+                    className={`product-details flex flex-row hover:shadow-md ${isItemDetails ? "shadow-md" : ""}`}>
+                    <div
+                        onClick={itemDetails}
+                            className="details cursor-pointer flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(0,_1fr))] text-app-gray pr-4 py-10">
+                        <span className='item-ranking'>01</span>
+                        <h3 className='item-name text-primary font-bold'>سماعات</h3>
+                        <span className="item-number">#2458</span>
+                        <span className="item-price">500 ر.س</span>
+                        <span className="total-quantity font-bold">200</span>
+                        <span className="item-place">A1</span>
+                    </div>
 
-        </div>
-  )
+                    <div className='actions-list relative flex flex-col justify-center items-center gap-4 w-[50px]'>
+
+                        <PiDotsThreeOutlineVerticalLight
+                            onClick={actionsList}
+                            className="w-6 h-6 text-primary hover:fill-red-500  cursor-pointer" />
+
+                        <HiOutlinePlus
+                            onClick={openQtyForm}
+                            className="w-6 h-6 text-secondry cursor-pointer" />
+
+                        <div
+                            className={`${isOpenActionsList ? "flex" : "hidden"}  actions absolute text-sm text-app-gray py-2 flex-col w-max rounded-md bg-white top-8 left-8 shadow-lg shadow-primary/30 border border-primary/5`}>
+                            
+                            <Link
+                                href="/products/editeProduct/"
+                                onClick={actionsList}
+                                className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray">
+
+                                <HiOutlinePencil className="text-green-500"/>
+                                <span className="block">تعديل المنتج</span>
+                            </Link>
+
+                            <Link
+                                href={"/products"}
+                                onClick={actionsList}
+                                className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray">
+
+                                <HiOutlineTrash className=" text-red-500"/>
+                                <span className="block">حذف المنتج</span>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={`${isItemDetails ? "" : "hidden"}`}   >
+                    <ProductVariety />
+                </div>
+
+            </div>
+            <AddQuantityForm/>
+        </>
+    );
 }
-
 export default ProductItem
