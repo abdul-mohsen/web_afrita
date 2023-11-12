@@ -18,7 +18,7 @@ const SectionNav = ({heading, btnLabel, tags, btnLink, quantity}) => {
                 
                 
                 </div>
-                <Button label={btnLabel} link={btnLink}/>
+                <Button label={btnLabel} link={btnLink} addclass="px-8"/>
             </div>
             <ul className="grid grid-cols-[50px_repeat(auto-fit,_minmax(0,_1fr))] text-app-gray pr-4  pl-[50px]">
             {tagsArray.map((tag) => (
