@@ -44,7 +44,7 @@ const actionsList = () => {
                 <span className='item-number text-xs   md:text-base'>01</span>
                 <h3 className='item-id text-primary font-bold text-xs  md:text-base'>INV-0001</h3>
                 <span className="item-valyue text-xs mr-2  md:mr-0 md:text-base">500 ر.س</span>
-                <span className="item-date text-xs   md:text-base"></span>
+                <span className="item-date text-xs   md:text-base">13/11/2023</span>
                 <span className="supplyer-id font-bold text-xs   md:text-base">AS-20</span>
                 <span className="item-type text-xs   md:text-base">{itemType}</span>
                 <span className="item-status text-xs   md:text-base">{itemStatus}</span>

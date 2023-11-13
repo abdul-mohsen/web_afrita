@@ -14,14 +14,14 @@ export default function RootLayout({children}) {
       <html lang="en" dir='rtl'>
         <body className={inter.className}>
           <main className="max-h-screen bg-app-light-gray flex items-start overflow-hidden">
-            <section className='asides max-w-fit min-h-screen pr-8 bg-white'>
+            <section className='asides max-w-fit min-h-screen md:pr-8 max-md:px-3 bg-white'>
                 <Aside/>
             </section>
             <section className='page w-full h-screen '>
               <section className=' w-full'>
                   <Nav/>
               </section>
-              <section className='wrapper h-[calc(100vh-108px)] overflow-y-auto padding-l py-6 pr-8'>
+              <section className='wrapper h-[calc(100vh-108px)] max-md:w-[calc(100vw_-_82px)] md:w-[calc(100vw_-_320px)] overflow-y-auto padding-l py-6 pr-8'>
                 {children}
               </section>
             </section>

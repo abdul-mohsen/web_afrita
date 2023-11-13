@@ -17,11 +17,7 @@ const DropdownHeading = ({ heading, options }) => {
                 </div>
 
                 {isOpen && (
-<<<<<<< 29967fe4c8b6a754bb927fe0822378740b473b77
-                    <div className="absolute top-full right-0  w-[200px] mr-[-2px] bg-white  border-primary border-2 rounded-md">
-=======
                     <div className="absolute top-full right-0  w-[200px] mr-[-2px]  bg-app-light-gray border-primary border-2 rounded-md">
->>>>>>> 0bb655e223fc21cfcf4e5077ecf898b87c5cbcf0
                         {options.map((option, index) => (
                             <div key={index} className="w-full px-2 py-1">
                                 {option}
