@@ -8,7 +8,7 @@ export default function Products() {
 
 
     return (
-        <section id='products'>
+        <section id='products' className=" overflow-hidden">
             <div className="section-header">
             <SectionNav
                 heading="المنتجات"
@@ -25,7 +25,7 @@ export default function Products() {
                 ]} />
             </div>
             
-            <div className="items-container flex flex-col gap-6">
+            <div className="items-container overflow-x-auto flex flex-col gap-6">
                 <ProductItem />
                 <ProductItem />
                 <ProductItem />

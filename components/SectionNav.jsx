@@ -22,7 +22,7 @@ const SectionNav = ({heading, btnLabel, tags, btnLink, quantity}) => {
             </div>
             <ul className="grid grid-cols-[50px_repeat(auto-fit,_minmax(0,_1fr))] text-app-gray pr-4  pl-[50px]">
             {tagsArray.map((tag) => (
-                    <li key={tag} className="text-xs  md:text-base">
+                    <li key={tag} className="">
                         {tag}
                     </li>
                 ))}
