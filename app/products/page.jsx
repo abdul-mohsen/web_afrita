@@ -4,7 +4,7 @@ import PagesNumber from "@/components/PagesNumber";
 
 import { HiOutlineHashtag } from 'react-icons/hi';
 
-export default function Products() {
+export default async function Products() {
 
 
     return (
