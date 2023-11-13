@@ -16,6 +16,27 @@
   -o-transition: all 0.3s linear;
   font-family: Cairo, "sanserfe";
 }
+.dasshed-t, .dasshed-b, .dasshed-l, .dasshed-r {
+  background-image: linear-gradient(to right, #7C7C7C 50%, white 50%), linear-gradient(to right, #7C7C7C 50%, white 50%);
+  background-size: 20px 1px;
+  background-repeat: repeat-x;
+}
+.dasshed-t {
+  background-position: top;
+}
+.dasshed-b {
+  background-position: bottom;
+}
+.dasshed-l {
+  background-position: left;
+}
+.dasshed-r {
+  background-position: right;
+}
+.dasshed-all {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%237C7C7CFF' stroke-width='2' stroke-dasharray='15%2c15' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
+  border-radius: 8px;
+}
 input:focus {
   outline: none;
 }
