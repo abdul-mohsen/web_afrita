@@ -6,6 +6,7 @@ import SectionNav from "./SectionNav";
 import ProductItem from "./ProductItem";
 import ProductVariety from "./ProductVariety";
 import AddProductForm from './AddProductForm';
+import AddBranchDetails from "./AddBranchDetails";
 import EditeProductForm from "./EditeProductForm";
 import AddQuantityForm from "./AddQuantityForm";
 import InvoicesItem from "./InvoicesItem";
@@ -15,6 +16,7 @@ import PurchasesInvoice from "./PurchasesInvoice";
 import SupplierItem from "./SupplierItem";
 import Tabs from "./Tabs";
 import DropdownHeading from "./DropdownHeading";
+import InvoivePreview from "./InvoivePreview";
 
 
 
@@ -27,6 +29,7 @@ export {
     ProductItem,
     ProductVariety,
     AddProductForm,
+    AddBranchDetails,
     EditeProductForm,
     AddQuantityForm,
     InvoicesItem,
@@ -36,5 +39,6 @@ export {
     SupplierItem,
     Tabs,
     DropdownHeading,
-
+    InvoivePreview,
+    
 }
