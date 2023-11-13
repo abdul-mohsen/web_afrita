@@ -9,9 +9,7 @@ import { IoNotificationsOutline, IoSearchOutline } from 'react-icons/io5';
 const Nav = () => {
    const {dropdownRef,handleClick,isOpen,iconRef} = useDropdown()
 
-  
-
-   console.log(isOpen)
+ 
 
 
     return (

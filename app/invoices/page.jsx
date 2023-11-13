@@ -1,6 +1,8 @@
 import { SectionNav } from "@/components";
+
 import { HiOutlineHashtag } from 'react-icons/hi';
 import { InvoicesItem, InvoicesItemPaid } from '@/components'
+import PagesNumber from "@/components/PagesNumber";
 export default function Invoices() {
     return (
       <section id='invoices'>
@@ -30,6 +32,9 @@ export default function Invoices() {
                   />
                 
             </div>
+            <div className="pt-4 flex justify-end">
+                    <PagesNumber />
+                </div>
       </section>
     )
   }
