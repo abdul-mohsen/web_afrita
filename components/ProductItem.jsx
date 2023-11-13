@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import useDropdown from '@/hooks/useDropdown';
 import { HiOutlinePlus, HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
 import { PiDotsThreeOutlineVerticalLight } from "react-icons/pi"
 import Link from 'next/link';
@@ -8,17 +9,26 @@ import AddQuantityForm from './AddQuantityForm';
 
 
 const ProductItem = () => {
-        
-    const [isItemDetails, setItemDetails] = useState(false);
-    const [isOpenActionsList, setOpenActionsList] = useState(false);
+    const dropRef = useRef(null);
 
-    const itemDetails = () => {
-        setItemDetails(!isItemDetails);
-    };
+    const {dropdownRef,handleClick,isOpen,iconRef} = useDropdown()
+    const [isOpenActionsList, setOpenActionsList] = useState(false);
 
     const actionsList = () => {
         setOpenActionsList(!isOpenActionsList);
+      };
+      const handleClickOutside = (event) => {
+      if (dropRef.current && !dropRef.current.contains(event.target) && dropRef.current && !dropRef.current.contains(event.target)) {
+        setOpenActionsList(isOpenActionsList);
+      }
     };
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+    
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+      }, []);
     
     const openQtyForm = () => {
         const qtyFormContain = document.getElementById('qty-form-conta');
@@ -43,9 +53,9 @@ const ProductItem = () => {
         <>
             <div className=" product-row flex flex-col  bg-white">
                 <div
-                    className={`product-details flex flex-row hover:shadow-md ${isItemDetails ? "shadow-md" : ""}`}>
+                    className={`product-details flex flex-row hover:shadow-md ${isOpen ? "shadow-md" : ""}`}>
                     <div
-                        onClick={itemDetails}
+                        onClick={handleClick} ref={iconRef}
                             className="details cursor-pointer flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(0,_1fr))] text-app-gray pr-4 py-10">
                         <span className='item-ranking'>01</span>
                         <h3 className='item-name text-primary font-bold'>سماعات</h3>
@@ -55,7 +65,7 @@ const ProductItem = () => {
                         <span className="item-place">A1</span>
                     </div>
 
-                    <div className='actions-list relative flex flex-col justify-center items-center gap-4 w-[50px]'>
+                    <div className='actions-list relative flex flex-col justify-center items-center gap-4 w-[50px]' ref={dropRef}>
 
                         <PiDotsThreeOutlineVerticalLight
                             onClick={actionsList}
@@ -70,7 +80,6 @@ const ProductItem = () => {
                             
                             <Link
                                 href="/products/editeProduct/"
-                                onClick={actionsList}
                                 className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray">
 
                                 <HiOutlinePencil className="text-green-500"/>
@@ -78,8 +87,8 @@ const ProductItem = () => {
                             </Link>
 
                             <Link
-                                href={"/products"}
-                                onClick={actionsList}
+                                href="/products"
+
                                 className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray">
 
                                 <HiOutlineTrash className=" text-red-500"/>
@@ -88,10 +97,11 @@ const ProductItem = () => {
                         </div>
                     </div>
                 </div>
-
-                <div className={`${isItemDetails ? "" : "hidden"}`}   >
+                
+                {isOpen && <div ref={dropdownRef}>
                     <ProductVariety />
-                </div>
+                </div>}
+                
 
             </div>
             <AddQuantityForm/>
