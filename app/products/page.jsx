@@ -31,9 +31,6 @@ export default function Products() {
                 <ProductItem />
                 <ProductItem />
                 <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
             </div>
             <div className="pt-4 flex justify-end">
                     <PagesNumber />
