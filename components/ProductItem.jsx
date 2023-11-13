@@ -8,7 +8,7 @@ import ProductVariety from './ProductVariety';
 import AddQuantityForm from './AddQuantityForm';
 
 
-const ProductItem = () => {
+const ProductItem = ({_id,product_named,product_number,purchase_price,selling_price,total_quantity,brunch_quantity,product_rack,product_column}) => {
     const dropRef = useRef(null);
 
     const {dropdownRef,handleClick,isOpen,iconRef} = useDropdown()
@@ -57,12 +57,12 @@ const ProductItem = () => {
                     <div
                         onClick={handleClick} ref={iconRef}
                             className="details cursor-pointer flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(120px,_1fr))] text-app-gray pr-4 py-10">
-                        <span className='item-ranking'>01</span>
-                        <h3 className='item-name text-primary font-bold'>سماعات</h3>
+                        <span className='item-ranking'>0{product_number}</span>
+                        <h3 className='item-name text-primary font-bold'>{product_named}</h3>
                         <span className="item-number">#2458</span>
-                        <span className="item-price">500 ر.س</span>
-                        <span className="total-quantity font-bold">200</span>
-                        <span className="item-place">A1</span>
+                        <span className="item-price">{brunch_quantity} ر.س</span>
+                        <span className="total-quantity font-bold">{total_quantity}</span>
+                        <span className="item-place">{product_column}{product_rack}</span>
                     </div>
 
                     <div className='actions-list relative flex flex-col justify-center items-center gap-4 w-[50px]' ref={dropRef}>
@@ -99,7 +99,7 @@ const ProductItem = () => {
                 </div>
                 
                 {isOpen && <div ref={dropdownRef}>
-                    <ProductVariety />
+                    <ProductVariety product_named={product_named} purchase_price={purchase_price} selling_price={selling_price} product_rack={product_rack} product_column={product_column} />
                 </div>}
                 
 
