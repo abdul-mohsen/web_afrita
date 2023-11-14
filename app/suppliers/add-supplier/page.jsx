@@ -1,12 +1,16 @@
-import { HiOutlineBriefcase, HiChevronDoubleLeft, HiOutlinePlus, HiOutlineUsers } from 'react-icons/hi'
-import { IoReceiptOutline } from 'react-icons/io5'
+import Link from 'next/link'
+import { HiChevronDoubleLeft, HiOutlineUsers } from 'react-icons/hi'
+
 
 
 export default function AddSupplier() {
   return (
     <div>
         <div className='breadcrumb w-full text-xl flex flex-row gap-5 justify-start items-center mb-6'>
-            <HiOutlineUsers className='text-primary' />
+            <Link href={"/suppliers"} >
+                <HiOutlineUsers className='text-primary' />
+
+            </Link>
             <HiChevronDoubleLeft className='text-app-gray' />
             <h2 className='text-app-gray'>مورد جديد </h2>
         </div>

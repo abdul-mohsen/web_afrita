@@ -17,6 +17,7 @@ import SupplierItem from "./SupplierItem";
 import Tabs from "./Tabs";
 import DropdownHeading from "./DropdownHeading";
 import InvoivePreview from "./InvoivePreview";
+import SectionTags from "./SectionTags"
 
 
 
@@ -40,5 +41,6 @@ export {
     Tabs,
     DropdownHeading,
     InvoivePreview,
+    SectionTags,
     
 }

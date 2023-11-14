@@ -51,12 +51,12 @@ const ProductItem = () => {
 
     return (
         <>
-            <div className=" product-row flex flex-col bg-white min-w-[750px]">
+            <div className=" product-row flex flex-col min-w-full w-fit bg-white">
                 <div
                     className={`product-details flex flex-row hover:shadow-md ${isOpen ? "shadow-md" : ""}`}>
                     <div
                         onClick={handleClick} ref={iconRef}
-                            className="details cursor-pointer flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(120px,_1fr))] text-app-gray pr-4 py-10">
+                            className="details cursor-pointer flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(120px,_1fr))] min-w-[700px] text-app-gray mr-4 py-6 md:py-10">
                         <span className='item-ranking'>01</span>
                         <h3 className='item-name text-primary font-bold'>سماعات</h3>
                         <span className="item-number">#2458</span>
@@ -65,7 +65,7 @@ const ProductItem = () => {
                         <span className="item-place">A1</span>
                     </div>
 
-                    <div className='actions-list relative flex flex-col justify-center items-center gap-4 w-[50px]' ref={dropRef}>
+                    <div className='actions-list relative flex flex-col justify-center items-center gap-2 md:gap-4 w-[50px]' ref={dropRef}>
 
                         <PiDotsThreeOutlineVerticalLight
                             onClick={actionsList}
