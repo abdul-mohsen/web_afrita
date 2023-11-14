@@ -2,12 +2,12 @@ import React from 'react'
 
 const AddBranchDetails = ({ branchNumber, btnDeleteBranch }) => {
   return (
-    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 border-b border-gray-900/10 pb-12">
+    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-4 border-b border-gray-900/10 pb-12">
                             <div className='flex justify-between col-span-4'>
                             <h3 className='text-primary text-2xl col-span-4 '>تفاصيل القطعة للفرع {branchNumber} </h3>
                             {btnDeleteBranch}
                             </div>
-                            <div className="col-span-full">
+                            <div className="col-span-4">
                                 <label
                                     for="brunch_quantity"
                                     className="block text-lg font-medium leading-6 text-gray-900">الكمية للفرع</label>
@@ -22,7 +22,7 @@ const AddBranchDetails = ({ branchNumber, btnDeleteBranch }) => {
                                 </div>
                             </div>
 
-                            <div className="sm:col-span-4 sm:col-start-1 flex flex-row gap-x-6 flex-wrap">
+                            <div className="col-span-4  flex flex-row gap-x-6 flex-wrap">
                                 <label for="product-place" className="block text-lg font-medium leading-6 text-gray-900 basis-full">مكان القطعة</label>
                                 <div className="mt-2 flex-1">
                                     <input
@@ -43,7 +43,7 @@ const AddBranchDetails = ({ branchNumber, btnDeleteBranch }) => {
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
-                            <div className="sm:col-span-4 sm:col-start-1f flex flex-row gap-x-3 items-center">
+                            <div className="ssm:col-span-4 sm:col-start-1f flex flex-row gap-x-3 items-center">
                                 <div className="flex h-6 items-center">
                                     <input
                                         id="notifi_quantity"
