@@ -8,7 +8,9 @@ import ProductVariety from './ProductVariety';
 import AddQuantityForm from './AddQuantityForm';
 
 
-const ProductItem = () => {
+const ProductItem = ({_id,product_named,product_number,purchase_price,selling_price,total_quantity,brunch_quantity,product_rack,product_column}) => {
+    
+    
     const dropRef = useRef(null);
 
     const {dropdownRef,handleClick,isOpen,iconRef} = useDropdown()
@@ -43,10 +45,8 @@ const ProductItem = () => {
                 // Add the class if it doesn't exist
                 qtyFormContain.classList.remove('flex');
                 targetElement.classList.add('hidden');
-            
             }
         }
-    
     }
 
     return (
@@ -56,13 +56,13 @@ const ProductItem = () => {
                     className={`product-details flex flex-row hover:shadow-md ${isOpen ? "shadow-md" : ""}`}>
                     <div
                         onClick={handleClick} ref={iconRef}
-                            className="details cursor-pointer flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(120px,_1fr))] min-w-[700px] text-app-gray mr-4 py-6 md:py-10">
-                        <span className='item-ranking'>01</span>
-                        <h3 className='item-name text-primary font-bold'>سماعات</h3>
+                        className="details cursor-pointer flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(120px,_1fr))] min-w-[700px] text-app-gray mr-4 py-6 md:py-10">
+                        <span className='item-ranking'>0{product_number}</span>
+                        <h3 className='item-name text-primary font-bold'>{product_named}</h3>
                         <span className="item-number">#2458</span>
-                        <span className="item-price">500 ر.س</span>
-                        <span className="total-quantity font-bold">200</span>
-                        <span className="item-place">A1</span>
+                        <span className="item-price">{brunch_quantity} ر.س</span>
+                        <span className="total-quantity font-bold">{total_quantity}</span>
+                        <span className="item-place">{product_column}{product_rack}</span>
                     </div>
 
                     <div className='actions-list relative flex flex-col justify-center items-center gap-2 md:gap-4 w-[50px]' ref={dropRef}>
@@ -79,7 +79,7 @@ const ProductItem = () => {
                             className={`${isOpenActionsList ? "flex" : "hidden"}  actions absolute text-sm text-app-gray py-2 flex-col w-max rounded-md bg-white top-8 left-8 shadow-lg shadow-primary/30 border border-primary/5`}>
                             
                             <Link
-                                href="/products/editeProduct/"
+                                href={`/products/editeProduct/${_id}`}
                                 className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray">
 
                                 <HiOutlinePencil className="text-green-500"/>
@@ -87,7 +87,7 @@ const ProductItem = () => {
                             </Link>
 
                             <Link
-                                href="/products"
+                                href={`/products`}
 
                                 className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray">
 
@@ -99,7 +99,7 @@ const ProductItem = () => {
                 </div>
                 
                 {isOpen && <div ref={dropdownRef}>
-                    <ProductVariety />
+                    <ProductVariety product_named={product_named} purchase_price={purchase_price} selling_price={selling_price} product_rack={product_rack} product_column={product_column} />
                 </div>}
                 
 

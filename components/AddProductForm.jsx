@@ -1,5 +1,6 @@
 "use client"
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import Link from 'next/link';
 import { AddBranchDetails } from '.';
 import { HiOutlineBriefcase, HiChevronDoubleLeft, HiOutlinePlus, HiX } from 'react-icons/hi'
@@ -23,6 +24,59 @@ const DynamicBranch = ({ branches, deleteBranch }) => {
 };
 
 const AddProductForm = () => {
+    
+    const [formData, setFormData] = useState( {
+        productName: "",
+        productNumber: "",
+    }); 
+    
+    const [isFormSubmitted, setFormSubmitted] = useState(false);
+
+    
+
+
+    useEffect (() => {
+        const fetchData = async () => {
+             try {
+          const response = await fetch('http://localhost:3000/api/products', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+    
+            },
+            body: JSON.stringify(formData),
+          });
+    
+          if (response.ok) {
+    
+            console.log('Data successfully submitted!');
+          } else {
+            throw new Error("Failed to create a topic");
+    
+          }
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+          // Handle network error
+          console.error('Network error:', error);
+        }
+        };
+        if (isFormSubmitted) {
+            fetchData();
+            setFormSubmitted(false);
+        }
+        
+    }, [isFormSubmitted, formData]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setFormSubmitted(true);
+    };
+
+    const handleInputChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+      };
+    
 
     const [newBranchs, setNewBranchs] = useState([]);
 
@@ -44,7 +98,7 @@ const AddProductForm = () => {
                 <h2 className='text-app-gray'>اضافة قطعة</h2>
             </div>
             <div className="add-form w-full bg-white p-8 rounded-xl">
-            <form className="max-w-[600px]">
+            <form onSubmit={handleSubmit} className="max-w-[600px]">
                 <h3 className='text-primary text-2xl '>بيانات اساسية</h3>
                 <div className="space-y-12">
                     <div className="pb-12">
@@ -55,8 +109,11 @@ const AddProductForm = () => {
                                     className="block text-lg font-medium leading-6 text-gray-900">اضافة قطعة</label>
                                 <div className="mt-2">
                                     <input
+                                        onChange={handleInputChange}
+                                        value={formData.productName}
+                                        required
                                         type="text"
-                                        name="product_named"
+                                        name="productName"
                                         id="product_named"
                                         autocomplete="given-name"
                                         placeholder='اسم القطعة'
@@ -70,8 +127,11 @@ const AddProductForm = () => {
                                     className="block text-lg font-medium leading-6 text-gray-900">رقم القطعة</label>
                                 <div className="mt-2">
                                     <input
+                                        onChange={handleInputChange}
+                                        value={formData.productNumber}
+                                        required
                                         type="text"
-                                        name="product_number"
+                                        name="productNumber"
                                         id="product_number"
                                         autocomplete="family-name"
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
