@@ -101,40 +101,40 @@ return (
                             
 
                         </div>
-
-                        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 border-b border-gray-900/10 pb-12">
+<div class="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 border-b border-gray-900/10 pb-12">
                         <h3 className='text-primary text-2xl col-span-4 '> معلومات الطلبية</h3>
-                            <div className="sm:col-span-2">
+                            <div class="col-span-4 md:col-span-2">
                                 <label
-                                    for="item-name"
-                                    className="block text-lg font-medium leading-6 text-gray-900">القطعة</label>
-                                <div className="mt-2">
+                                    for="item-number"
+                                    class="block text-lg font-medium leading-6 text-gray-900">القطعة</label>
+                                <div class="mt-2">
                                     <input
                                         type="text"
-                                        name="item-name"
-                                        id="item-name"
+                                        name="item-number"
+                                        id="item-number"
                                         autocomplete="family-name"
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
 
-                            <div className="sm:col-span-1 flex flex-row flex-wrap gap-x-6">
-                                <label for="quantity" className="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">الكمية</label>
-                                <div className="mt-2 flex-1">
+                           <div className='col-span-4 md:col-span-2 flex w-full  gap-x-6'>
+                             <div class=" flex flex-row flex-wrap gap-x-6">
+                                <label for="amount" class="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">الكمية</label>
+                                <div class="mt-2 flex-1">
                                     <input
-                                        id="quantity"
-                                        name="quantity"
+                                        id="amount"
+                                        name="amount"
                                         type="number"
                                         autocomplete="number"
                                         min={0}
 
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
                                 
-                            <div className="sm:col-span-1 flex flex-row flex-wrap gap-x-6">
-                                <label for="quantity" className="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">السعر</label>
-                                <div className="mt-2 flex-1">
+                            <div class="  flex flex-row flex-wrap gap-x-6">
+                                <label for="amount" class="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">السعر</label>
+                                <div class="mt-2 flex-1">
                                     <input
                                         id="item-price"
                                         name="item-price"
@@ -142,9 +142,10 @@ return (
                                         min={0}
                                         autocomplete="number"
  
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
+                           </div>
                             <div className=" flex flex-row flex-wrap col-start-3 col-end-5 gap-x-6 items-center">
                                 <label for="total" className="block text-lg font-medium leading-6 text-gray-900 flex-1">المجموع</label>
                                 <div className="mt-2 flex-1">
