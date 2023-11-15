@@ -1,10 +1,11 @@
 'use client'
 import { RiArrowDropDownLine } from "react-icons/ri"
 import { useState } from "react"
+import Link from "next/link";
 
-const DropdownHeading = ({ heading, options }) => {
+const DropdownHeading = ({ heading, options,link }) => {
     const [isOpen, setIsOpen] = useState(false);
-// 45 h 157 w
+
     return (
         <div className="relative ">
             <div
@@ -20,7 +21,7 @@ const DropdownHeading = ({ heading, options }) => {
                     <div className="absolute top-full right-0   flex  items-center w-[162px] h-[45px]  md:w-[200px] md:h-[61px]  mr-[-2px]  bg-app-light-gray border-primary border-2 rounded-md">
                         {options.map((option, index) => (
                             <div key={index} className="w-full px-2 py-1">
-                                {option}
+                                <Link href={link}>{option}</Link>
                             </div>
                         ))}
                     </div>
