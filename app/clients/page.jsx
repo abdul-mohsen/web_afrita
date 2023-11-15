@@ -5,14 +5,14 @@ import PagesNumber from "@/components/PagesNumber";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 
-export default function Suppliers() {
+export default function Clients() {
     return (
-        <section id='suppliers' className=" overflow-hidden">
+        <section id='clients' className=" overflow-hidden">
             <div className="section-header">
             <SectionNav
-                heading={<DropdownHeading  heading="الموردين" options={["العملاء"]} link="/clients" />}
-                btnLabel="إضافة مورد"
-                btnLink="/suppliers/add-supplier"
+                heading={<DropdownHeading  heading="العملاء" options={["الموردين"]} link="/suppliers" />}
+                btnLabel="إضافة عميل"
+                btnLink="/clients/add-client"
             />
             </div>
             
@@ -20,11 +20,11 @@ export default function Suppliers() {
             <SectionTags 
                     tags={[
                     <HiOutlineHashtag />,
-                        "اسم المورد",
+                        "اسم العامل",
                         "عنوان المورد",
-                        "رقم الهاتف",
+                        "رقم العامل",
                         "رقم المورد",
-                        "الرقم الضريبى"
+                        "الرقم العامل"
                     ]}
                     minW={700} 
                 />
