@@ -23,26 +23,27 @@ const PurchasesInvoice = () => {
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 border-b border-gray-900/10 pb-12">
                             <div className="sm:col-span-4">
                                 <label
-                                    for="invoice-number"
-                                    className="block text-lg font-medium leading-6 text-gray-900">رقم الفاتورة</label>
+                                    htmlFor="invoice-number"
+                                    className="block text-lg font-medium leading-6 text-primary">رقم الفاتورة</label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
                                         name="invoice-number"
+                                        value="5555"
                                         id="invoice-number"
-                                        autocomplete="given-name"
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        disabled
+                                        className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 bg-app-light-gray font-bold text-app-gray sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
 
                             <div className="sm:col-span-2">
-                                <label htmlFor="supplier-number" className="block text-lg font-medium leading-6 text-gray-900">رقم المورد</label>
+                                <label htmlFor="supplier-number" className="block text-lg font-medium leading-6 text-primary">رقم المورد</label>
                                 <div className="mt-2">
                                     <select
                                     id="supplier-number"
                                     name="supplier-number"
                                     autoComplete="supplier-number"
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6">
+                                    className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6">
                                     <option># 0002</option>
                                     <option># 0003</option>
                                     <option># 0004</option>
@@ -51,59 +52,59 @@ const PurchasesInvoice = () => {
                             </div>
                             <div className="sm:col-span-2">
                                 <label
-                                    for="supplier-name"
-                                    className="block text-lg font-medium leading-6 text-gray-900">اسم المورد</label>
+                                    htmlFor="supplier-name"
+                                    className="block text-lg font-medium leading-6 text-primary">اسم المورد</label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
                                         name="supplier-name"
                                         id="supplier-name"
-                                        autocomplete="given-name"
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        autoComplete="given-name"
+                                        className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
                             
                             <div className="sm:col-span-4">
                                 <label
-                                    for="product-name"
-                                    className="block text-lg font-medium leading-6 text-gray-900">الرقم الضريبي</label>
+                                    htmlFor="product-name"
+                                    className="block text-lg font-medium leading-6 text-primary">الرقم الضريبي</label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
                                         name="product-name"
                                         id="product-name"
-                                        autocomplete="given-name"
+                                        autoComplete="given-name"
                                         placeholder='615243'
                                         disabled
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
 
                             <div className="sm:col-span-4">
                                 <label
-                                    for="product-name"
-                                    className="block text-lg font-medium leading-6 text-gray-900"> تاريخ الفاتورة</label>
+                                    htmlFor="product-name"
+                                    className="block text-lg font-medium leading-6 text-primary"> تاريخ الفاتورة</label>
                                 <div className="mt-2">
                                     <input
                                         type="date"
                                         name="product-name"
                                         id="product-name"
-                                        autocomplete="given-name"
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        autoComplete="given-name"
+                                        className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
                             
                             <div className="sm:col-span-4">
                                 <label
-                                    for="product-name"
-                                    className="block text-lg font-medium leading-6 text-gray-900"> رقم فاتورة المورد</label>
+                                    htmlFor="product-name"
+                                    className="block text-lg font-medium leading-6 text-primary"> رقم فاتورة المورد</label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
                                         name="product-name"
                                         id="product-name"
-                                        autocomplete="given-name"
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        autoComplete="given-name"
+                                        className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
 
@@ -111,63 +112,63 @@ const PurchasesInvoice = () => {
 
                         </div>
 
-                        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 border-b border-gray-900/10 pb-12">
+                        <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 border-b border-gray-900/10 pb-12">
                         <h3 className='text-primary text-2xl col-span-4 '> محتويات الفاتورة </h3>
                             <div className="md:col-span-2 col-span-4">
                                 <label
-                                    for="item-number"
-                                    className="block text-lg font-medium leading-6 text-gray-900">القطعة</label>
+                                    htmlFor="item-number"
+                                    className="block text-lg font-medium leading-6 text-primary">القطعة</label>
                                 <div className="mt-2">
                                     <input
                                         type="text"
                                         name="item-number"
                                         id="item-number"
-                                        autocomplete="family-name"
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        autoComplete="family-name"
+                                        className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
 
                             <div className="md:col-span-1 max-md:col-span-2 max-sm:col-span-4  flex flex-row flex-wrap gap-x-6">
-                                <label for="amount" className="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">الكمية</label>
+                                <label htmlFor="amount" className="block text-lg font-medium leading-6 text-primary flex-1 w-full basis-full ">الكمية</label>
                                 <div className="mt-2 flex-1">
                                     <input
                                         id="amount"
                                         name="amount"
                                         type="number"
-                                        autocomplete="number"
+                                        autoComplete="number"
                                         min={0}
 
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
                                 
                             <div className="md:col-span-1 max-md:col-span-2 max-sm:col-span-4  flex flex-row flex-wrap gap-x-6">
-                                <label for="amount" className="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">السعر</label>
+                                <label htmlFor="amount" className="block text-lg font-medium leading-6 text-primary flex-1 w-full basis-full ">السعر</label>
                                 <div className="mt-2 flex-1">
                                     <input
                                         id="item-price"
                                         name="item-price"
                                         type="number"
                                         min={0}
-                                        autocomplete="number"
+                                        autoComplete="number"
  
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
                             <div className=" flex flex-row flex-wrap col-span-4 sm:col-start-3 sm:col-end-5 gap-x-6 items-center">
-                                <label for="total" className="block text-lg font-medium leading-6 text-gray-900 flex-1">المجموع</label>
+                                <label htmlFor="total" className="block text-lg font-medium leading-6 text-primary flex-1">المجموع</label>
                                 <div className="mt-2 flex-1">
                                     <input
                                         id="total"
                                         name="total"
                                         type="text"
-                                        autocomplete="number"
+                                        autoComplete="number"
                                         min={0}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
                             <div className=" flex flex-row flex-wrap col-span-4 sm:col-start-3 sm:col-end-5 gap-x-6 items-center">
-                                <label for="tax" className="block text-lg font-medium leading-6 text-gray-900 flex-1">الضريبة</label>
+                                <label htmlFor="tax" className="block text-lg font-medium leading-6 text-primary flex-1">الضريبة</label>
                                 <div className="mt-2 flex-1">
                                     <input
                                         id="tax"
@@ -175,19 +176,19 @@ const PurchasesInvoice = () => {
                                         type="text"
                                         value="14%"
                                         disabled
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
                             <div className=" flex flex-row flex-wrap col-span-4 sm:col-start-3 sm:col-end-5 gap-x-6 items-center">
-                                <label for="total-amount" className="block text-lg font-medium leading-6 text-gray-900 flex-1">المجموع الكلى</label>
+                                <label htmlFor="total-amount" className="block text-lg font-medium leading-6 text-primary flex-1">المجموع الكلى</label>
                                 <div className="mt-2 flex-1">
                                     <input
                                         id="total-amount"
                                         name="total-amount"
                                         type="text"
-                                        autocomplete="number"
+                                        autoComplete="number"
                                         min={0}
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
                         </div>

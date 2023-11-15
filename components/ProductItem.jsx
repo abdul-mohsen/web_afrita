@@ -4,7 +4,7 @@ import useDropdown from '@/hooks/useDropdown';
 import { HiOutlinePlus, HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
 import { PiDotsThreeOutlineVerticalLight } from "react-icons/pi"
 import Link from 'next/link';
-import ProductVariety from './ProductVariety';
+import ProductInfo from './ProductInfo';
 import AddQuantityForm from './AddQuantityForm';
 
 
@@ -15,6 +15,7 @@ const ProductItem = ({_id,product_named,product_number,purchase_price,selling_pr
 
     const {dropdownRef,handleClick,isOpen,iconRef} = useDropdown()
     const [isOpenActionsList, setOpenActionsList] = useState(false);
+    const [isAddQuantity, setAddQuantity] = useState(false);
 
     const actionsList = () => {
         setOpenActionsList(!isOpenActionsList);
@@ -33,20 +34,7 @@ const ProductItem = ({_id,product_named,product_number,purchase_price,selling_pr
       }, []);
     
     const openQtyForm = () => {
-        const qtyFormContain = document.getElementById('qty-form-conta');
-        if (qtyFormContain) {
-            // Check if the element has the specific class
-            if (qtyFormContain.classList.contains('hidden')) {
-                // Remove the class if it exists
-                qtyFormContain.classList.remove('hidden');
-                qtyFormContain.classList.add('flex');
-                
-            } else if (qtyFormContain.classList.contains('flex')) {
-                // Add the class if it doesn't exist
-                qtyFormContain.classList.remove('flex');
-                targetElement.classList.add('hidden');
-            }
-        }
+        setAddQuantity(!isAddQuantity);
     }
 
     return (
@@ -63,6 +51,7 @@ const ProductItem = ({_id,product_named,product_number,purchase_price,selling_pr
                         <span className="item-price">{brunch_quantity} ر.س</span>
                         <span className="total-quantity font-bold">{total_quantity}</span>
                         <span className="item-place">{product_column}{product_rack}</span>
+
                     </div>
 
                     <div className='actions-list relative flex flex-col justify-center items-center gap-2 md:gap-4 w-[50px]' ref={dropRef}>
@@ -99,12 +88,13 @@ const ProductItem = ({_id,product_named,product_number,purchase_price,selling_pr
                 </div>
                 
                 {isOpen && <div ref={dropdownRef}>
-                    <ProductVariety product_named={product_named} purchase_price={purchase_price} selling_price={selling_price} product_rack={product_rack} product_column={product_column} />
+                    <ProductInfo purchase_price={purchase_price} selling_price={selling_price} product_rack={product_rack} product_column={product_column} />
                 </div>}
                 
 
             </div>
-            <AddQuantityForm/>
+            {isAddQuantity && <AddQuantityForm productName={product_named} openForm={openQtyForm}/>}
+            
         </>
     );
 }
