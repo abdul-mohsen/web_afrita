@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import Button from "./Button";
 import SectionNav from "./SectionNav";
 import ProductItem from "./ProductItem";
-import ProductVariety from "./ProductVariety";
+import ProductInfo from "./ProductInfo";
 import AddProductForm from './AddProductForm';
 import AddBranchDetails from "./AddBranchDetails";
 import EditeProductForm from "./EditeProductForm";
@@ -28,7 +28,7 @@ export {
     Button,
     SectionNav,
     ProductItem,
-    ProductVariety,
+    ProductInfo,
     AddProductForm,
     AddBranchDetails,
     EditeProductForm,

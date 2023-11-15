@@ -36,7 +36,7 @@ const InvoivePreview = ( {togglue }) => {
 
               <div className="sm:col-span-4">
                 <label
-                    for="product-name"
+                    htmlFor="product-name"
                     className="block text-lg font-bold leading-6 text-app-gray">
                     معلومات المورد
                 </label>
@@ -46,7 +46,7 @@ const InvoivePreview = ( {togglue }) => {
                     type="text"
                     name="product-name"
                     id="product-name"
-                    autocomplete="given-name"
+                    autoComplete="given-name"
                     placeholder=''
                     disabled
                     value={"شركة سداد"}
@@ -55,7 +55,7 @@ const InvoivePreview = ( {togglue }) => {
               </div>
               <div className="sm:col-span-2">
                     <label
-                        for="invoice-name"
+                        htmlFor="invoice-name"
                         className="block text-lg font-bold leading-6 text-app-gray">تاريخ الفاتورة</label>
                     <div className="mt-2">
                         <input
@@ -64,7 +64,7 @@ const InvoivePreview = ( {togglue }) => {
                             id="invoice-name"
                             value={todayDate}
                             disabled
-                            autocomplete="given-name"
+                            autoComplete="given-name"
                             className="block w-full border-0 border-b py-1.5 text-app-gray sm:text-lg sm:leading-6  bg-app-light-gray"/>
                     </div>
                 </div>
@@ -98,19 +98,19 @@ const InvoivePreview = ( {togglue }) => {
             <div className="mt-10 col-span-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 border-b border-gray-900/10 pb-12">
 
                 <div className=" flex flex-row flex-wrap col-start-3 col-end-5 gap-x-6 items-center ">
-                    <label for="total" className="block text-lg font-medium leading-6 text-gray-900 flex-1">المجموع</label>
+                    <label htmlFor="total" className="block text-lg font-medium leading-6 text-gray-900 flex-1">المجموع</label>
                     <div className="mt-2 flex-1 dasshed-all p-1 rounded-md">
                         <input
                             id="total"
                             name="total"
                             type="text"
-                            autocomplete="number"
+                            autoComplete="number"
                             disabled
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900  placeholder:text-gray-400 sm:text-sm sm:leading-6"/>
                     </div>
                 </div>
                 <div className=" flex flex-row flex-wrap col-start-3 col-end-5 gap-x-6 items-center">
-                    <label for="tax" className="block text-lg font-medium leading-6 text-gray-900 flex-1">الضريبة</label>
+                    <label htmlFor="tax" className="block text-lg font-medium leading-6 text-gray-900 flex-1">الضريبة</label>
                     <div className="mt-2 flex-1 dasshed-all p-1 rounded-md">
                         <input
                             id="tax"
@@ -122,13 +122,13 @@ const InvoivePreview = ( {togglue }) => {
                     </div>
                 </div>
                 <div className=" flex flex-row flex-wrap col-start-3 col-end-5 gap-x-6 items-center">
-                    <label for="total-amount" className="block text-lg font-medium leading-6 text-gray-900 flex-1">المجموع الكلى</label>
+                    <label htmlFor="total-amount" className="block text-lg font-medium leading-6 text-gray-900 flex-1">المجموع الكلى</label>
                     <div className="mt-2 flex-1 dasshed-all p-1 rounded-md">
                         <input
                             id="total-amount"
                             name="total-amount"
                             type="text"
-                            autocomplete="number"
+                            autoComplete="number"
                             disabled
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                     </div>
@@ -138,7 +138,7 @@ const InvoivePreview = ( {togglue }) => {
             <div className="col-span-4 grid grid-cols-1 gap-8 sm:grid-cols-4">
 
             <div className=" flex flex-row flex-wrap col-span-2 gap-x-6 items-center ">
-                    <label for="tax-number" className="block text-lg font-medium leading-6 text-gray-900 flex-1">الرقم الضريبى</label>
+                    <label htmlFor="tax-number" className="block text-lg font-medium leading-6 text-gray-900 flex-1">الرقم الضريبى</label>
                     <div className="mt-2 flex-1 dasshed-all p-1 rounded-md">
                         <input
                             id="tax-number"
