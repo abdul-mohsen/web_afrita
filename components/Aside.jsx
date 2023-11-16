@@ -6,6 +6,7 @@ import  NavLinks  from './NavLinks';
 import { HiOutlineArrowRightOnRectangle } from 'react-icons/hi2';
 
 
+
 const Aside = () => {
 
    return (
@@ -15,7 +16,7 @@ const Aside = () => {
                 <Image src={LogoImage} alt="Afrita Logo" className='max-lg:hidden w-3/5' />
                 <Image src={MobileLogo} alt="Afrita Logo" className='lg:hidden' />
             </a>
-            <NavLinks />
+            <NavLinks  />
             <div className="lg:px-6 my-6">
                 <button className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-primary-600 border border-transparent rounded-lg bg-primary hover:bg-primary/75 focus:outline-none focus:shadow-outline-primary">
                     <span className='lg:block hidden'>تسجيل الخروج</span>

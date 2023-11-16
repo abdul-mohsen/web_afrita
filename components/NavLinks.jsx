@@ -1,16 +1,17 @@
 'use client'
 import { navLinks } from '@/constants';
 import Link from 'next/link';
-import { useRef, useEffect} from 'react'
+import { useRef, useEffect, useState} from 'react'
 
 const NavLinks = () => {
-
+    const [currentPage,setCurrentPage] = useState(null)
     const firstNavLink = useRef();
 
     useEffect(() => {
         if (firstNavLink.current) {
           firstNavLink.current.classList.add('bg-primary');
         }
+        setCurrentPage(window.location.pathname)
       }, []);
 
 
@@ -38,7 +39,7 @@ const NavLinks = () => {
                         className={`${
                             
                         
-                        typeof window !== "undefined" && window.location.pathname === item.href
+                        typeof window !== "undefined" && currentPage === item.href
                             ? "bg-primary text-white"
                             : "" 
                         }
