@@ -1,9 +1,16 @@
 'use client'
 import { navLinks } from '@/constants';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useRef, useEffect} from 'react'
 
 const NavLinks = () => {
+  const router = useRouter();
+
+  // Function to determine if a link is active
+  const isLinkActive = (hreef) => {
+    return router.pathname === hreef;
+  };
 
     const firstNavLink = useRef();
 
@@ -12,7 +19,6 @@ const NavLinks = () => {
           firstNavLink.current.classList.add('bg-primary');
         }
       }, []);
-
 
       
     const navHandleClick = (index) => {
@@ -32,17 +38,17 @@ const NavLinks = () => {
     return (
         <nav className="mt-6 lg:px-6 max-lg:flex flex-col max-lg:justify-center max-lg:items-center">
                 {navLinks.map((item, index) => (
-                    <Link
+                    <Link 
                         key={item.label}
                         href={item.href}
                         className={`${
                             
                         
-                        typeof window !== "undefined" && window.location.pathname === item.href
+                          isLinkActive(`/${item.href}`)
                             ? "bg-primary text-white"
                             : "" 
                         }
-                        nav-link block lg:flex max-lg:w-fit items-center rounded-full lg:rounded-lg hover:bg-primary text-lg max-lg:my-2`}
+                        nav-link block lg:flex max-lg:w-fit items-center rounded-full lg:rounded-lg hover:bg-primary text-lg max-lg:my-1`}
                         onClick={() => {navHandleClick(index)}}
                         >
                     <div className="px-3 lg:px-6 py-3 lg:inline-flex items-center lg:w-full text-lg font-semibold transition-colors duration-150 hover:text-white">
@@ -50,6 +56,7 @@ const NavLinks = () => {
                         <span className="hidden lg:block mr-4">{item.label}</span>
                         <span className='hidden lg:block count mr-auto'> {item.count} </span>
                     </div>
+                    
                     </Link>
                 ))}
             </nav>
