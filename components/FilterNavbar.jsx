@@ -1,58 +1,88 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import Button from './Button'
 
 function FilterNavbar() {
+
+    const [invoicefilterOption, setinvoiceFilter] = useState(false);
+
+    const handelInvoiceType = () => {
+        setinvoiceFilter(!invoicefilterOption);
+    };
+    
+
     return (
-        <div className="p-6 rounded-md bg-app-light-gray  h-[287px] shadow-lg">
+        <div className="p-6 rounded-md bg-app-light-gray shadow-lg">
             <form>
                 <div className="flex flex-col gap-y-3 md:gap-y-6">
-                    <div className='flex gap-x-8'>
-                        <div>
+                    <div className='grid grid-cols-4 max-md:grid-cols-2 gap-x-6 gap-y-2'>
+                        <div className=' col-span-2 sm:col-span-1'>
                             <label
-                                htmlFor="our-products-filter"
-                                className={`text-app-gray  text-2xl text-bold `}>
+                                htmlFor="products-filter"
+                                className="text-app-gray md:text-lg text-bold">
                                 <input
                                     type='checkbox'
-                                    name='our-products-filter'
-                                    id='our-products-filter'
-                                    className='ml-6'/>
+                                    name='products-filter'
+                                    id='products-filter'
+                                    className='ml-5'/>
                                 منتجات
                             </label>
                         </div>
-                        <div>
-                            <label htmlFor="bills-filter" className={`text-app-gray  text-2xl text-bold `}>
-                                <input type='checkbox' name='bills-filter' id='bills-filter' className='ml-6'/>
+                        <div onClick={handelInvoiceType} className=' col-span-2 sm:col-span-1'>
+                            <label htmlFor="bills-filter" className=" block text-app-gray md:text-lg text-bold">
+                                <input type='checkbox' name='bills-filter' id='bills-filter' className='ml-5'/>
                                 فواتير
                             </label>
                         </div>
-                    </div>
-                    <div className='py-3 flex-col flex md:flex-row gap-x-8'>
-                        <div className="flex flex-col">
-                            <label htmlFor='name-piece-filter' className='mb-1'>
-                                اسم القطعة
+                        <div className=' col-span-2 sm:col-span-1'>
+                            <label htmlFor="clients-filter" className="text-app-gray md:text-lg text-bold">
+                                <input type='checkbox' name='clients-filter' id='clients-filter' className='ml-5'/>
+                                العملاء
                             </label>
-                            <input
-                                type='text'
-                                id='name-piece-filter'
-                                className='w-full h-[37px] md:h-[50px] rounded-md bg-transparent'/>
+                        </div>
+                        <div className=' col-span-2 sm:col-span-1'>
+                            <label htmlFor="suppliers-filter" className="text-app-gray md:text-lg text-bold">
+                                <input type='checkbox' name='suppliers-filter' id='suppliers-filter' className='ml-5'/>
+                                موردين
+                            </label>
+                        </div>
+                    </div>
+                    
+                    {invoicefilterOption &&
+                        <div className='py-3 flex-col flex md:flex-row gap-x-8'>
+                        <div className="flex flex-col">
+                            <label htmlFor='invoice-type' className='mb-1'>
+                                نوع الفاتورة
+                            </label>
+                            <div className="mt-2">
+                                <select
+                                    id="invoice-type"
+                                    name="invoice-type"
+                                    className="block w-full h-[37px] md:h-[50px] rounded-md py-1.5 text-app-gray bg-app-light-gray shadow-sm sm:text-sm sm:leading-6">
+                                    <option>بيع</option>
+                                    <option>شراء</option>
+                                </select>
+                            </div>
                         </div>
                         <div className="flex flex-col">
                             <label htmlFor='number-piece-filter' className='mb-1'>
-                                رقم القطعة
+                                رقم الفاتورة
                             </label>
                             <input
                                 type='text'
                                 id='number-piece-filter'
-                                className='w-full h-[37px] md:h-[50px] rounded-md bg-transparent'/>
+                                className='mt-2 w-full h-[37px] md:h-[50px] rounded-md bg-transparent'/>
                         </div>
                     </div>
+                    }
+                    
                     <div className="flex justify-between items-center ">
                         <div>
-                            <button type='button' className="text-primary font-bold">اعادة تعيين</button>
+                            <button type='reset' className="text-primary font-bold">اعادة تعيين</button>
                         </div>
                         <div className="flex  gap-x-4">
-                            <button type="button" className="text-primary font-bold">الغاء</button>
-                            <Button label="بحث" link="#" addclass="px-8"/>
+                            <button type="button" className="px-8 p-4 text-xl py-3 lg:px-7 lg:text-2xl lg:py-4 leading-none rounded-md border border-primary hover:bg-primary/10">الغاء</button>
+                            <Button label="بحث" link="#" addclass="px-8 p-4"/>
                         </div>
                     </div>
                 </div>

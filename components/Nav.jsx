@@ -52,24 +52,20 @@ const Nav = () => {
                 </div>
             </div>
             
-            <div className="search-input relative flex-1 flex justify-center items-center bg-white max-md:pe-0 p-6 ps-0"
-            
-            >
-                <label htmlFor="search" onClick={openSearchBar} ref={dropReff} className={`${isSearchBar ? "flex-1 max-lg:rounded-md" : "max-lg:rounded-full"} rounded-md lg:flex-1 lg:w-full w-[70px] overflow-hidden ml-auto flex flex-row justify-between items-center px-6 py-3 bg-app-light-gray cursor-pointer`}> 
-                    <span className="text-app-gray">
-                    <IoSearchOutline className='w-6 h-6' />
-                    </span>
-                    <input type="" name="search" id="search" className=" bg-app-light-gray text-primary flex-1 px-6 focus:outline-[0_!important]  border-[transparent_!important] focus:border-[transparent_!important] w-[inherit]"/>
-                    <button className="text-app-gray"   onClick={handleClick} ref={iconRef}>
-                    <HiOutlineAdjustmentsHorizontal className="w-6 h-6"/>
-                    </button>
-                </label>
+            <div ref={dropReff} className="search-input relative flex-1 flex justify-center items-center bg-white max-md:pe-0 px-0">
+              <label htmlFor="search" onClick={openSearchBar}  className={`${isSearchBar ? "flex-1 max-lg:rounded-md" : "max-lg:rounded-full"} rounded-md lg:flex-1 lg:w-full w-[70px] overflow-hidden ml-auto flex flex-row justify-between items-center px-6 py-3 bg-app-light-gray cursor-pointer`}> 
+                  <span className="text-app-gray">
+                  <IoSearchOutline className='w-6 h-6' />
+                  </span>
+                  <input type="" name="search" id="search" className=" bg-app-light-gray text-primary flex-1 px-6 focus:outline-[0_!important]  border-[transparent_!important] focus:border-[transparent_!important] w-[inherit]"/>
+                  <button className="text-app-gray"   onClick={handleClick} ref={iconRef}>
+                  <HiOutlineAdjustmentsHorizontal className="w-6 h-6"/>
+                  </button>
+              </label>
 
-           {isOpen && <div className="p-4 absolute z-[30] w-full mt-3 top-16"
-           ref={dropdownRef}
-           >
-                 <FilterNavbar />
-           </div>}
+              {isOpen && <div className="absolute z-[30] w-full mt-6 top-16" ref={dropdownRef}>
+                    <FilterNavbar />
+              </div>}
           
             </div>
         </nav>
