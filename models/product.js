@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const productSchema = new Schema (
+const productSchema = new Schema(
     {
         product_named: String,
         product_number: String,
@@ -11,7 +11,7 @@ const productSchema = new Schema (
         product_rack: String,
         product_column: String,
         notifi_quantity: Boolean,
-        minimum_quantity: Number
+        minimum_quantity: Number,
     },
     {
         timestamps: true,

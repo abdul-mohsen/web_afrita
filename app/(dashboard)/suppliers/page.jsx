@@ -4,7 +4,6 @@ import DropdownHeading from "@/components/DropdownHeading";
 import PagesNumber from "@/components/PagesNumber";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
-
 export default function Suppliers() {
     return (
         <section id='suppliers' className=" overflow-hidden">
@@ -17,7 +16,7 @@ export default function Suppliers() {
             </div>
             
             <div className="items-container overflow-x-auto flex flex-col pb-4 mt-6 gap-6">
-            <SectionTags 
+                <SectionTags 
                     tags={[
                     <HiOutlineHashtag />,
                         "اسم المورد",
@@ -32,7 +31,6 @@ export default function Suppliers() {
                 <SupplierItem />
                 <SupplierItem />
                 <SupplierItem />
-                
             </div>
                 <div className="pt-4 flex justify-end">
                     <PagesNumber />

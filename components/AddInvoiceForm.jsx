@@ -5,13 +5,16 @@ import { Tabs } from '.'
 import PurchasesInvoice from './PurchasesInvoice'
 import SaleInvoice from './SaleInvoice'
 import {useState} from 'react'
+import Link from 'next/link'
 
 const AddInvoiceForm = () => {
     const [selectedTab, setSelectedTab] = useState(0)
     return (
         <div>
             <div className='breadcrumb w-full text-xl flex flex-row gap-5 justify-start items-center mb-6'>
-                <IoReceiptOutline className='text-primary' />
+                <Link href={"/invoices"} >
+                    <IoReceiptOutline className='text-primary' />
+                </Link>
                 <HiChevronDoubleLeft className='text-app-gray' />
                 <h2 className='text-app-gray'>اضافة فاتورة</h2>
             </div>

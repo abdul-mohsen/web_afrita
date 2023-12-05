@@ -8,28 +8,28 @@ const SaleInvoice = () => {
     const [todayDate, setTodayDate] = useState('');
 
     useEffect(() => {
+        const getTodayDate = () => {
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0];
+            setTodayDate(formattedDate);
+        };
 
-      const getTodayDate = () => {
-        const today = new Date();
-        const formattedDate = today.toISOString().split('T')[0];
-        setTodayDate(formattedDate);
-      };
-
-      getTodayDate();
+        getTodayDate();
     }, []);
     
     const [previewInvoice, setPreviewInvoice] = useState(false);
 
-  const togglePreviewInvoice = () => {
-    setPreviewInvoice(!previewInvoice);
-  };
-return (
-    <>
-    <form className="max-w-[600px]">
+    const togglePreviewInvoice = () => {
+        setPreviewInvoice(!previewInvoice);
+    };
+
+    return (
+        <>
+            <form className="max-w-[600px]">
                 <h3 className='text-primary text-2xl '>فاتورة جديدة</h3>
                 <div className="space-y-12">
                     <div className="pb-12">
-                            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 border-b border-gray-900/10 pb-12">
+                        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 border-b border-gray-900/10 pb-12">
                             <div className="sm:col-span-4">
                                 <label
                                     htmlFor="invoice-name"
@@ -99,12 +99,10 @@ return (
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
-
-                            
-
                         </div>
+
                         <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 border-b border-gray-900/10 pb-12">
-                        <h3 className='text-primary text-2xl col-span-4 '> معلومات الطلبية</h3>
+                            <h3 className='text-primary text-2xl col-span-4 '> معلومات الطلبية</h3>
                             <div className="md:col-span-2 col-span-4">
                                 <label
                                     htmlFor="item-number"
@@ -129,7 +127,7 @@ return (
                                         autoComplete="number"
                                         min={0}
 
-                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
                                 
@@ -142,7 +140,7 @@ return (
                                         type="number"
                                         min={0}
                                         autoComplete="number"
- 
+
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
@@ -196,7 +194,6 @@ return (
                         </span>
                     </div>
                     <div className='flex items-center justify-end gap-x-6'>
-
                         <button
                             type="button" 
                             className="rounded-md md:py-4 py-2 px-6 text-sm font-semibold leading-6 text-primary border-2 border-primary">حفظ مسودة</button>
@@ -207,10 +204,8 @@ return (
 
                 </div>
             </form>
-            {previewInvoice && <InvoivePreview togglue={togglePreviewInvoice} />}
-            
-    </>
+            {previewInvoice && <InvoivePreview togglue={togglePreviewInvoice} />}     
+        </>
     )
 }
-
 export default SaleInvoice

@@ -2,15 +2,13 @@
 import React, { useState } from 'react'
 import Button from './Button'
 
-function FilterNavbar() {
+function FilterNavbar({ onOpen }) {
 
     const [invoicefilterOption, setinvoiceFilter] = useState(false);
-
     const handelInvoiceType = () => {
         setinvoiceFilter(!invoicefilterOption);
     };
     
-
     return (
         <div className="p-6 rounded-md bg-app-light-gray shadow-lg">
             <form>
@@ -28,9 +26,9 @@ function FilterNavbar() {
                                 منتجات
                             </label>
                         </div>
-                        <div onClick={handelInvoiceType} className=' col-span-2 sm:col-span-1'>
-                            <label htmlFor="bills-filter" className=" block text-app-gray md:text-lg text-bold">
-                                <input type='checkbox' name='bills-filter' id='bills-filter' className='ml-5'/>
+                        <div className=' col-span-2 sm:col-span-1 flex flex-row'>
+                            <input  onClick={handelInvoiceType} type='checkbox' name='bills-filter' id='bills-filter' className='ml-5'/>
+                            <label htmlFor={'bills-filter'} className=" block text-app-gray md:text-lg text-bold">
                                 فواتير
                             </label>
                         </div>
@@ -78,18 +76,16 @@ function FilterNavbar() {
                     
                     <div className="flex justify-between items-center ">
                         <div>
-                            <button type='reset' className="text-primary font-bold">اعادة تعيين</button>
+                            <button onClick={() => setinvoiceFilter(false)} type='reset' className="text-primary font-bold">اعادة تعيين</button>
                         </div>
                         <div className="flex  gap-x-4">
-                            <button type="button" className="px-8 p-4 text-xl py-3 lg:px-7 lg:text-2xl lg:py-4 leading-none rounded-md border border-primary hover:bg-primary/10">الغاء</button>
-                            <Button label="بحث" link="#" addclass="px-8 p-4"/>
+                            <button onClick={onOpen} type="button" className="px-8 text-xl py-2 lg:px-7 lg:text-2xl lg:py-3 leading-none rounded-md border border-primary hover:bg-primary/10">الغاء</button>
+                            <Button label="بحث" link="#" addclass="px-8"/>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     )
-
 }
-
 export default FilterNavbar
