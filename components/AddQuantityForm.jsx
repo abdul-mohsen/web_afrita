@@ -3,7 +3,6 @@ import { HiOutlineXMark } from "react-icons/hi2";
 import { useEffect } from "react";
 import { markRequiredInputs } from "@/utils/utils";
 
-
 const AddQuantityForm = ({productName, openForm}) => {
   
   useEffect(() => {
@@ -13,7 +12,7 @@ const AddQuantityForm = ({productName, openForm}) => {
   return (
     <div className="fixed flex w-screen h-screen top-0 right-0 z-40 justify-center items-center padding" >
       <div onClick={openForm} className="overlay absolute bg-black/30 w-screen h-screen"></div>
-      <div className='relative z-50 bg-white w-full xl:w-1/2 lg:w-3/5 md:w-4/5 p-8 rounded-lg' >
+      <div className='relative z-50 bg-white w-full md:w-fit p-8 rounded-lg' >
         <form action="post" className="max-w-[600px]">
           <h3 className='text-primary text-2xl '> اضافة كمية جديدة</h3>
           <div className="space-y-6 pb-6">
@@ -65,9 +64,9 @@ const AddQuantityForm = ({productName, openForm}) => {
                 </div>
               </div>
             </div>  
-            <div  className="mt-10 grid grid-cols-1 gap-x-6 sm:grid-cols-4 border-b border-gray-900/10 pb-6">
-              <h3 className='text-primary text-xl col-span-4 mb-4'>اضافة لــ</h3>
-              <div className="col-span-1 flex justify-center items-center my-1">
+            <div  className="mt-10 grid grid-cols-1 gap-x-6 sm:grid-cols-6 border-b border-gray-900/10 pb-6">
+              <h3 className='text-primary text-xl col-span-full mb-4'>اضافة لــ</h3>
+              <div className="col-span-1 md:col-span-2 flex justify-center items-center my-1">
                 <label
                   htmlFor="branch-one"
                   className="block text-lg font-medium leading-6 text-primary w-full flex-1">
@@ -79,10 +78,11 @@ const AddQuantityForm = ({productName, openForm}) => {
                     name="branch-one"
                     type="input"
                     placeholder=''
+                    required
                     className="block w-full rounded-md border-0 py-1.5 text-primary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                 </div>
               </div>
-              <div className="col-span-1 flex justify-center items-center my-1">
+              <div className="col-span-1 md:col-span-2 flex justify-center items-center my-1">
                 <label
                   htmlFor="branch-two"
                   className="block text-lg font-medium leading-6 text-primary w-full flex-1">
@@ -94,6 +94,7 @@ const AddQuantityForm = ({productName, openForm}) => {
                     name="branch-two"
                     type="input"
                     placeholder=''
+                    required
                     className="block w-full rounded-md border-0 py-1.5 text-primary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                 </div>
               </div>
@@ -109,12 +110,13 @@ const AddQuantityForm = ({productName, openForm}) => {
                 </span>
               <button
                 type="submit"
-                className="rounded-md bg-secondry px-8 py-4 text-2xl font-semibold shadow-sm hover:bg-secondry/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">إضافة منتج</button>
+                className="rounded-md bg-secondry px-8 py-4 text-2xl font-semibold shadow-sm hover:bg-secondry/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                  إضافة الكمية
+              </button>
           </div>
         </form>
       </div>
     </div>
   )
 }
-
 export default AddQuantityForm

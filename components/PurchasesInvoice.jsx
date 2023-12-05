@@ -8,19 +8,17 @@ import React from 'react';
 const PurchasesInvoice = () => {
 
     const [previewInvoice, setPreviewInvoice] = useState(false);
+    const togglePreviewInvoice = () => {
+        setPreviewInvoice(!previewInvoice);
+    };
 
-  const togglePreviewInvoice = () => {
-    setPreviewInvoice(!previewInvoice);
-  };
-
-
-  return (
-    <>
-    <form className="max-w-[600px]">
+    return (
+        <>
+            <form className="max-w-[600px]">
                 <h3 className='text-primary text-2xl '>فاتورة جديدة</h3>
                 <div className="space-y-12">
                     <div className="pb-12">
-                            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 border-b border-gray-900/10 pb-12">
+                        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 border-b border-gray-900/10 pb-12">
                             <div className="sm:col-span-4">
                                 <label
                                     htmlFor="invoice-number"
@@ -151,7 +149,7 @@ const PurchasesInvoice = () => {
                                         type="number"
                                         min={0}
                                         autoComplete="number"
- 
+
                                         className="block w-full rounded-md border-0 py-1.5 text-app-gray shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
@@ -205,7 +203,6 @@ const PurchasesInvoice = () => {
                         </span>
                     </div>
                     <div className='flex items-center justify-end gap-x-6'>
-
                         <button
                             type="button" 
                             className="rounded-md md:py-4 py-2 px-6 text-sm font-semibold leading-6 text-primary border-2 border-primary">حفظ مسودة</button>
@@ -213,13 +210,11 @@ const PurchasesInvoice = () => {
                             type="submit"
                             className="rounded-md bg-primary md:py-4 py-2 px-6 text-sm font-semibold text-white shadow-sm hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary border-2 border-primary">حفظ الفاتورة</button>
                     </div>
-
                 </div>
             </form>
             {previewInvoice && <InvoivePreview togglue={togglePreviewInvoice} />}
-            
-            </>
-  )
+        </>
+    )
 }
 
 export default PurchasesInvoice

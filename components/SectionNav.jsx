@@ -20,5 +20,4 @@ const SectionNav = ({heading, btnLabel, btnLink, quantity}) => {
         </div>
     )
 }
-
 export default SectionNav

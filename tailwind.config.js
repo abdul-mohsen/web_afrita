@@ -22,7 +22,19 @@ module.exports = {
         cairo: ['Cairo', 'sans-serif']
       },
       colors: {
-        'primary': "#1D3666",
+        primary: {
+          50: '#f1f4f9',
+          100: '#d6e1f2',
+          200: '#adc6e6',
+          300: '#7fa2cd',
+          400: '#567db4',
+          500: '#1d3666', // Base color
+          600: '#0e1d44',
+          700: '#08142f',
+          800: '#050e23',
+          900: '#03081a',
+          DEFAULT: '#1d3666', // Default theme color
+      },
         'secondry': "#FDBC2D",
         "slate-gray": "#9a9c9b",
         "app-gray": "#7C7C7C",
