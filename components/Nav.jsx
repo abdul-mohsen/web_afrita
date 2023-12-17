@@ -7,6 +7,7 @@ import { HiOutlineAdjustmentsHorizontal, HiOutlineArrowRightOnRectangle, HiUser 
 import { IoNotificationsOutline, IoSearchOutline } from 'react-icons/io5';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 
 const Nav = () => {
   const dropRef = useRef(null);
@@ -49,10 +50,10 @@ const Nav = () => {
               {isUserInfo && <HiUser className='w-4 h-4 lg:hidden' />}
             </Link>
             {isUserInfo &&
-              <Link href={'/login'} className={`${isUserInfo ? "flex flex-row justify-between items-center gap-8 max-lg:hover:text-primary lg:hidden" : "" }`} id='logout'>
+              <button onClick={() => signOut()} className={`${isUserInfo ? "flex flex-row justify-between items-center gap-8 max-lg:hover:text-primary lg:hidden" : "" }`} id='logout'>
                 <span>تسجيل الخروج</span>
                 <HiOutlineArrowRightOnRectangle className='w-4 h-4'/>
-              </Link>
+              </button>
             }
           </div>
         </button>

@@ -10,7 +10,7 @@ import { CiLocationOn } from 'react-icons/ci'
 
 
 export const navLinks = [
-    {   href: "/",
+    {   href: "/dashboard",
         label: "الرئيسية",
         icon: <CgHome className="w-5 h-5"/>
     
