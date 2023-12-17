@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import { AuthProvider } from '@/providers/auth-provider'
 import './globals.css'
+import { Toaster } from 'sonner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,6 +19,7 @@ export default function RootLayout({children}) {
         <main className="max-h-screen bg-app-light-gray flex items-start overflow-hidden">
           {children}
         </main>
+        <Toaster />
       </AuthProvider>
       </body>
     </html>
