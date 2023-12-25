@@ -40,10 +40,9 @@ const AddBranchDetails = ({
                         onChange={handelFunc}
                         value={placeRow}
                         required
-                        type="text"
-                        name="product_rack"
-                        id="product_rack"
-                        min={0}
+                        type="number"
+                        name="store_id"
+                        id="store_id"
                         placeholder='رف'
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                 </div>
@@ -52,7 +51,7 @@ const AddBranchDetails = ({
                         onChange={handelFunc}
                         value={placeCol}
                         required
-                        type="text"
+                        type="number"
                         name="product_column"
                         id="product_column"
                         min={0}
