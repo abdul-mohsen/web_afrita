@@ -12,7 +12,7 @@ const AddInvoiceForm = () => {
     return (
         <div>
             <div className='breadcrumb w-full text-xl flex flex-row gap-5 justify-start items-center mb-6'>
-                <Link href={"/invoices"} >
+                <Link href={"/dashboard/invoices"} >
                     <IoReceiptOutline className='text-primary' />
                 </Link>
                 <HiChevronDoubleLeft className='text-app-gray' />

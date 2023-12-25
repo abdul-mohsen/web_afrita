@@ -40,26 +40,6 @@ export function UserAuthForm({ formType }) {
     setData(newData)
   }
 
-  // const submitForm = async event => {
-  //     event.preventDefault()
-
-  //     const { error } = schema.validate(data, { abortEarly: false })
-
-  //     if (error) {
-  //         const validationErrors = {}
-  //         error.details.forEach(detail => {
-  //             validationErrors[detail.path[0]] = detail.message
-  //         })
-  //         setErrors(validationErrors)
-  //         console.log(errors)
-  //     } else {
-  //         login({
-  //             ...data,
-  //             setErrors,
-  //             setIsStatus,
-  //         })
-  //     }
-  // }
   const submitForm = async (e) => {
     e.preventDefault()
     setIsLoading(true)

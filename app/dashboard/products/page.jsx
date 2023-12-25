@@ -21,7 +21,7 @@ export default async function Products() {
                     heading="المنتجات"
                     quantity="500"
                     btnLabel="إضافة منتج"
-                    btnLink="/products/addProduct"
+                    btnLink="/dashboard/products/addProduct"
                 />
             </div>
             <div className="items-container overflow-x-auto flex flex-col pb-4 mt-6 gap-6">

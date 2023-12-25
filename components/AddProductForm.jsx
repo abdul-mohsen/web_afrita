@@ -4,6 +4,8 @@ import Link from 'next/link';
 import  AddBranchDetails  from './AddBranchDetails';
 import { HiOutlineBriefcase, HiChevronDoubleLeft, HiOutlinePlus, HiX } from 'react-icons/hi'
 import { markRequiredInputs } from '@/utils/utils';
+import { toast } from 'sonner';
+import axios from 'axios';
 
 const DynamicBranch = ({ branches, deleteBranch }) => {
     return (
@@ -27,14 +29,13 @@ const DynamicBranch = ({ branches, deleteBranch }) => {
 const AddProductForm = () => {
     const handleAddProduct = async (newProduct) => {
         try {
-            const response = await fetch('http://localhost:3000/api/products', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newProduct),
-            });
+            const response = await axios.post(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/product/products`,
+                newProduct,
+                
+              )
             if (response.ok) {
+                toast.success('Account created successfully! Redirecting to login...')
                 console.log('Product added successfully');
             } else {
                 if (response.status === 400) {
@@ -115,7 +116,7 @@ const AddProductForm = () => {
     return (
         <div>
             <div className='breadcrumb w-full text-xl flex flex-row gap-5 justify-start items-center mb-6'>
-                <Link href={"/products"} >
+                <Link href={"/dashboard/products"} >
                     <HiOutlineBriefcase className='text-primary' />
                 </Link>
                 <HiChevronDoubleLeft className='text-app-gray' />
@@ -236,7 +237,7 @@ const AddProductForm = () => {
                     </div>
 
                     <div className="mt-6 flex items-center justify-end gap-x-6">
-                        <Link href={"/products"} className="text-sm font-semibold leading-6 text-gray-900">الغاء</Link>
+                        <Link href={"/dashboard/products"} className="text-sm font-semibold leading-6 text-gray-900">الغاء</Link>
                         <button
                             type="submit"
                             className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">إضافة منتج</button>

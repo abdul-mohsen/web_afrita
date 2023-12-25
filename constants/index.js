@@ -15,34 +15,34 @@ export const navLinks = [
         icon: <CgHome className="w-5 h-5"/>
     
     },
-    {   href: "/orders", 
+    {   href: "/dashboard/orders", 
         label: "الطلبات",
         icon: <FiBox className="w-5 h-5" />,
         count:100
     },
-    {   href: "/products", 
+    {   href: "/dashboard/products", 
         label: "المنتجات",
         icon: <HiOutlineBriefcase className="w-5 h-5" />,
         count:100
     },
-    {   href: "/setting", 
+    {   href: "/dashboard/setting", 
         label: "الإعدادات",
         icon: <LuSettings className="w-5 h-5" /> 
     },
-    {   href: "/invoices", 
+    {   href: "/dashboard/invoices", 
         label: "الفواتير",
         icon: <IoReceiptOutline className="w-5 h-5" />
     },
-    {   href: "/messages", 
+    {   href: "/dashboard/messages", 
         label: "الرسائل",
         icon: <HiOutlineEnvelope className="w-5 h-5" />,
         count:100
     },
-    {   href: "/suppliers", 
+    {   href: "/dashboard/suppliers", 
         label: "العملاء و الموردين",
         icon: <HiOutlineUsers className="w-5 h-5" />
     },
-    {   href: "/branches", 
+    {   href: "/dashboard/branches", 
         label: "الفروع",
         icon: <CiLocationOn className="w-5 h-5" />
     },
