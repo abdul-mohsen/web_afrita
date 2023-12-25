@@ -32,7 +32,7 @@ const AddProductForm = () => {
             const response = await axios.post(
                 `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/product/products`,
                 newProduct,
-                
+
               )
             if (response.ok) {
                 toast.success('Account created successfully! Redirecting to login...')
@@ -53,12 +53,12 @@ const AddProductForm = () => {
 
     const [formData, setFormData] = useState( {
         product_named: '',
-        product_number: 0,
-        purchase_price:  0,
+        part_id: 0,
+        price:  0,
         selling_price: 0,
         total_quantity: 0,
         brunch_quantity: 0,
-        product_rack: '',
+        store_id: 0,
         product_column: '',
         notifi_quantity: 0,
         minimum_quantity: 0,
@@ -67,12 +67,12 @@ const AddProductForm = () => {
         e.preventDefault();
         const newProduct = {
             product_named: formData.product_named,
-            product_number: formData.product_number,
-            purchase_price: formData.purchase_price,
+            part_id: formData.part_id,
+            price: formData.price,
             selling_price: formData.selling_price,
             total_quantity: formData.total_quantity,
             brunch_quantity: formData.brunch_quantity,
-            product_rack: formData.product_rack,
+            store_id: formData.store_id,
             product_column: formData.product_column,
             notifi_quantity: formData.notifi_quantity,
             minimum_quantity: formData.minimum_quantity,
@@ -82,12 +82,12 @@ const AddProductForm = () => {
 
         setFormData({
             product_named: '',
-            product_number: '',
-            purchase_price: '',
+            part_id: '',
+            price: '',
             selling_price: '',
             total_quantity: '',
             brunch_quantity: '',
-            product_rack: '',
+            store_id: '',
             product_column: '',
             notifi_quantity: '',
             minimum_quantity: '',
@@ -149,36 +149,36 @@ const AddProductForm = () => {
 
                                 <div className="sm:col-span-2">
                                     <label
-                                        for="product_number"
+                                        for="part_id"
                                         className="block text-lg font-medium leading-6 text-gray-900">رقم القطعة</label>
                                     <div className="mt-2">
                                         <input
                                             onChange={handleInputChange}
-                                            value={formData.product_number}
+                                            value={formData.part_id}
                                             required
                                             type="text"
-                                            name="product_number"
-                                            id="product_number"
+                                            name="part_id"
+                                            id="part_id"
                                             autoComplete="family-name"
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                     </div>
                                 </div>
 
                                 <div className="sm:col-span-2 flex flex-row flex-wrap gap-x-6">
-                                    <label htmlFor="purchase_price" className="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">سعر القطعة</label>
+                                    <label htmlFor="price" className="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">سعر القطعة</label>
                                     <div className="mt-2 flex-1">
                                         <input
                                             onChange={handleInputChange}
-                                            value={formData.purchase_price}
+                                            value={formData.price}
                                             required
-                                            id="purchase_price"
-                                            name="purchase_price"
+                                            id="price"
+                                            name="price"
                                             type="number"
                                             autoComplete="number"
                                             min={0}
-                                            placeholder='سعر الشراء'
-                                            pattern="[0-9]"
                                             inputMode="numeric"
+                                            pattern="[0-9]"
+                                            placeholder='سعر الشراء'
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                                     </div>
                                     <div className="mt-2 flex-1">
@@ -218,7 +218,7 @@ const AddProductForm = () => {
                             <>
                             <AddBranchDetails
                                 branchQuantVal={formData.brunch_quantity}
-                                placeRow={formData.product_rack}
+                                placeRow={formData.store_id}
                                 placeCol={formData.product_column}
                                 notifiQuant={formData.notifi_quantity}
                                 miniQuant={formData.minimum_quantity}
