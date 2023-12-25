@@ -79,7 +79,7 @@ const AddQuantityForm = ({productName, openForm}) => {
                     type="input"
                     placeholder=''
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-primary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                    className="block w-full rounded-md border-0 p-1.5 text-primary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                 </div>
               </div>
               <div className="col-span-1 md:col-span-2 flex justify-center items-center my-1">
@@ -95,7 +95,7 @@ const AddQuantityForm = ({productName, openForm}) => {
                     type="input"
                     placeholder=''
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-primary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
+                    className="block w-full rounded-md border-0 p-1.5 text-primary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
                 </div>
               </div>
             </div>

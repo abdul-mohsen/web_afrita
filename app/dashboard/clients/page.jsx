@@ -12,9 +12,9 @@ export default function Clients() {
             
             <div className="section-header">
                 <SectionNav
-                    heading={<DropdownHeading  heading="العملاء" options={["الموردين"]} link="/suppliers" />}
+                    heading={<DropdownHeading  heading="العملاء" options={["الموردين"]} link="/dashboard/suppliers" />}
                     btnLabel="إضافة عميل"
-                    btnLink="/clients/add-client"
+                    btnLink="/dashboard/clients/add-client"
                 />
             </div>
             

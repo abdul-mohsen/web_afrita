@@ -5,3 +5,4 @@ const Login = () => {
   return <UserAuthForm formType={'login'} />
 }
 export default Login
+ 

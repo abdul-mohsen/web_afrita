@@ -9,9 +9,9 @@ export default function Suppliers() {
         <section id='suppliers' className=" overflow-hidden">
             <div className="section-header">
             <SectionNav
-                heading={<DropdownHeading  heading="الموردين" options={["العملاء"]} link="/clients" />}
+                heading={<DropdownHeading  heading="الموردين" options={["العملاء"]} link="/dashboard/clients" />}
                 btnLabel="إضافة مورد"
-                btnLink="/suppliers/add-supplier"
+                btnLink="/dashboard/suppliers/add-supplier"
             />
             </div>
             

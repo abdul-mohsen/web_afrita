@@ -22,18 +22,6 @@ const ProductInfo = ({purchase_price,selling_price,product_rack,product_column})
                     </div>
                 </div>
 
-                <div className="price col-span-1 flex flex-col gap-4">
-                    <h4 className='font-bold '> سعر القطعة</h4>
-                    <div className="purchase-price flex gap-4">
-                        <span> سعر الشراء</span>
-                        <span>{purchase_price}</span>
-                    </div>
-                    <div className="selling-price flex gap-4">
-                        <span>سعر البيع</span>
-                        <span>{selling_price}</span>
-                    </div>
-                </div>
-
                 <div className="place col-span-1 flex flex-col gap-4">
                     <h4 className='font-bold '> مكان القطعة</h4>
                     <div className=" flex gap-4">
@@ -43,6 +31,18 @@ const ProductInfo = ({purchase_price,selling_price,product_rack,product_column})
                     <div className=" flex gap-4">
                     <span>رف {product_rack}</span>
                         <span>عمود {product_column}</span>
+                    </div>
+                </div>
+
+                <div className="price col-span-1 flex flex-col gap-4">
+                    <h4 className='font-bold '> سعر القطعة</h4>
+                    <div className="purchase-price flex gap-4">
+                        <span> سعر الشراء</span>
+                        <span>{purchase_price}</span>
+                    </div>
+                    <div className="selling-price flex gap-4">
+                        <span>سعر البيع</span>
+                        <span>{selling_price}</span>
                     </div>
                 </div>
 
