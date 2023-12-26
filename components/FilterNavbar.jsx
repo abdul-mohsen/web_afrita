@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Button from './Button'
 
-function FilterNavbar({ onOpen }) {
+function FilterNavbar({ onOpen, searchResults }) {
   const [invoicefilterOption, setinvoiceFilter] = useState(false)
   const handelInvoiceType = () => {
     setinvoiceFilter(!invoicefilterOption)
@@ -10,6 +10,27 @@ function FilterNavbar({ onOpen }) {
 
   return (
     <div className='p-6 rounded-md bg-app-light-gray shadow-lg'>
+      <div className='my-8 border-b-2'>
+        {searchResults?.length ? (
+          <h3 className='text-2xl font-bold'>نتائج البحث</h3>
+        ) : (
+          <h3 className='text-2xl font-bold'>بحث</h3>
+        )}
+        <div className='my-4'>
+          {searchResults.map((result) => (
+            <div key={result.id} className='flex flex-row gap-x-4'>
+              <div className='flex flex-col'>
+                <span className='text-app-gray'>رقم الموديل</span>
+                <span className='text-lg font-bold'>{result.modelId}</span>
+              </div>
+              <div className='flex flex-col'>
+                <span className='text-app-gray'>الموديل</span>
+                <span className='text-lg font-bold'>{result.modelName}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
       <form>
         <div className='flex flex-col gap-y-3 md:gap-y-6'>
           <div className='grid grid-cols-4 max-md:grid-cols-2 gap-x-6 gap-y-2'>
