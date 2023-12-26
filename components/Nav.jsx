@@ -23,6 +23,30 @@ const Nav = () => {
   const [isUserInfo, setUserInfo] = useState(false)
   const [isSearchBar, setSearchBar] = useState(false)
   const [userSearchText, setUserSearchText] = useState('')
+  const [searchResults, setSearchResults] = useState([])
+  const { data } = useSession()
+
+  console.log('searchResults', searchResults)
+
+  const searchItems = async (searchText) => {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/cars/search?query=${searchText}`
+    if (!data?.accessToken || !searchText) return
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${data?.accessToken}`,
+      },
+    })
+    if (response?.data?.length) {
+      setSearchResults(response?.data)
+      if (!isOpen) handleClick()
+    }
+  }
+
+  useEffect(() => {
+    if (userSearchText.length > 2) {
+      searchItems(userSearchText)
+    }
+  }, [userSearchText])
 
   const userInfo = () => {
     setUserInfo(!isUserInfo)
@@ -108,37 +132,45 @@ const Nav = () => {
         className='search-input relative flex-1 flex justify-center items-center bg-white max-md:pe-0 px-0'
       >
         <div className='rounded-md gap-10 lg:flex-1 lg:w-full w-[70px] overflow-hidden ml-auto flex flex-row justify-between items-center px-6 py-3 bg-app-light-gray cursor-text'>
-          {/* <label
-          htmlFor='search'
-          onClick={openSearchBar}
-          className={`${
-            isSearchBar ? 'flex-1 max-lg:rounded-md' : 'max-lg:rounded-full'
-          } rounded-md lg:flex-1 lg:w-full w-[70px] overflow-hidden ml-auto flex flex-row justify-between items-center px-6 py-3 bg-app-light-gray cursor-text`}
-        > */}
-          {/* <span className='text-app-gray'>
-            <IoSearchOutline className='w-6 h-6' />
-          </span> */}
-          {/* <input
-            type=''
-            onChange={(event) => {
-              if (event.target.value.length > 2) {
-                setUserSearchText(event?.target?.value)
-              }
-            }}
-            name='search'
-            id='search'
-            className=' bg-app-light-gray text-primary flex-1 px-6 focus:outline-[0_!important]  border-[transparent_!important] focus:border-[transparent_!important] w-[inherit]'
-          /> */}
-          <ComboboxDemo />
-          <button className='text-app-gray' onClick={handleClick} ref={iconRef}>
-            <HiOutlineAdjustmentsHorizontal className='w-6 h-6' />
-          </button>
+          <label
+            htmlFor='search'
+            onClick={openSearchBar}
+            className={`${
+              isSearchBar ? 'flex-1 max-lg:rounded-md' : 'max-lg:rounded-full'
+            } rounded-md lg:flex-1 lg:w-full w-[70px] overflow-hidden ml-auto flex flex-row justify-between items-center px-6 py-3 bg-app-light-gray cursor-text`}
+          >
+            <span className='text-app-gray'>
+              <IoSearchOutline className='w-6 h-6' />
+            </span>
+            <input
+              autoComplete='off'
+              autoSave='off'
+              autoCorrect='off'
+              type=''
+              onChange={(event) => {
+                if (event.target.value.length > 2) {
+                  setUserSearchText(event?.target?.value)
+                } else {
+                  setSearchResults([])
+                }
+              }}
+              name='search'
+              id='search'
+              className=' bg-app-light-gray text-primary flex-1 px-6 focus:outline-[0_!important]  border-[transparent_!important] focus:border-[transparent_!important] w-[inherit]'
+            />
+            <button
+              className='text-app-gray'
+              onClick={handleClick}
+              ref={iconRef}
+            >
+              <HiOutlineAdjustmentsHorizontal className='w-6 h-6' />
+            </button>
+          </label>
         </div>
-        {/* </label> */}
 
         {isOpen && (
           <div className='absolute z-[30] w-full mt-6 top-16' ref={dropdownRef}>
-            <FilterNavbar onOpen={handleClick} />
+            <FilterNavbar onOpen={handleClick} searchResults={searchResults} />
           </div>
         )}
       </div>
