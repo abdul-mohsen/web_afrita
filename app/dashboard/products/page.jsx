@@ -3,9 +3,12 @@ import { ProductItem } from "@/components";
 import { SectionNav } from "@/components";
 import { SectionTags } from "@/components";
 import PagesNumber from "@/components/PagesNumber";
+import { unstable_noStore } from "next/cache";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 async function getProducts() {
+    // It caches it by default ¯\_(ツ)_/¯ inshallah it fixes your issue
+    unstable_noStore()
     const res = await fetch('http://localhost:3000/api/products')
     return res.json()
 };
