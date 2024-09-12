@@ -4,7 +4,9 @@ import DropdownHeading from "@/components/DropdownHeading";
 import PagesNumber from "@/components/PagesNumber";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
-export default function Suppliers() {
+export default async function Suppliers() {
+    let data = await fetch("localhost:8080/api/v2/part_provider");
+    let suppliers = await data.json();
     return (
         <section id='suppliers' className=" overflow-hidden">
             <div className="section-header">
@@ -27,10 +29,9 @@ export default function Suppliers() {
                     ]}
                     minW={700} 
                 />
-                <SupplierItem />
-                <SupplierItem />
-                <SupplierItem />
-                <SupplierItem />
+                {suppliers.map((item) => {
+                    return <SupplierItem {...item} key={item._id}/>
+                })}
             </div>
                 <div className="pt-4 flex justify-end">
                     <PagesNumber />
