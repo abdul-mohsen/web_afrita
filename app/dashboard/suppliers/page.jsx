@@ -3,6 +3,7 @@ import { SectionNav } from "@/components";
 import DropdownHeading from "@/components/DropdownHeading";
 import PagesNumber from "@/components/PagesNumber";
 import { HiOutlineHashtag } from 'react-icons/hi';
+import axios from 'axios';
 
 export default async function Suppliers() {
     try {
