@@ -31,6 +31,7 @@ export default async function Suppliers() {
   }, []);  
      
     
+    if (!suppliers) return <div>Loading...</div>
     return (
         <section id='suppliers' className=" overflow-hidden">
             <div className="section-header">
