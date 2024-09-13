@@ -29,6 +29,9 @@ export default async function Suppliers() {
                     ]}
                     minW={700} 
                 />
+                {suppliers.map((item) => {
+                    return <SupplierItem {...item} key={item._id}/>
+                })}
             </div>
                 <div className="pt-4 flex justify-end">
                     <PagesNumber />

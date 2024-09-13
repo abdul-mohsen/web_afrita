@@ -5,11 +5,6 @@ import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi"
 import { PiDotsThreeOutlineVerticalLight } from "react-icons/pi";
 
 const SupplierItem = (
-  name,
-  address,
-  phone_number,
-  number,
-  vat_number
 ) => {
   const dropRef = useRef(null);
   const [isOpenActionsList, setOpenActionsList] = useState(false);
@@ -34,11 +29,6 @@ const SupplierItem = (
 
       <div className="details flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(120px,_1fr))] text-app-gray mr-4 py-6 md:py-10 min-w-[700px]">
         <span className='supplier-number '>01</span>
-        <h3 className='supplier-name text-primary font-bold '>{name}</h3>
-        <span className="supplier-adress ">{address}</span>
-        <span className="supplier-phone ">{phone_number}</span>
-        <span className="total-id font-bold ">{number}</span>
-        <span className="supplier-tax-number ">{vat_number}</span>
       </div>
 
       <div className='actions-list relative flex flex-col justify-center items-center w-[50px]' ref={dropRef}>
