@@ -14,7 +14,7 @@ export default async function Suppliers() {
     const fetchInvoices = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/part_provider`,
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/parts_provider`,
           {
             headers: {
               Authorization: `Bearer ${userSession?.user?.accessToken}`,
