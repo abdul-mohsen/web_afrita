@@ -4,7 +4,7 @@ import DropdownHeading from "@/components/DropdownHeading";
 import PagesNumber from "@/components/PagesNumber";
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 export default async function Suppliers() {
