@@ -2,36 +2,12 @@
 import { SectionNav, SectionTags, SupplierItem } from "@/components";
 import DropdownHeading from "@/components/DropdownHeading";
 import PagesNumber from "@/components/PagesNumber";
-import axios from 'axios';
-import { useSession } from 'next-auth/react';
-import { useState, useEffect } from "react";
 import { HiOutlineHashtag } from 'react-icons/hi';
+import FetchSuppliers from "./fetch_supplier";
 
 export default function Suppliers() {
-    const { data: userSession } = useSession();
-    const [suppliers, setSuppliers] = useState(null)
-  useEffect(() => {
-    const fetchInvoices = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/parts_provider`,
-          {
-            headers: {
-              Authorization: `Bearer ${userSession?.user?.accessToken}`,
-            },
-          }
-        );
-        setSuppliers(response.data)
-        
-      } catch (error) {
-        console.error('Error fetching invoices:', error);
-      }
-    };
-    fetchInvoices();  
-  }, []);  
      
     
-    if (!suppliers) return <div>Loading...</div>
     return (
         <section id='suppliers' className=" overflow-hidden">
             <div className="section-header">
@@ -54,9 +30,8 @@ export default function Suppliers() {
                     ]}
                     minW={700} 
                 />
-                {suppliers.map((item) => {
-                    return <SupplierItem {...item} key={item._id}/>
-                })}
+
+                <FetchSuppliers/>
             </div>
                 <div className="pt-4 flex justify-end">
                     <PagesNumber />
