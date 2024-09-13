@@ -5,23 +5,20 @@ import PagesNumber from "@/components/PagesNumber";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 export default async function Suppliers() {
-  useEffect(() => {
-    const fetchInvoices = async () => {
-      try {
+    try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/part_provider`,
-          {
-            headers: {
-              Authorization: `Bearer ${userSession?.user?.accessToken}`,
-            },
-          }
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/part_provider`,
+            {
+                headers: {
+                    Authorization: `Bearer ${userSession?.user?.accessToken}`,
+                },
+            }
         );
-      } catch (error) {
+        console.error('Success fetching invoices:', response);
+    } catch (error) {
         console.error('Error fetching invoices:', error);
-      }
-    };
-    fetchInvoices();  
-  }, []);  
+    }
+    
     return (
         <section id='suppliers' className=" overflow-hidden">
             <div className="section-header">
