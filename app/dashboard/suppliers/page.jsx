@@ -5,6 +5,7 @@ import PagesNumber from "@/components/PagesNumber";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 export default async function Suppliers() {
+    let data = await fetch("localhost:8080/api/v2/part_provider");
     return (
         <section id='suppliers' className=" overflow-hidden">
             <div className="section-header">
