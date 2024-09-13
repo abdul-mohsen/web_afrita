@@ -1,9 +1,8 @@
-import { SectionTags, SupplierItem } from "@/components";
-import { SectionNav } from "@/components";
+import { SectionNav, SectionTags, SupplierItem } from "@/components";
 import DropdownHeading from "@/components/DropdownHeading";
 import PagesNumber from "@/components/PagesNumber";
-import { HiOutlineHashtag } from 'react-icons/hi';
 import axios from 'axios';
+import { HiOutlineHashtag } from 'react-icons/hi';
 
 export default async function Suppliers() {
     const response = await axios.get(
