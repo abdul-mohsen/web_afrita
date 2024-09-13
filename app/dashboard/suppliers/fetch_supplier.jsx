@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 const FetchSuppliers = () => {
 
     const { data: userSession } = useSession();
-    const [suppliers, setSuppliers] = useState(null)
+    const [suppliers, setSuppliers] = useState([])
     useEffect(() => {
     const fetchInvoices = async () => {
       try {
