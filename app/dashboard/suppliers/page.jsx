@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react';
 import { useState, useEffect } from "react";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
-export default async function Suppliers() {
+export default function Suppliers() {
     const { data: userSession } = useSession();
     const [suppliers, setSuppliers] = useState(null)
   useEffect(() => {
