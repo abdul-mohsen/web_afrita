@@ -3,18 +3,31 @@ import DropdownHeading from "@/components/DropdownHeading";
 import PagesNumber from "@/components/PagesNumber";
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { useState } from "react";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 export default async function Suppliers() {
     const { data: userSession } = useSession();
-    const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/part_provider`,
-        {
+    const [suppliers, setSuppliers] = useState(null)
+  useEffect(() => {
+    const fetchInvoices = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/part_provider`,
+          {
             headers: {
-                Authorization: `Bearer ${userSession?.user?.accessToken}`,
+              Authorization: `Bearer ${userSession?.user?.accessToken}`,
             },
-        }
-    );
+          }
+        );
+        setSuppliers(response.data)
+        
+      } catch (error) {
+        console.error('Error fetching invoices:', error);
+      }
+    };
+    fetchInvoices();  
+  }, []);  
      
     
     return (
@@ -39,8 +52,8 @@ export default async function Suppliers() {
                     ]}
                     minW={700} 
                 />
-                {response.map((item) => {
-                    return <ProductItem {...item} key={item._id}/>
+                {suppliers.map((item) => {
+                    return <SupplierItem {...item} key={item._id}/>
                 })}
             </div>
                 <div className="pt-4 flex justify-end">
