@@ -20,7 +20,7 @@ const FetchSuppliers = () => {
             },
           }
         );
-        console.error('Success fetching suppliers :', data);
+        console.error('Success fetching suppliers :', response);
         setSuppliers(response.data)
         
       } catch (error) {
