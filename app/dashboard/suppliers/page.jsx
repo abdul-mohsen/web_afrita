@@ -1,3 +1,4 @@
+'use Client'
 import { SectionNav, SectionTags, SupplierItem } from "@/components";
 import DropdownHeading from "@/components/DropdownHeading";
 import PagesNumber from "@/components/PagesNumber";
