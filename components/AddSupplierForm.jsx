@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
 import { markRequiredInputs } from '@/utils/utils';
+import axios from 'axios';
 
 const AddSupplierForm = () => {
     async function handleAdd(data) {
