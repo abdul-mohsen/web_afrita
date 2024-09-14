@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi"
 import { PiDotsThreeOutlineVerticalLight } from "react-icons/pi";
 
-const SupplierItem = (
+const SupplierItem = ({
   address,
   name,
   number,
   phone_number,
   vat_number
-) => {
+}) => {
   const dropRef = useRef(null);
   const [isOpenActionsList, setOpenActionsList] = useState(false);
   const actionsList = () => {
