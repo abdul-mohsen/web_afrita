@@ -21,7 +21,7 @@ const FetchSuppliers = () => {
             },
           }
         );
-        console.error('Success fetching suppliers :', response);
+        console.error('Success fetching suppliers :', response.data);
         setSuppliers(response.data)
         
       } catch (error) {
@@ -63,6 +63,7 @@ const FetchSuppliers = () => {
   return (
     <>
             {suppliers.map((item) => {
+                console.error('Success fetching suppliers :', item);
                 return <SupplierItem {...item} key={item._id}/>
             })}
     </>
