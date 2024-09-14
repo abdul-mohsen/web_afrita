@@ -4,7 +4,6 @@ import { markRequiredInputs } from '@/utils/utils';
 
 const AddSupplierForm = () => {
     async function handleAdd(data) {
-        'use server'
         console.error('Success click:', data);
         const name = data.get("supplier-name")
         const phone = data.get("supplier-phone")
