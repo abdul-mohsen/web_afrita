@@ -3,8 +3,32 @@ import React, { useEffect } from 'react'
 import { markRequiredInputs } from '@/utils/utils';
 
 const AddSupplierForm = () => {
+    'use server'
     async function handleAdd(data) {
         console.error('Success click:', data);
+        const name = data.get("supplier-name")
+        const phone = data.get("supplier-phone")
+        const address = data.get("supplier-address")
+        const number = data.get("supplier-number")
+        const vat_number = data.get("supplier-tax-number")
+        const bankAccount = data.get("supplier-bank-accoutn")
+
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/parts_provider`,
+          {
+            headers: {
+              Authorization: `Bearer ${userSession?.user?.accessToken}`,
+            },
+                body: {
+                    "name": name,
+                    "address": address,
+                    "phone_number": phone,
+                    "number": number,
+                    "vat_number": vat_number,
+                }
+            }
+        );
+        console.log(response)
     }
     useEffect(() => {
         markRequiredInputs();
