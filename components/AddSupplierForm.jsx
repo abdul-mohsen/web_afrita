@@ -3,11 +3,14 @@ import React, { useEffect } from 'react'
 import { markRequiredInputs } from '@/utils/utils';
 
 const AddSupplierForm = () => {
+    async function handleAdd(data) {
+        log.console.error(data);
+    }
     useEffect(() => {
         markRequiredInputs();
     }, []);
   return (
-    <form className="max-w-[600px]">
+    <form className="max-w-[600px]" action={handleAdd}>
         <h3 className='text-primary text-2xl '> مورد جديد </h3>
 
         <div className="space-y-12">
