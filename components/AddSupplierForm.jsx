@@ -3,8 +3,8 @@ import React, { useEffect } from 'react'
 import { markRequiredInputs } from '@/utils/utils';
 
 const AddSupplierForm = () => {
-    'use server'
     async function handleAdd(data) {
+        'use server'
         console.error('Success click:', data);
         const name = data.get("supplier-name")
         const phone = data.get("supplier-phone")
@@ -25,7 +25,7 @@ const AddSupplierForm = () => {
                     "phone_number": phone,
                     "number": number,
                     "vat_number": vat_number,
-                }
+                },
             }
         );
         console.log(response)
