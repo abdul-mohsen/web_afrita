@@ -4,7 +4,7 @@ import { markRequiredInputs } from '@/utils/utils';
 
 const AddSupplierForm = () => {
     async function handleAdd(data) {
-        log.console.error(data);
+        console.error('Success click:', data);
     }
     useEffect(() => {
         markRequiredInputs();
