@@ -1,9 +1,11 @@
 'use client'
 import React, { useEffect } from 'react'
 import { markRequiredInputs } from '@/utils/utils';
+import { useSession } from 'next-auth/react';
 import axios from 'axios';
 
 const AddSupplierForm = () => {
+    const { data: userSession } = useSession();
     async function handleAdd(data) {
         console.error('Success click:', data);
         const name = data.get("supplier-name")
