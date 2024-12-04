@@ -14,7 +14,7 @@ const FetchSuppliers = () => {
     const fetchInvoices = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/supplier`,
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/supplier/all`,
           {
             headers: {
               Authorization: `Bearer ${userSession?.user?.accessToken}`,
