@@ -8,13 +8,13 @@ import { SupplierItem } from "@/components";
 
 const FetchSuppliers = () => {
 
-    const { data: userSession } = useSession();
-    const [suppliers, setSuppliers] = useState([])
-    useEffect(() => {
+  const { data: userSession } = useSession();
+  const [suppliers, setSuppliers] = useState([])
+  useEffect(() => {
     const fetchInvoices = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/parts_provider`,
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/supplier`,
           {
             headers: {
               Authorization: `Bearer ${userSession?.user?.accessToken}`,
@@ -23,13 +23,13 @@ const FetchSuppliers = () => {
         );
         console.error('Success fetching suppliers :', response.data);
         setSuppliers(response.data)
-        
+
       } catch (error) {
         console.error('Error fetching invoices:', error);
       }
     };
-    fetchInvoices();  
-  }, []);  
+    fetchInvoices();
+  }, []);
 
   const router = useRouter()
 
@@ -62,10 +62,10 @@ const FetchSuppliers = () => {
 
   return (
     <>
-            {suppliers.map((item) => {
-                console.error('Success fetching suppliers :', item);
-                return <SupplierItem {...item} key={item._id}/>
-            })}
+      {suppliers.map((item) => {
+        console.error('Success fetching suppliers :', item);
+        return <SupplierItem {...item} key={item._id} />
+      })}
     </>
   );
 };
