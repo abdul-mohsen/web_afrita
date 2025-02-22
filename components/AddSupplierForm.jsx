@@ -16,7 +16,7 @@ const AddSupplierForm = () => {
         const bankAccount = data.get("supplier-bank-account")
 
         const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/supplier`,
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/supplier`,
             {
                 headers: {
                     Authorization: `Bearer ${userSession?.user?.accessToken}`,

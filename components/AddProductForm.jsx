@@ -40,7 +40,7 @@ const AddProductForm = () => {
   const handleAddProduct = async (newProduct) => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/product/products`,
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/product/products`,
         newProduct,
         {
           headers: {

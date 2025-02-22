@@ -22,7 +22,7 @@ const AddInvoiceForm = ({action, id}) => {
       const fetchInvoice = async () => {
         try {
           const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/bills/${id}`,
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v1/bills/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${userSession?.user?.accessToken}`,

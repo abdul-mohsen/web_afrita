@@ -16,8 +16,10 @@ const FetchInvoices = () => {
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/bills?storeId=1`,
+
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/bill/all`,
+          {},
           {
             headers: {
               Authorization: `Bearer ${userSession?.user?.accessToken}`,
@@ -36,7 +38,7 @@ const FetchInvoices = () => {
   const deleteInvoice = async (id) => {
     try {
       const response = await axios.delete(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/bills/2?store_id=${id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v1/bills/2?store_id=${id}`,
         {
           headers: {
             Authorization: `Bearer ${userSession?.user?.accessToken}`,
