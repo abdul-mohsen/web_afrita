@@ -14,7 +14,7 @@ const FetchSuppliers = () => {
     const fetchInvoices = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/supplier/all`,
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/supplier/all`,
           {
             headers: {
               Authorization: `Bearer ${userSession?.user?.accessToken}`,
@@ -37,7 +37,7 @@ const FetchSuppliers = () => {
   const deleteInvoice = async (id) => {
     try {
       const response = await axios.delete(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/bills/2?store_id=${id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/bills/2?store_id=${id}`,
         {
           headers: {
             Authorization: `Bearer ${userSession?.user?.accessToken}`,

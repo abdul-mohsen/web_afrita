@@ -29,7 +29,7 @@ const Nav = () => {
   console.log('searchResults', searchResults)
 
   const searchItems = async (searchText) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/cars/search?query=${searchText}`
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/cars/search?query=${searchText}`
     if (!data?.accessToken || !searchText) return
     const response = await axios.get(url, {
       headers: {

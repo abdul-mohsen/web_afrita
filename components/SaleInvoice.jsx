@@ -34,7 +34,7 @@ const SaleInvoice = ({
     const addInvoice = async (newData) => {
       try {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/bills`,
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/bill`,
           newData,
           {
             headers: {
@@ -55,7 +55,7 @@ const SaleInvoice = ({
     const updateInvoice = async (id , updatedData) => {
       try {
           const response = await axios.put(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/bills/${id}`,
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/bills/${id}`,
             updatedData,
             {
               headers: {
@@ -99,8 +99,8 @@ const SaleInvoice = ({
 
           const fetchInvoices = async () => {
             try {
-              const response = await axios.get(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v1/bills?storeId=1`,
+              const response = await axios.post(
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/bill`,
                 {
                   headers: {
                     Authorization: `Bearer ${userSession?.user?.accessToken}`,
