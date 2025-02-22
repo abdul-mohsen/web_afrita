@@ -1,4 +1,10 @@
+adddate() {
+    while IFS= read -r line; do
+        printf '%s %s\n' "$(date)" "$line";
+    done
+}
+
 git pull
-npm run dev >> log 2>> log &
-echo "iinto tail"
-tail -f log
+
+pkill -n npm
+npm run dev | adddate >> log 2>> log &
