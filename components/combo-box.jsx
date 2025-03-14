@@ -17,9 +17,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { useSession } from 'next-auth/react'
-import axios from 'axios'
 import { useDebouncedCallback } from 'use-debounce'
+import instance from '@/axios'
 
 const frameworks = [
   {
@@ -47,17 +46,12 @@ const frameworks = [
 export function ComboboxDemo() {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState('')
-  const { data } = useSession()
   const [searchResults, setSearchResults] = React.useState([])
 
   const searchItems = async (searchText) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/cars/search?query=${searchText}`
-    if (!data?.accessToken || !searchText) return
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${data?.accessToken}`,
-      },
-    })
+    const url = `/api/v2/cars/search?query=${searchText}`
+    if (!searchText) return
+    const response = await instance.get(url)
     if (response?.data?.length) setSearchResults(response?.data)
   }
   const debouncedGetResults = useDebouncedCallback(searchItems, 500)

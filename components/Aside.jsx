@@ -5,7 +5,6 @@ import MobileLogo from '/public/afrita-mob-logo.svg'
 import Image from 'next/image'
 import NavLinks from './NavLinks'
 import { HiOutlineArrowRightOnRectangle } from 'react-icons/hi2'
-import { signOut } from 'next-auth/react'
 
 const Aside = () => {
   return (

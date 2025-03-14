@@ -1,12 +1,13 @@
 'use client'
+import instance from '@/axios'
 import React, { useEffect, useState } from 'react'
 import { logoImage } from '@/public'
 import Image from 'next/image'
 import Link from 'next/link'
-import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import AuthSessionStatus from '@/components/AuthSessionStatus'
 import { toast } from 'sonner'
+import Cookies from 'js-cookie';
 
 export function UserAuthForm({ formType }) {
   const router = useRouter()
@@ -45,45 +46,32 @@ export function UserAuthForm({ formType }) {
     setIsLoading(true)
     console.log('data', data)
     try {
-      if (formType === 'login') {
-        const response = await signIn('credentials', {
-          redirect: false,
-          username: data.username,
-          password: data.password,
-        })
-        if (response?.error) {
-          throw new Error(response.error)
-        }
-        router.refresh()
-        router.push('/dashboard')
-      } else {
-        console.log('values', values)
-        if (values.password !== values?.confirmPassword) {
-          return toast.error('Passwords do not match!')
-        }
-
-        const dataToBeSent = {
-          name: values.name,
-          email: values.email,
-          password: values.password,
-        }
-
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/v2/login`,
-          dataToBeSent
-        )
-
-        if (!response.data) {
-          const { error } = response.data
-          toast.error(error)
-          throw new Error(
-            `Request failed with status ${response.status}: ${error}`
-          )
-        }
-
-        toast.success('Account created successfully! Redirecting to login...')
-        router.push('/login')
+      const dataToBeSent = {
+        username: data.username,
+        password: data.password,
       }
+
+      console.log('data', dataToBeSent)
+
+      const response = await instance.post(
+        `/api/v2/login`,
+        dataToBeSent
+      )
+
+      console.log("resonse", response)
+
+      if (!response.data) {
+        const { error } = response.data
+        toast.error(error)
+        throw new Error(
+          `Request failed with status ${response.status}: ${error}`
+        )
+      }
+      Cookies.set('accessToken', response.data.access_token, { expires: 1 });
+      console.log("token", Cookies.get('accessToken'))
+
+      //toast.success('Account created successfully! Redirecting to login...')
+      router.push('/dashboard')
     } catch (error) {
       console.log('error', error)
       if (error instanceof Error) {

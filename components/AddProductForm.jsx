@@ -10,8 +10,7 @@ import {
 } from 'react-icons/hi'
 import { markRequiredInputs } from '@/utils/utils'
 import { toast } from 'sonner'
-import axios from 'axios'
-import { useSession } from 'next-auth/react'
+import instance from '@/axios'
 
 const DynamicBranch = ({ branches, deleteBranch }) => {
   return (
@@ -35,19 +34,12 @@ const DynamicBranch = ({ branches, deleteBranch }) => {
 }
 
 const AddProductForm = () => {
-  const { data: userSession } = useSession()
 
   const handleAddProduct = async (newProduct) => {
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/product/products`,
-        newProduct,
-        {
-          headers: {
-            Authorization: `Bearer ${userSession?.user?.accessToken}`,
-          },
-        }
-      )
+      const response = await instance.post(
+        `/api/v2/product/products`,
+        newProduct)
       if (response.ok) {
         toast.success('Account created successfully! Redirecting to login...')
         console.log('Product added successfully')
@@ -68,48 +60,48 @@ const AddProductForm = () => {
     }
   }
 
-    const [formData, setFormData] = useState( {
-      product_named: '',
-      part_id: 0,
-      price:  0,
-      selling_price: 0,
-      total_quantity: 0,
-      brunch_quantity: 0,
-      store_id: 0,
-      product_column: '',
-      notifi_quantity: 0,
-      minimum_quantity: 0,
-    }); 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const newProduct = {
-            // product_named: formData.product_named,
-            part_id: formData.part_id,
-            price: formData.price,
-            // selling_price: formData.selling_price,
-            // total_quantity: formData.total_quantity,
-            // brunch_quantity: formData.brunch_quantity,
-            store_id: formData.store_id,
-            // product_column: formData.product_column,
-            // notifi_quantity: formData.notifi_quantity,
-            // minimum_quantity: formData.minimum_quantity,
-        };
+  const [formData, setFormData] = useState({
+    product_named: '',
+    part_id: 0,
+    price: 0,
+    selling_price: 0,
+    total_quantity: 0,
+    brunch_quantity: 0,
+    store_id: 0,
+    product_column: '',
+    notifi_quantity: 0,
+    minimum_quantity: 0,
+  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newProduct = {
+      // product_named: formData.product_named,
+      part_id: formData.part_id,
+      price: formData.price,
+      // selling_price: formData.selling_price,
+      // total_quantity: formData.total_quantity,
+      // brunch_quantity: formData.brunch_quantity,
+      store_id: formData.store_id,
+      // product_column: formData.product_column,
+      // notifi_quantity: formData.notifi_quantity,
+      // minimum_quantity: formData.minimum_quantity,
+    };
 
     handleAddProduct(newProduct)
 
-        setFormData({
-            product_named: '',
-            part_id: '',
-            price: '',
-            selling_price: '',
-            total_quantity: '',
-            brunch_quantity: '',
-            store_id: '',
-            product_column: '',
-            notifi_quantity: '',
-            minimum_quantity: '',
-        });
-    };
+    setFormData({
+      product_named: '',
+      part_id: '',
+      price: '',
+      selling_price: '',
+      total_quantity: '',
+      brunch_quantity: '',
+      store_id: '',
+      product_column: '',
+      notifi_quantity: '',
+      minimum_quantity: '',
+    });
+  };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -168,54 +160,54 @@ const AddProductForm = () => {
                   </div>
                 </div>
 
-                  <div className="sm:col-span-2">
-                      <label
-                          for="part_id"
-                          className="block text-lg font-medium leading-6 text-gray-900">رقم القطعة</label>
-                      <div className="mt-2">
-                          <input
-                              onChange={handleInputChange}
-                              value={formData.part_id}
-                              required
-                              type="number"
-                              name="part_id"
-                              id="part_id"
-                              autoComplete="family-name"
-                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
-                      </div>
+                <div className="sm:col-span-2">
+                  <label
+                    for="part_id"
+                    className="block text-lg font-medium leading-6 text-gray-900">رقم القطعة</label>
+                  <div className="mt-2">
+                    <input
+                      onChange={handleInputChange}
+                      value={formData.part_id}
+                      required
+                      type="number"
+                      name="part_id"
+                      id="part_id"
+                      autoComplete="family-name"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
                   </div>
+                </div>
 
-                  <div className="sm:col-span-2 flex flex-row flex-wrap gap-x-6">
-                      <label htmlFor="price" className="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">سعر القطعة</label>
-                      <div className="mt-2 flex-1">
-                          <input
-                              onChange={handleInputChange}
-                              value={formData.price}
-                              required
-                              id="price"
-                              name="price"
-                              type="number"
-                              autoComplete="number"
-                              min={0}
-                              inputMode="numeric"
-                              pattern="[0-9]"
-                              placeholder='سعر الشراء'
-                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
-                      </div>
-                      <div className="mt-2 flex-1">
-                          <input
-                              onChange={handleInputChange}
-                              value={formData.selling_price}
-                              required
-                              id="selling_price"
-                              name="selling_price"
-                              type="number"
-                              min={0}
-                              autoComplete="number"
-                              placeholder='سعرالبيع'
-                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"/>
-                      </div>
+                <div className="sm:col-span-2 flex flex-row flex-wrap gap-x-6">
+                  <label htmlFor="price" className="block text-lg font-medium leading-6 text-gray-900 flex-1 w-full basis-full ">سعر القطعة</label>
+                  <div className="mt-2 flex-1">
+                    <input
+                      onChange={handleInputChange}
+                      value={formData.price}
+                      required
+                      id="price"
+                      name="price"
+                      type="number"
+                      autoComplete="number"
+                      min={0}
+                      inputMode="numeric"
+                      pattern="[0-9]"
+                      placeholder='سعر الشراء'
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
                   </div>
+                  <div className="mt-2 flex-1">
+                    <input
+                      onChange={handleInputChange}
+                      value={formData.selling_price}
+                      required
+                      id="selling_price"
+                      name="selling_price"
+                      type="number"
+                      min={0}
+                      autoComplete="number"
+                      placeholder='سعرالبيع'
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
+                  </div>
+                </div>
 
                 <div className='sm:col-span-4'>
                   <label
@@ -241,7 +233,7 @@ const AddProductForm = () => {
               </div>
 
               <>
-              <AddBranchDetails
+                <AddBranchDetails
                   branchQuantVal={formData.brunch_quantity}
                   placeRow={formData.store_id}
                   placeCol={formData.product_column}

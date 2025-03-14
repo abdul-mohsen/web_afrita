@@ -1,37 +1,25 @@
-import { NextResponse } from 'next/server'
-import { withAuth } from 'next-auth/middleware'
+// middleware.js
+import { NextResponse } from 'next/server';
 
-export default withAuth(
-  async function middleware(request) {
-    const pathname = request.nextUrl.pathname
-    const token = request.nextauth?.token
-    const isIndexPage = pathname === '/'
-    const isEmptyUrl = pathname === '/'
+export function middleware(req) {
 
-    const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route))
-    const isGuestRoute = guestRoutes.some((route) => pathname.startsWith(route))
-
-    if (token && isEmptyUrl) {
-      return NextResponse.redirect(new URL('/dashboard', request.url))
-    }
-    if (!token && isAuthRoute) {
-      const redirectUrl = new URL('/login', request.url)
-      redirectUrl.searchParams.set('callbackUrl', request.nextUrl.href)
-      return NextResponse.redirect(redirectUrl)
-    }
-
-    if (token && (isIndexPage || isGuestRoute)) {
-      return NextResponse.redirect(new URL('/dashboard', request.url))
-    }
-  },
-  {
-    callbacks: {
-      async authorized({ req, token }) {
-        return true
-      },
-    },
+  // Check if the access token exists
+  if (req.statusCode === 401) {
+    // Optionally, you can redirect to a login page or return an error response
+    return NextResponse.redirect(new URL('/login', req.url)); // Redirect to login if no token
   }
-)
 
-const authRoutes = ['/dashboard']
-const guestRoutes = ['/login', '/register']
+  // Create a new response to add the authorization header
+  const response = NextResponse.next();
+
+  // Set the Authorization header
+  //response.headers.set(Authorization, `Bearer ${accessToken}`);
+
+  // Continue with the modified response
+  return response;
+}
+
+// Specify the paths where the middleware should run
+export const config = {
+  matcher: ['/api/v2/:path*'], // Apply middleware to API routes
+};

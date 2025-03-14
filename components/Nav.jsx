@@ -11,10 +11,9 @@ import {
 import { IoNotificationsOutline, IoSearchOutline } from 'react-icons/io5'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { signOut, useSession } from 'next-auth/react'
 import { searchItemsAction } from '@/actions/search-result'
-import axios from 'axios'
 import { ComboboxDemo } from './combo-box'
+import instance from '@/axios'
 
 const Nav = () => {
   const dropRef = useRef(null)
@@ -24,18 +23,13 @@ const Nav = () => {
   const [isSearchBar, setSearchBar] = useState(false)
   const [userSearchText, setUserSearchText] = useState('')
   const [searchResults, setSearchResults] = useState([])
-  const { data } = useSession()
 
   console.log('searchResults', searchResults)
 
   const searchItems = async (searchText) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/cars/search?query=${searchText}`
-    if (!data?.accessToken || !searchText) return
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${data?.accessToken}`,
-      },
-    })
+    const url = `/api/v2/cars/search?query=${searchText}`
+    if (!searchText) return
+    const response = await instance.get(url)
     if (response?.data?.length) {
       setSearchResults(response?.data)
       if (!isOpen) handleClick()
@@ -93,17 +87,15 @@ const Nav = () => {
         >
           <Image src={AvatarImage} alt='User Image' id='user_image' />
           <div
-            className={`${
-              isUserInfo ? 'flex flex-col gap-2' : 'max-lg:hidden'
-            } max-lg:absolute top-full max-lg:p-3 max-lg:rounded-md max-lg:bg-app-light-gray max-lg:w-max max-lg:shadow-lg max-lg:z-40  max-lg:mt-2 left-0`}
+            className={`${isUserInfo ? 'flex flex-col gap-2' : 'max-lg:hidden'
+              } max-lg:absolute top-full max-lg:p-3 max-lg:rounded-md max-lg:bg-app-light-gray max-lg:w-max max-lg:shadow-lg max-lg:z-40  max-lg:mt-2 left-0`}
           >
             <Link
               href={'/'}
-              className={`${
-                isUserInfo
-                  ? 'flex flex-row justify-between items-center gap-8 '
-                  : ''
-              } user-name hover:text-primary`}
+              className={`${isUserInfo
+                ? 'flex flex-row justify-between items-center gap-8 '
+                : ''
+                } user-name hover:text-primary`}
               id='user_name'
             >
               <span>أحمد بن خالد</span>
@@ -111,12 +103,11 @@ const Nav = () => {
             </Link>
             {isUserInfo && (
               <button
-                onClick={() => signOut()}
-                className={`${
-                  isUserInfo
-                    ? 'flex flex-row justify-between items-center gap-8 max-lg:hover:text-primary lg:hidden'
-                    : ''
-                }`}
+                //onClick={() => signOut()}
+                className={`${isUserInfo
+                  ? 'flex flex-row justify-between items-center gap-8 max-lg:hover:text-primary lg:hidden'
+                  : ''
+                  }`}
                 id='logout'
               >
                 <span>تسجيل الخروج</span>
@@ -135,9 +126,8 @@ const Nav = () => {
           <label
             htmlFor='search'
             onClick={openSearchBar}
-            className={`${
-              isSearchBar ? 'flex-1 max-lg:rounded-md' : 'max-lg:rounded-full'
-            } rounded-md lg:flex-1 lg:w-full w-[70px] overflow-hidden ml-auto flex flex-row justify-between items-center px-6 py-3 bg-app-light-gray cursor-text`}
+            className={`${isSearchBar ? 'flex-1 max-lg:rounded-md' : 'max-lg:rounded-full'
+              } rounded-md lg:flex-1 lg:w-full w-[70px] overflow-hidden ml-auto flex flex-row justify-between items-center px-6 py-3 bg-app-light-gray cursor-text`}
           >
             <span className='text-app-gray'>
               <IoSearchOutline className='w-6 h-6' />
