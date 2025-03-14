@@ -1,15 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';  // Import useEffect and useState
 import { InvoicesItem } from '@/components';
-import axios from 'axios';
-import { useSession } from 'next-auth/react';
 import { toast } from 'sonner';
+import instance from '../../../axios'
 import { useRouter } from 'next/navigation';
 
 const FetchInvoices = () => {
 
-  const { data: userSession } = useSession();
-  const [invoices, setInvoices] = useState([]); 
+  const [invoices, setInvoices] = useState([]);
   const router = useRouter()
 
   // Fetch All Invoices
@@ -17,34 +15,21 @@ const FetchInvoices = () => {
     const fetchInvoices = async () => {
       try {
 
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/bill/all`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${userSession?.user?.accessToken}`,
-            },
-          }
-        );
+        const response = await instance.post(
+          `/api/v2/bill/all`, {});
         setInvoices(response.data);
       } catch (error) {
         console.error('Error fetching invoices:', error);
       }
     };
-    fetchInvoices();  
-  }, []);  
+    fetchInvoices();
+  }, []);
 
   // To Delete An Invoice
-  const deleteInvoice = async (id) => {
+  const deleteInvoice = async (id, type) => {
     try {
-      const response = await axios.delete(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v1/bills/2?store_id=${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${userSession?.user?.accessToken}`,
-          },
-        }
-      );
+      const response = await instance.delete(
+        type ? `/api/v2/bill/${id}` : `/api/v2/purchase_bill/${id}`);
       if (response.ok) {
         console.log(`Invoice ${id} deleted successfully.`);
       }
@@ -68,7 +53,7 @@ const FetchInvoices = () => {
           {...item}
           key={index}
           order={index}
-            deleteBtn={deleteInvoice}
+          deleteBtn={deleteInvoice}
         />
       ))}
     </>

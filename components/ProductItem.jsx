@@ -18,10 +18,10 @@ const ProductItem = ({
     brunch_quantity,
     product_rack,
     product_column
-    }) => {
-    
+}) => {
+
     const dropRef = useRef(null);
-    const {dropdownRef,handleClick,isOpen,iconRef} = useDropdown()
+    const { dropdownRef, handleClick, isOpen, iconRef } = useDropdown()
     const [isOpenActionsList, setOpenActionsList] = useState(false);
     const [isAddQuantity, setAddQuantity] = useState(false);
 
@@ -40,7 +40,7 @@ const ProductItem = ({
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
-    
+
     const openQtyForm = () => {
         setAddQuantity(!isAddQuantity);
     }
@@ -50,7 +50,7 @@ const ProductItem = ({
             const response = await fetch(`http://localhost:3000/api/products/${productId}`, {
                 method: 'DELETE',
                 headers: {
-                'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
             });
             if (!response.ok) {
@@ -89,24 +89,24 @@ const ProductItem = ({
                             <Link
                                 href={`/products/editeProduct/${_id}`}
                                 className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray">
-                                <HiOutlinePencil className="text-green-500"/>
+                                <HiOutlinePencil className="text-green-500" />
                                 <span className="block">تعديل المنتج</span>
                             </Link>
                             <button
                                 onClick={() => handleDelete(_id)}
                                 className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray">
-                                <HiOutlineTrash className=" text-red-500"/>
+                                <HiOutlineTrash className=" text-red-500" />
                                 <span className="block">حذف المنتج</span>
                             </button>
                         </div>
                     </div>
                 </div>
-                
+
                 {isOpen && <div ref={dropdownRef}>
                     <ProductInfo purchase_price={purchase_price} selling_price={selling_price} product_rack={product_rack} product_column={product_column} />
                 </div>}
             </div>
-            {isAddQuantity && <AddQuantityForm productName={product_named} openForm={openQtyForm}/>} 
+            {isAddQuantity && <AddQuantityForm productName={product_named} openForm={openQtyForm} />}
         </>
     );
 }

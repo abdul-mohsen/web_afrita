@@ -1,11 +1,9 @@
 'use client'
 import React, { useEffect } from 'react'
 import { markRequiredInputs } from '@/utils/utils';
-import { useSession } from 'next-auth/react';
-import axios from 'axios';
+import instance from "../axios"
 
 const AddSupplierForm = () => {
-    const { data: userSession } = useSession();
     async function handleAdd(data) {
         console.error('Success click:', data);
         const name = data.get("supplier-name")
@@ -15,12 +13,9 @@ const AddSupplierForm = () => {
         const vat_number = data.get("supplier-tax-number")
         const bankAccount = data.get("supplier-bank-account")
 
-        const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URLL}/api/v2/supplier`,
+        const response = await instance.post(
+            `/api/v2/supplier`,
             {
-                headers: {
-                    Authorization: `Bearer ${userSession?.user?.accessToken}`,
-                },
                 body: {
                     "name": name,
                     "address": address,

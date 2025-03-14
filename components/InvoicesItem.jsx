@@ -7,12 +7,14 @@ import { HiOutlineDotsVertical, HiOutlinePencil, HiOutlineTrash } from "react-ic
 
 const InvoicesItem = ({
   itemType,
-   itemStatus,
    id,
    effective_date,
    state,
-   sub_total,
-   merchant_id,
+   subtotal,
+  discount,
+  vat,
+  sequence_number,
+  type,
    deleteBtn,
    order
   }) => {
@@ -40,7 +42,9 @@ const actionsList = () => {
     const [invoDate, setInvoDate] = useState('');
     useEffect(() => {
           const getInvoTodayDate = (date) => {
-            if (Date.parse(date)) {
+      setInvoDate(date.Time)
+      return 
+            if (Date.parse(date.Time)) {
               const invoDataBack = new Date(date);
               const formateInvoDate = invoDataBack.toISOString().split('T')[0];
               setInvoDate(formateInvoDate);
@@ -61,11 +65,11 @@ const actionsList = () => {
               order
             )}
           </span>
-          <h3 className='item-id text-primary font-bold '>{id}</h3>
-          <span className="item-valyue mr-2  md:mr-0">{sub_total} ر.س</span>
-          <span className="item-date">{invoDate}</span>
-          <span className="supplyer-id font-bold">{merchant_id}</span>
-          <span className="item-type ">{itemStatus}</span>
+          <h3 className='item-id text-primary font-bold '>{sequence_number}</h3>
+          <span className="item-valyue mr-2  md:mr-0">{subtotal + vat - discount} ر.س</span>
+          <span className="item-date">{effective_date.Time}</span>
+          <span className="supplyer-id font-bold">{100}</span>
+          <span className="item-type ">{type == true ? ("bill") : ("purchase bill")}</span>
           <span className="item-status">
           {state == 1 ? (
               "مدفوعة"
@@ -90,7 +94,7 @@ const actionsList = () => {
                   <span className="block">تعديل الفاتورة</span>
               </Link>
               <button
-                  onClick={() => deleteBtn(id)}
+                  onClick={() => deleteBtn(id, type)}
                   className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray">
                   <HiOutlineTrash className=" text-red-500"/>
                   <span className="block">حذف الفاتورة</span>
