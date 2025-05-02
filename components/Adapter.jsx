@@ -42,12 +42,12 @@ const Adapter = ({ initialList, renderItem, onAdd, onDelete, onUpdate }) => {
         <div>
             <ul>
                 {items.map((item, index) => (
-                    <li key={index} className="flex justify-between items-center mb-2">
+                    <li key={index} className="justify-between items-center mb-2">
                         {renderItem(setValue, index, item, () => handleDeleteItem(index))}
                     </li>
                 ))}
             </ul>
-            <button onClick={handleAddItem}>Add</button>
+            <button onClick={handleAddItem}>إضافة</button>
         </div>
     );
 };

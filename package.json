@@ -21,6 +21,7 @@
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
     "eslint-config-next": "^15.0.0-rc.0",
+    "file-saver": "^2.0.5",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.302.0",
     "mongoose": "^7.6.3",

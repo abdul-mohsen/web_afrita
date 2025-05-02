@@ -11,6 +11,7 @@ const Dropdown = ({ apiUrl, onSelect }) => {
     // Function to fetch options from the API
     const fetchOptions = async () => {
         try {
+            console.log("your url", apiUrl)
             const response = await instance.get(apiUrl); // Use the apiUrl prop
             console.log(response.data);
             if (response.data.constructor === Array) {
@@ -33,7 +34,8 @@ const Dropdown = ({ apiUrl, onSelect }) => {
     // Handle selection change
     const handleChange = (event) => {
         const selectedId = event.target.value;
-        const selected = options.find(option => option.id === selectedId);
+        const selected = options.find(option => option.id == selectedId);
+        console.log(selectedId, selected, options)
         setSelectedOption(selected);
         onSelect(selected); // Call the onSelect prop with the selected object
     };
@@ -43,10 +45,9 @@ const Dropdown = ({ apiUrl, onSelect }) => {
 
     return (
         <select onChange={handleChange} value={selectedOption ? selectedOption.id : '123'}>
-            <option value="" disabled>Select an option</option>
             {options.map((option) => (
                 <option key={option.id} value={option.id}>
-                    {option.id}
+                    {option.name}
                 </option>
             ))}
         </select>

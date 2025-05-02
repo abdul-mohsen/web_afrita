@@ -13,9 +13,7 @@ const QueryInput = ({ fetchData, onSelect, mapItemToString }) => {
     useEffect(() => {
         if (!isTyping) {
             // Set a timer to query the backend every 3 seconds
-            timer = setInterval(() => {
-                handleFetchData();
-            }, 1000);
+            handleFetchData();
         }
 
         return () => {
@@ -25,14 +23,20 @@ const QueryInput = ({ fetchData, onSelect, mapItemToString }) => {
 
     const handleFetchData = async () => {
         console.log(inputValue && inputValue !== prevInputValue && !active)
-        if (inputValue && inputValue !== prevInputValue && !active) {
+        if (inputValue && inputValue !== prevInputValue && !active && inputValue != undefined) {
+            console.log("inputValue", inputValue)
             active = true
+            prevInputValue = inputValue
             try {
                 const result = await fetchData(inputValue); // Call the passed fetchData function
-                console.log("ssda", result);
-                setData(result.data); // Update the data state with the fetched results
-                prevInputValue = inputValue
+                if (result.data != null) {
+                    setData(result.data); // Update the data state with the fetched results
+                } else {
+                    setData([])
+                }
+
             } catch (error) {
+
                 console.error('Error fetching data:', error);
             } finally {
                 active = false
@@ -64,7 +68,7 @@ const QueryInput = ({ fetchData, onSelect, mapItemToString }) => {
     );
 
     return (
-        <div className="relative">
+        <div className="relative col-span-3">
             <input
                 type="text"
                 onChange={handleInputChange}
@@ -78,9 +82,9 @@ const QueryInput = ({ fetchData, onSelect, mapItemToString }) => {
                         <div
                             key={mapItemToString(suggestion)}
                             onClick={() => handleSuggestionClick(suggestion)}
-                            className="cursor-pointer p-2 hover:bg-gray-200"
+                            className="cursor-pointer p-2 hover:bg-gray-200 text-start"
                         >
-                            {mapItemToString(suggestion)} {/* Use the mapping function to display the suggestion */}
+                            <p className='text-start'>{mapItemToString(suggestion)} </p> {/* Use the mapping function to display the suggestion */}
                         </div>
                     ))}
                 </div>
