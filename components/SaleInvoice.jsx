@@ -111,18 +111,20 @@ const SaleInvoice = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="max-w-[1000px]">
+      <form onSubmit={handleSubmit} >
         <h3 className='text-primary text-2xl '>فاتورة جديدة</h3>
         <div className="space-y-12">
           <div className="pb-12">
-            <h1>Verify VIN number</h1>
-            <VerifyInput apiUrl={verifyVinApiUrl} onChange={handleInputChange} />
-            <h1>Store</h1>
+            <h1>بحث رقم الشاصي - Verify VIN number</h1>
+            <VerifyInput apiUrl={verifyVinApiUrl} onChange={handleInputChange} view={(data) => (
+              <h4>`{data.Make}-{data.Model}-{data.Year}`</h4>
+            )} />
+            <h1>المحل - Store</h1>
             <Dropdown apiUrl={apiUrl} onSelect={handleSelect} />
             <div className="sm:col-span-4">
               <label
                 htmlFor="id"
-                className="block text-lg font-medium leading-6 text-primary">Client Name</label>
+                className="block text-lg font-medium leading-6 text-primary">أسم الزبون - Client Name</label>
               <div className="mt-2">
                 <input
                   onChange={handleForum}
@@ -135,7 +137,7 @@ const SaleInvoice = () => {
             <div className="sm:col-span-4">
               <label
                 htmlFor="id"
-                className="block text-lg font-medium leading-6 text-primary">Client Phone Number</label>
+                className="block text-lg font-medium leading-6 text-primary">رقم جوال الزبون - Client Phone Number</label>
               <div className="mt-2">
                 <input
                   onChange={handleForum}
@@ -148,7 +150,7 @@ const SaleInvoice = () => {
             <div className="sm:col-span-4">
               <label
                 htmlFor="id"
-                className="block text-lg font-medium leading-6 text-primary">Note</label>
+                className="block text-lg font-medium leading-6 text-primary">ملاحظة - Note</label>
               <div className="mt-2">
                 <input
                   onChange={handleForum}
@@ -164,20 +166,21 @@ const SaleInvoice = () => {
             <Adapter
               initialList={[]}
               renderItem={(setItems, index, item, _) => (
-                <div className="grid grid-cols-6 content-normal" >
+                <div className="grid grid-cols-5 " >
                   <label
                     htmlFor="part_name"
-                    className="block text-lg font-medium leading-6 text-primary">القطعة</label>
+                    className="block text-lg font-medium leading-6  text-primary col-span-3">القطعة</label>
+                  <label htmlFor="quantity" className="block text-lg font-medium leading-6 text-primary flex-1 w-full basis-full ">الكمية</label>
+                  <label htmlFor="price" className="block text-lg font-medium leading-6 text-primary flex-1 w-full basis-full ">السعر</label>
                   <QueryInput
                     fetchData={fetchParts}
                     onSelect={(item) => { setItems("id", item.id, index) }}
                     mapItemToString={mapItemToString}
+                    classname="col-span-3"
                   />
 
-                  <label htmlFor="quantity" className="block text-lg font-medium leading-6 text-primary flex-1 w-full basis-full ">الكمية</label>
                   <input
                     onChange={(e) => { setItems(e.target.name, Number(e.target.value), index) }}
-                    value={item.quantity}
                     id="quantity"
                     name="quantity"
                     type="number"
@@ -185,10 +188,8 @@ const SaleInvoice = () => {
                     min={0}
                     required
                   />
-                  <label htmlFor="price" className="block text-lg font-medium leading-6 text-primary flex-1 w-full basis-full ">السعر</label>
                   <input
                     onChange={(e) => { setItems(e.target.name, e.target.value, index) }}
-                    value={item.price}
                     id="price"
                     name="price"
                     type="number"
@@ -204,7 +205,7 @@ const SaleInvoice = () => {
             />
 
             <div className=" flex flex-row flex-wrap col-span-4 sm:col-start-3 sm:col-end-5 gap-x-6 items-center">
-              <label htmlFor="sub_total" className="block text-lg font-medium leading-6 text-primary flex-1">Discount</label>
+              <label htmlFor="sub_total" className="block text-lg font-medium leading-6 text-primary flex-1">خصم - Discount</label>
               <div className="mt-2 flex-1">
                 <input
                   onChange={handleForum}
@@ -217,7 +218,7 @@ const SaleInvoice = () => {
               </div>
             </div>
             <div className=" flex flex-row flex-wrap col-span-4 sm:col-start-3 sm:col-end-5 gap-x-6 items-center">
-              <label htmlFor="sub_total" className="block text-lg font-medium leading-6 text-primary flex-1">Maintenance Cost</label>
+              <label htmlFor="sub_total" className="block text-lg font-medium leading-6 text-primary flex-1">شغل اليد - Maintenance Cost</label>
               <div className="mt-2 flex-1">
                 <input
                   onChange={handleForum}

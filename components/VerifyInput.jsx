@@ -2,15 +2,27 @@
 import React, { useState } from 'react';
 import instance from '@/axios';
 
-const VerifyInput = ({ apiUrl, onChange }) => {
+const VerifyInput = ({ apiUrl, onChange, view }) => {
     const [inputValue, setInputValue] = useState('');
     const [status, setStatus] = useState(null); // 'success', 'error', or null
     const [loading, setLoading] = useState(false);
+    const [res, setRes] = useState({});
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
     };
 
+    const download = async () => {
+        const response = await instance.get("/api/v2/vin/car/csv/" + inputValue, { responseType: 'blob' }); // Use the apiUrl prop
+        const blob = new Blob([response.data], { type: 'text/csv' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = inputValue + '.csv';
+        document.body.append(link);
+        link.click();
+        document.body.removeChild(link);
+
+    }
     // Function to fetch options from the API
     const handleVerify = async () => {
         setLoading(true);
@@ -18,7 +30,7 @@ const VerifyInput = ({ apiUrl, onChange }) => {
         try {
             console.log(apiUrl + inputValue)
             const response = await instance.get(apiUrl + inputValue); // Use the apiUrl prop
-            console.log(response.data);
+            setRes(response.data);
             if (response.status == 200) {
                 setStatus('success');
                 if (onChange) {
@@ -36,12 +48,13 @@ const VerifyInput = ({ apiUrl, onChange }) => {
     };
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-250">
             <input
                 type="text"
                 value={inputValue}
                 onChange={handleInputChange}
                 placeholder="Enter value to verify..."
+                autoComplete='on'
                 className="border border-gray-300 rounded-lg p-2 w-full mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
@@ -52,7 +65,9 @@ const VerifyInput = ({ apiUrl, onChange }) => {
                 {loading ? 'Verifying...' : 'Verify'}
             </button>
             {status === 'success' && <p className="text-green-500 mt-2">Verification successful!</p>}
+            {status === 'success' && <button onClick={download}> get all</button>}
             {status === 'error' && <p className="text-red-500 mt-2">Verification failed. Please try again.</p>}
+            {view(res)}
         </div>
     );
 };

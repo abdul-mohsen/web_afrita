@@ -4,29 +4,13 @@ import { IoReceiptOutline } from 'react-icons/io5'
 import { Tabs } from '.'
 import PurchasesInvoice from './PurchasesInvoice'
 import SaleInvoice from './SaleInvoice'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import instance from '@/axios'
 
 
 const AddInvoiceForm = ({ action, id }) => {
 
   const [selectedTab, setSelectedTab] = useState(0)
-  const [invoiceToEdit, setInvoiceToEdit] = useState();
-
-  useEffect(() => {
-    if (action === "edit") {
-      // Get An Invoice With Id
-      const fetchInvoice = async () => {
-        try {
-          const response = await instance.get(
-            `/api/v2/bill/${id}`);
-          setInvoiceToEdit(response.data);
-        } catch (error) { console.error('Error fetching invoice:', error); }
-      };
-      fetchInvoice();
-    }
-  }, [action, id]);
 
   return (
     <div>
