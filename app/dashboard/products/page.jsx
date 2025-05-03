@@ -1,22 +1,20 @@
 
-import instance from "@/axios";
 import { ProductItem } from "@/components";
 import { SectionNav } from "@/components";
 import { SectionTags } from "@/components";
 import PagesNumber from "@/components/PagesNumber";
+import { unstable_noStore } from "next/cache";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 async function getProducts() {
-    unstable_noStore();
-    const res = await instance.get('http://ifritah.com/api/v2/product/all')
-    console.log("debug", res.status)
-    return res.data
+    unstable_noStore()
+    const res = await fetch('http://localhost:3000/api/products')
+    return res.json()
 };
 
 export default async function Products() {
 
     const { products } = await getProducts()
-
     return (
         <section id='products' className=" overflow-hidden">
             <div className="section-header">
@@ -31,7 +29,6 @@ export default async function Products() {
                 <SectionTags
                     tags={[
                         <HiOutlineHashtag />,
-                        "اسم القطعة",
                         "رقم القطعة",
                         "السعر",
                         "اجمالى الكمية",
@@ -39,20 +36,20 @@ export default async function Products() {
                     ]}
                     minW={700}
                 />
-                {products.map((item) => {
-                    return <ProductItem {...item} key={item._id} />
-                })}
+                {/* {products.map((item) => { */}
+                {/**/}
+                {/* })} */}
             </div>
+            return <ProductItem {...item} key={item._id} />
             <div className="pt-4 flex justify-end">
                 <PagesNumber />
             </div>
-        </section>
+        </section >
     )
 }
 export async function generateStaticParams() {
     return [
         {
             params: {} // empty params object
-        }
-    ]
+        }]
 }
