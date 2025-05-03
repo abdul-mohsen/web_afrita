@@ -21,7 +21,17 @@ export default async function Products() {
 
     // Fetch All Invoices
     useEffect(() => {
-        setProduct(await getProducts());
+
+        const fetchInvoices = async () => {
+            try {
+
+                data = await getProducts()
+                setProduct();
+            } catch (error) {
+                console.error('Error fetching invoices:', error);
+            }
+        };
+        fetchInvoices();
 
     }, []);
     return (
