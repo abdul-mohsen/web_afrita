@@ -53,11 +53,10 @@ export default function Products() {
                     ]}
                     minW={700}
                 />
-                {/* {products.map((item) => { */}
-                {/**/}
-                {/* })} */}
+                {products.map((item) => {
+                    return <ProductItem {...item} key={item._id} />
+                })}
             </div>
-            {/* return <ProductItem {...item} key={item._id} /> */}
             <div className="pt-4 flex justify-end">
                 <PagesNumber />
             </div>
