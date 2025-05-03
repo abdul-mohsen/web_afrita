@@ -66,9 +66,3 @@ export default async function Products() {
         </section >
     )
 }
-export async function generateStaticParams() {
-    return [
-        {
-            params: {} // empty params object
-        }]
-}
