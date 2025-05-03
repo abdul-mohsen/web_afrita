@@ -9,7 +9,7 @@ import { unstable_noStore } from "next/cache";
 import { useEffect, useState } from "react";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
-export default async function Products() {
+export default function Products() {
     async function getProducts() {
         unstable_noStore()
         const res = await instance.get("/api/v2/product/all")
@@ -24,9 +24,7 @@ export default async function Products() {
 
         const fetchInvoices = async () => {
             try {
-
-                data = await getProducts()
-                setProduct();
+                setProduct(await getProducts());
             } catch (error) {
                 console.error('Error fetching invoices:', error);
             }
