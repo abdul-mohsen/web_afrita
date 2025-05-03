@@ -1,4 +1,5 @@
 
+import instance from "@/axios";
 import { ProductItem } from "@/components";
 import { SectionNav } from "@/components";
 import { SectionTags } from "@/components";
@@ -8,13 +9,13 @@ import { HiOutlineHashtag } from 'react-icons/hi';
 
 async function getProducts() {
     unstable_noStore()
-    const res = await fetch('http://localhost:3000/api/products')
-    return res.json()
+    const res = await instance.get("/api/v2/product/all")
+    console.log(res.status, res.data)
 };
 
 export default async function Products() {
 
-    const { products } = await getProducts()
+    await getProducts()
     return (
         <section id='products' className=" overflow-hidden">
             <div className="section-header">
