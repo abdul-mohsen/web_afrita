@@ -7,17 +7,15 @@ import PagesNumber from "@/components/PagesNumber";
 import { unstable_noStore } from "next/cache";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
-async function getProducts() {
-    unstable_noStore()
-    const res = await instance.get("/api/v2/product/all")
-    console.log(res.status, res.data)
-    return res.data
-};
-
-const [product, setProduct] = useState([]);
-
-
 export default async function Products() {
+    async function getProducts() {
+        unstable_noStore()
+        const res = await instance.get("/api/v2/product/all")
+        console.log(res.status, res.data)
+        return res.data
+    };
+
+    const [product, setProduct] = useState([]);
 
     // Fetch All Invoices
     useEffect(() => {
