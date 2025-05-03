@@ -1,4 +1,5 @@
 
+'use client';
 import instance from "@/axios";
 import { ProductItem } from "@/components";
 import { SectionNav } from "@/components";
