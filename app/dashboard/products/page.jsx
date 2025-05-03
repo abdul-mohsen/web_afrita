@@ -17,7 +17,7 @@ export default function Products() {
         return res.data
     };
 
-    const [product, setProduct] = useState([]);
+    const [products, setProduct] = useState([]);
 
     // Fetch All Invoices
     useEffect(() => {
