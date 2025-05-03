@@ -5,6 +5,7 @@ import { SectionNav } from "@/components";
 import { SectionTags } from "@/components";
 import PagesNumber from "@/components/PagesNumber";
 import { unstable_noStore } from "next/cache";
+import { useState } from "react";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 export default async function Products() {
