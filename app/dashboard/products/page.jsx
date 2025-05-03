@@ -4,16 +4,12 @@ import { ProductItem } from "@/components";
 import { SectionNav } from "@/components";
 import { SectionTags } from "@/components";
 import PagesNumber from "@/components/PagesNumber";
-import { unstable_noStore } from "next/cache";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 async function getProducts() {
-    // It caches it by default ¯\_(ツ)_/¯ inshallah it fixes your issue
-    unstable_noStore();
-    const response2 = await instance.get(`/api/v2/supplier/all`);
-    const response = await instance.get(`/api/v2/product/all`);
-    return response.data;
-
+    const res = await instance.get('http://ifritah.com/api/v2/product/all')
+    console.log("debug", res.status)
+    return res.data
 };
 
 export default async function Products() {
@@ -51,4 +47,11 @@ export default async function Products() {
             </div>
         </section>
     )
+}
+export async function generateStaticParams() {
+    return [
+        {
+            params: {} // empty params object
+        }
+    ]
 }
