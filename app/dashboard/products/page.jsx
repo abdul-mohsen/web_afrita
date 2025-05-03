@@ -11,11 +11,19 @@ async function getProducts() {
     unstable_noStore()
     const res = await instance.get("/api/v2/product/all")
     console.log(res.status, res.data)
+    return res.data
 };
+
+const [product, setProduct] = useState([]);
+
 
 export default async function Products() {
 
-    await getProducts()
+    // Fetch All Invoices
+    useEffect(() => {
+        setProduct(await getProducts());
+
+    }, []);
     return (
         <section id='products' className=" overflow-hidden">
             <div className="section-header">
