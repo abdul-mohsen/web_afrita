@@ -57,7 +57,7 @@ export default function Products() {
                 {/**/}
                 {/* })} */}
             </div>
-            return <ProductItem {...item} key={item._id} />
+            {/* return <ProductItem {...item} key={item._id} /> */}
             <div className="pt-4 flex justify-end">
                 <PagesNumber />
             </div>
