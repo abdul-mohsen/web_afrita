@@ -7,6 +7,7 @@ import PagesNumber from "@/components/PagesNumber";
 import { HiOutlineHashtag } from 'react-icons/hi';
 
 async function getProducts() {
+    unstable_noStore();
     const res = await instance.get('http://ifritah.com/api/v2/product/all')
     console.log("debug", res.status)
     return res.data
