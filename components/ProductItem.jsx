@@ -10,6 +10,9 @@ import AddQuantityForm from './AddQuantityForm';
 
 const ProductItem = ({
     _id,
+    id,
+    price,
+    quantity,
     product_named,
     product_number,
     purchase_price,
@@ -70,11 +73,11 @@ const ProductItem = ({
                     <div
                         onClick={handleClick} ref={iconRef}
                         className="details cursor-pointer flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(120px,_1fr))] min-w-[700px] text-app-gray mr-4 py-6 md:py-10">
-                        <span className='item-ranking'>0{product_number}</span>
+                        <span className='item-ranking'>0{id}</span>
                         <h3 className='item-name text-primary font-bold'>{product_named}</h3>
                         <span className="item-number">#2458</span>
                         <span className="item-price">{brunch_quantity} ر.س</span>
-                        <span className="total-quantity font-bold">{total_quantity}</span>
+                        <span className="total-quantity font-bold">{quantity}</span>
                         <span className="item-place">{product_column}{product_rack}</span>
                     </div>
                     <div className='actions-list relative flex flex-col justify-center items-center gap-2 md:gap-4 w-[50px]' ref={dropRef}>
@@ -103,7 +106,7 @@ const ProductItem = ({
                 </div>
 
                 {isOpen && <div ref={dropdownRef}>
-                    <ProductInfo purchase_price={purchase_price} selling_price={selling_price} product_rack={product_rack} product_column={product_column} />
+                    <ProductInfo purchase_price={price} selling_price={selling_price} product_rack={product_rack} product_column={product_column} />
                 </div>}
             </div>
             {isAddQuantity && <AddQuantityForm productName={product_named} openForm={openQtyForm} />}
