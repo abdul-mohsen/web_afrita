@@ -33,6 +33,12 @@ const SaleInvoice = () => {
     handleInputPruductChange()
   };
 
+  const handleUpdateManual = (updatedList) => {
+    console.log("new upate")
+    formData.manual_products = updatedList
+    handleInputPruductChange()
+  };
+
   const apiUrl = `/api/v2/stores/all`
   const verifyVinApiUrl = `/api/v2/vin/`
 
@@ -75,7 +81,10 @@ const SaleInvoice = () => {
   const [formData, setFormData] = useState({
     store_id: 0,
     products: [],
+    manual_products: [],
     total_amount: 0,
+    discount: "0.0",
+    maintenance_cost: "0.0",
   });
 
   const handleSubmit = async (e) => {
@@ -85,9 +94,13 @@ const SaleInvoice = () => {
   };
 
   const handleInputPruductChange = () => {
-    const calculatedValue = formData.products.reduce((total, item) => total + item.price * item.quantity, 0) + Number(formData.maintenance_cost) ?? 0
+    const calculatedValue =
+      formData.products.reduce((total, item) => total + Number(item.price) * item.quantity, 0) +
+      formData.manual_products.reduce((total, item) => total + Number(item.price) * item.quantity, 0)
+      + Number(formData.maintenance_cost ?? 0) ?? 0
+
     console.log(calculatedValue, formData.maintenance_cost, formData)
-    const totalAmount = (parseFloat(calculatedValue * 1.15 * (1 - formData.discount / 100))).toFixed(2);
+    const totalAmount = (parseFloat(calculatedValue * 1.15 * (1 - (formData.discount ?? 0) / 100))).toFixed(2);
     if (totalAmount != formData.total_amount) {
       setFormData({ ...formData, total_amount: totalAmount })
     }
@@ -204,6 +217,51 @@ const SaleInvoice = () => {
               onUpdate={handleUpdate}
             />
 
+
+            <Adapter
+              initialList={[]}
+              renderItem={(setItems, index, item, _) => (
+                <div className="grid grid-cols-5 " >
+                  <label
+                    htmlFor="part_name"
+                    className="block text-lg font-medium leading-6  text-primary col-span-3">القطعة</label>
+                  <label htmlFor="quantity" className="block text-lg font-medium leading-6 text-primary flex-1 w-full basis-full ">الكمية</label>
+                  <label htmlFor="price" className="block text-lg font-medium leading-6 text-primary flex-1 w-full basis-full ">السعر</label>
+                  <input
+                    className="col-span-3"
+                    onChange={(e) => { setItems(e.target.name, e.target.value, index) }}
+                    id="part_name"
+                    name="part_name"
+                    type="text"
+                    required
+                  />
+
+                  <input
+                    onChange={(e) => { setItems(e.target.name, Number(e.target.value), index) }}
+                    id="quantity"
+                    name="quantity"
+                    type="number"
+                    autoComplete="number"
+                    min={0}
+                    required
+                  />
+                  <input
+                    onChange={(e) => { setItems(e.target.name, e.target.value, index) }}
+                    id="price"
+                    name="price"
+                    type="number"
+                    min={0}
+                    autoComplete="number"
+                    required
+                  />
+                </div>
+              )}
+              onAdd={handleAdd}
+              onDelete={handleDelete}
+              onUpdate={handleUpdateManual}
+            />
+
+
             <div className=" flex flex-row flex-wrap col-span-4 sm:col-start-3 sm:col-end-5 gap-x-6 items-center">
               <label htmlFor="sub_total" className="block text-lg font-medium leading-6 text-primary flex-1">خصم - Discount</label>
               <div className="mt-2 flex-1">
@@ -214,6 +272,7 @@ const SaleInvoice = () => {
                   min={0}
                   max={100}
                   type="number"
+                  defaultValue={0}
                 />
               </div>
             </div>
@@ -225,6 +284,7 @@ const SaleInvoice = () => {
                   name="maintenance_cost"
                   id="maintenance_cost"
                   min={0}
+                  defaultValue={0}
                   type="number"
                 />
               </div>
