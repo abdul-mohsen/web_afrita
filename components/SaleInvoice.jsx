@@ -187,7 +187,10 @@ const SaleInvoice = () => {
                   <label htmlFor="price" className="block text-lg font-medium leading-6 text-primary flex-1 w-full basis-full ">السعر</label>
                   <QueryInput
                     fetchData={fetchParts}
-                    onSelect={(item) => { setItems("id", item.id, index) }}
+                    onSelect={(item) => {
+                      setItems("id", item.id, index)
+                      setItems("part_name", mapItemToString(item), index)
+                    }}
                     mapItemToString={mapItemToString}
                     classname="col-span-3"
                   />
@@ -332,8 +335,9 @@ const SaleInvoice = () => {
           </div>
         </div>
       </form>
-      {previewInvoice && <InvoivePreview togglue={togglePreviewInvoice} />}
+      {previewInvoice && <InvoivePreview togglue={togglePreviewInvoice} data={formData} />}
     </>
   )
 }
+
 export default SaleInvoice
