@@ -58,7 +58,7 @@ const InvoicesItem = ({
 
 	return (
 		<div className="item flex flex-row min-w-full w-fit bg-white hover:shadow-md">
-			<QRCodeComponent billId={"1"} />
+			<QRCodeComponent billId="1" />
 			<div className="details flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(120px,_1fr))] text-app-gray mr-4 py-6 md:py-10 min-w-[800px]">
 				<span className='item-number'>
 					{order < 10 ? (
