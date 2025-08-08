@@ -95,6 +95,12 @@ const InvoicesItem = ({
         <div
           className={`${isOpenActionsList ? "flex" : "hidden"}  actions absolute text-sm text-app-gray py-2 flex-col w-max rounded-md bg-white top-8 left-8 shadow-lg shadow-primary/30 border border-primary/5`}
         >
+          <span
+            onClick={togglue}
+            className="absolute cursor-pointer top-0 left-0 text-lg font-semibold leading-6 bg-secondry p-2 rounded-full -translate-x-1/2 -translate-y-1/2"
+          >
+            <HiOutlineXMark />
+          </span>
           <Link
             href={`/dashboard/invoices/edit/${id}`}
             className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"
