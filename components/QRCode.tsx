@@ -1,7 +1,7 @@
 // components/QRCode.tsx
-import { FC } from 'react';
+import { FC } from "react";
 import QRCode from "react-qr-code";
-import React from 'react';
+import React from "react";
 
 interface QRCodeProps {
   billId: string;

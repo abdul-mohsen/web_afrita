@@ -1,4 +1,4 @@
-import { EditeProductForm } from "@/components"
+import { EditeProductForm } from "@/components";
 
 const getProductById = async (id) => {
   try {
@@ -14,22 +14,21 @@ const getProductById = async (id) => {
   }
 };
 
-export default async  function  EditeProduct({ params }) {
-
+export default async function EditeProduct({ params }) {
   const { id } = params;
-  const  { product }  = await getProductById(id) || {};
+  const { product } = (await getProductById(id)) || {};
 
   return (
-    <EditeProductForm id={id} 
-      product_named={product?.product_named || ''}
-      product_number={product?.product_number  || ''}
-      purchase_price={product?.purchase_price  || ''}
-      selling_price={product?.selling_price  || ''}
-      total_quantity={product?.total_quantity  || ''}
-      brunch_quantity={product?.brunch_quantity  || ''}
-      product_rack={product?.product_rack  || ''}
-      product_column={product?.product_column  || ''}
+    <EditeProductForm
+      id={id}
+      product_named={product?.product_named || ""}
+      product_number={product?.product_number || ""}
+      purchase_price={product?.purchase_price || ""}
+      selling_price={product?.selling_price || ""}
+      total_quantity={product?.total_quantity || ""}
+      brunch_quantity={product?.brunch_quantity || ""}
+      product_rack={product?.product_rack || ""}
+      product_column={product?.product_column || ""}
     />
-  )
+  );
 }
-

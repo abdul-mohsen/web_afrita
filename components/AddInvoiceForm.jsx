@@ -1,55 +1,45 @@
-"use client"
-import { HiChevronDoubleLeft } from 'react-icons/hi'
-import { IoReceiptOutline } from 'react-icons/io5'
-import { Tabs } from '.'
-import PurchasesInvoice from './PurchasesInvoice'
-import SaleInvoice from './SaleInvoice'
-import { useState } from 'react'
-import Link from 'next/link'
-
+"use client";
+import { HiChevronDoubleLeft } from "react-icons/hi";
+import { IoReceiptOutline } from "react-icons/io5";
+import { Tabs } from ".";
+import PurchasesInvoice from "./PurchasesInvoice";
+import SaleInvoice from "./SaleInvoice";
+import { useState } from "react";
+import Link from "next/link";
 
 const AddInvoiceForm = ({ action, id }) => {
-
-  const [selectedTab, setSelectedTab] = useState(0)
+  const [selectedTab, setSelectedTab] = useState(0);
 
   return (
     <div>
-      <div className='breadcrumb w-full text-xl flex flex-row gap-5 justify-start items-center mb-6'>
-        <Link href={"/dashboard/invoices"} >
-          <IoReceiptOutline className='text-primary' />
+      <div className="breadcrumb w-full text-xl flex flex-row gap-5 justify-start items-center mb-6">
+        <Link href={"/dashboard/invoices"}>
+          <IoReceiptOutline className="text-primary" />
         </Link>
-        <HiChevronDoubleLeft className='text-app-gray' />
+        <HiChevronDoubleLeft className="text-app-gray" />
         {action === "edit" ? (
-          <h2 className='text-app-gray'>تعديل فاتورة {id}</h2>
+          <h2 className="text-app-gray">تعديل فاتورة {id}</h2>
         ) : (
-          action === "add" && (
-            <h2 className='text-app-gray'>اضافة فاتورة</h2>
-          )
+          action === "add" && <h2 className="text-app-gray">اضافة فاتورة</h2>
         )}
       </div>
       <div className="add-form w-full bg-white p-8 rounded-xl">
         {action === "edit" ? (
-          <SaleInvoice
-            action={"edit"}
-            {...invoiceToEdit}
-          />
+          <SaleInvoice action={"edit"} {...invoiceToEdit} />
         ) : (
           <>
             <Tabs items={invoicesTypes} useStateIn={setSelectedTab} />
             {invoicesTypes.map((item, index) => (
-              <div key={index}>
-                {selectedTab === index && item.content}
-              </div>
+              <div key={index}>{selectedTab === index && item.content}</div>
             ))}
           </>
-        )
-        }
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AddInvoiceForm
+export default AddInvoiceForm;
 
 const invoicesTypes = [
   {
@@ -67,7 +57,5 @@ const invoicesTypes = [
         <PurchasesInvoice />
       </>
     ),
-
   },
-]
-
+];

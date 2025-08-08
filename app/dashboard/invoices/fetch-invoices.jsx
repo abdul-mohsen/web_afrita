@@ -1,25 +1,22 @@
-'use client';
-import { useState, useEffect } from 'react';  // Import useEffect and useState
-import { InvoicesItem } from '@/components';
-import { toast } from 'sonner';
-import instance from '../../../axios'
-import { useRouter } from 'next/navigation';
+"use client";
+import { useState, useEffect } from "react"; // Import useEffect and useState
+import { InvoicesItem } from "@/components";
+import { toast } from "sonner";
+import instance from "../../../axios";
+import { useRouter } from "next/navigation";
 
 const FetchInvoices = () => {
-
   const [invoices, setInvoices] = useState([]);
-  const router = useRouter()
+  const router = useRouter();
 
   // Fetch All Invoices
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
-
-        const response = await instance.post(
-          `/api/v2/bill/all`, {});
+        const response = await instance.post(`/api/v2/bill/all`, {});
         setInvoices(response.data);
       } catch (error) {
-        console.error('Error fetching invoices:', error);
+        console.error("Error fetching invoices:", error);
       }
     };
     fetchInvoices();
@@ -29,19 +26,20 @@ const FetchInvoices = () => {
   const deleteInvoice = async (id, type) => {
     try {
       const response = await instance.delete(
-        type ? `/api/v2/bill/${id}` : `/api/v2/purchase_bill/${id}`);
+        type ? `/api/v2/bill/${id}` : `/api/v2/purchase_bill/${id}`,
+      );
       if (response.ok) {
         console.log(`Invoice ${id} deleted successfully.`);
       }
-      toast.success(`Invoice ${id} deleted successfully`)
-      router.push('/dashboard/invoices')
+      toast.success(`Invoice ${id} deleted successfully`);
+      router.push("/dashboard/invoices");
       if (!response) {
-        const { error } = response
-        toast.error(error)
+        const { error } = response;
+        toast.error(error);
       }
     } catch (error) {
-      toast.error(`Invoice ${id} can't deleted`)
-      router.push('/dashboard/invoices')
+      toast.error(`Invoice ${id} can't deleted`);
+      router.push("/dashboard/invoices");
       console.error(`Error deleting invoice with ID ${id}:`, error.message);
     }
   };

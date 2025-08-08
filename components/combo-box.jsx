@@ -1,81 +1,81 @@
-'use client'
+"use client";
 
-import * as React from 'react'
-import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
+import * as React from "react";
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 
-import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from '@/components/ui/command'
+} from "@/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover'
-import { useDebouncedCallback } from 'use-debounce'
-import instance from '@/axios'
+} from "@/components/ui/popover";
+import { useDebouncedCallback } from "use-debounce";
+import instance from "@/axios";
 
 const frameworks = [
   {
-    value: 'next.js',
-    label: 'Next.js',
+    value: "next.js",
+    label: "Next.js",
   },
   {
-    value: 'sveltekit',
-    label: 'SvelteKit',
+    value: "sveltekit",
+    label: "SvelteKit",
   },
   {
-    value: 'nuxt.js',
-    label: 'Nuxt.js',
+    value: "nuxt.js",
+    label: "Nuxt.js",
   },
   {
-    value: 'remix',
-    label: 'Remix',
+    value: "remix",
+    label: "Remix",
   },
   {
-    value: 'astro',
-    label: 'Astro',
+    value: "astro",
+    label: "Astro",
   },
-]
+];
 
 export function ComboboxDemo() {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState('')
-  const [searchResults, setSearchResults] = React.useState([])
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
+  const [searchResults, setSearchResults] = React.useState([]);
 
   const searchItems = async (searchText) => {
-    const url = `/api/v2/cars/search?query=${searchText}`
-    if (!searchText) return
-    const response = await instance.get(url)
-    if (response?.data?.length) setSearchResults(response?.data)
-  }
-  const debouncedGetResults = useDebouncedCallback(searchItems, 500)
+    const url = `/api/v2/cars/search?query=${searchText}`;
+    if (!searchText) return;
+    const response = await instance.get(url);
+    if (response?.data?.length) setSearchResults(response?.data);
+  };
+  const debouncedGetResults = useDebouncedCallback(searchItems, 500);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant='outline'
-          role='combobox'
+          variant="outline"
+          role="combobox"
           aria-expanded={open}
-          className='w-full justify-between'
+          className="w-full justify-between"
         >
           {value
             ? searchResults?.find((result) => result.id === value)?.modelName
-            : 'ابحث عن الإطار الذي تريد...'}
-          <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+            : "ابحث عن الإطار الذي تريد..."}
+          <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='w-full min-w-[600px]'>
+      <PopoverContent className="w-full min-w-[600px]">
         <Command>
           <CommandInput
-            placeholder='ابحث ...'
-            className='h-9 outline-none focus:outline-none'
+            placeholder="ابحث ..."
+            className="h-9 outline-none focus:outline-none"
             onValueChange={debouncedGetResults}
           />
           {/* <CommandEmpty>لا يوجد نتائج</CommandEmpty> */}
@@ -87,5 +87,5 @@ export function ComboboxDemo() {
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }

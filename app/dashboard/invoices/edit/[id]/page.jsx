@@ -1,8 +1,6 @@
-import { AddInvoiceForm } from "@/components"
+import { AddInvoiceForm } from "@/components";
 
-export default function EditInvoice({params}) {
+export default function EditInvoice({ params }) {
   const { id } = params;
-  return (
-    <AddInvoiceForm action={'edit'}  id={id} />
-  )
+  return <AddInvoiceForm action={"edit"} id={id} />;
 }

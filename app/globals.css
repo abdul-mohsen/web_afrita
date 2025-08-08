@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
@@ -21,7 +21,9 @@
 .dasshed-b,
 .dasshed-l,
 .dasshed-r {
-  background-image: linear-gradient(to right, #7C7C7C 50%, white 50%), linear-gradient(to right, #7C7C7C 50%, white 50%);
+  background-image:
+    linear-gradient(to right, #7c7c7c 50%, white 50%),
+    linear-gradient(to right, #7c7c7c 50%, white 50%);
   background-size: 20px 1px;
   background-repeat: repeat-x;
 }
@@ -81,7 +83,6 @@ input:focus {
 }
 
 @media (min-width: 768px) {
-
   /* md breakpoint */
   .button {
     padding-top: 1rem;
@@ -109,24 +110,25 @@ input:focus {
   /* Slightly larger shadow */
   border: none;
   /* No border */
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
   /* Transition for hover effect */
 }
 
 .button-secondary:hover {
-  background-color: #357ABD;
+  background-color: #357abd;
   /* Darker shade on hover */
   transform: translateY(-2px);
   /* Slight lift effect on hover */
 }
 
 .button-secondary:focus-visible {
-  outline: 2px solid #357ABD;
+  outline: 2px solid #357abd;
   /* Outline color on focus */
   outline-offset: 2px;
   /* Offset for the outline */
 }
-
 
 @layer utilities {
   .padding {

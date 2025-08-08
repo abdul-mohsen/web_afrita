@@ -1,12 +1,12 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from "react";
 function useDropdown() {
-  const [isOpen, setIsOpen] = useState(false)
-  const dropdownRef = useRef(null)
-  const iconRef = useRef(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const iconRef = useRef(null);
 
   const handleClick = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen)
-  }
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
 
   const handleCloseDropdown = (e) => {
     if (
@@ -15,18 +15,18 @@ function useDropdown() {
       iconRef.current &&
       !iconRef.current.contains(e.target)
     ) {
-      setIsOpen(false)
+      setIsOpen(false);
     }
-  }
+  };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleCloseDropdown)
+    document.addEventListener("mousedown", handleCloseDropdown);
     return () => {
-      document.removeEventListener('mousedown', handleCloseDropdown)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleCloseDropdown);
+    };
+  }, []);
 
-  return { isOpen, handleClick, dropdownRef, iconRef }
+  return { isOpen, handleClick, dropdownRef, iconRef };
 }
 
-export default useDropdown
+export default useDropdown;

@@ -1,11 +1,10 @@
-'use client'
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 
 export default function PagesNumber() {
-  
   const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const [selectedLink, setSelectedLink] = useState(0);
-  const lastIndex = testArray.length - 1
+  const lastIndex = testArray.length - 1;
   const handleLinkClick = (index) => {
     setSelectedLink(index);
   };
@@ -23,7 +22,6 @@ export default function PagesNumber() {
             }`}
             onClick={() => handleLinkClick(i)}
           >
-           
             {i + 1}
           </a>
         ))}
