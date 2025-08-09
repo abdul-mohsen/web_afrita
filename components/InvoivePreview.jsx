@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { HiOutlineXMark } from "react-icons/hi2";
+import QRCode from "react-qr-code";
+import QRCodeComponent from "./QRCode";
 
 const InvoivePreview = ({ togglue, data }) => {
   const [todayDate, setTodayDate] = useState("");
@@ -168,6 +170,15 @@ const InvoivePreview = ({ togglue, data }) => {
               </div>
             </div>
           </div>
+
+          {data && data.id ? (
+            <QRCodeComponent billId={data.id} />
+          ) : (
+            <div>
+              <h2>No Value Found</h2>
+              <p>No relevant data available.</p>
+            </div>
+          )}
 
           <div className=" flex items-center justify-center gap-x-6 text-white">
             <span
