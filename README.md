@@ -1,5 +1,5 @@
 # Afrita
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=abdul-mohsen_web_afrita&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=abdul-mohsen_web_afrita)
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
