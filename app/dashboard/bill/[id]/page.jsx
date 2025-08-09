@@ -3,6 +3,7 @@
 import { InvoivePreview } from "@/components";
 import Skeleton from "@/components/Skeleton";
 import { useEffect, useState } from "react";
+import instance from "../axios";
 
 export default function Orders({ params }) {
   const [invoice, setInvoice] = useState({});
