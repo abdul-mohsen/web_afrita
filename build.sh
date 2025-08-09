@@ -6,8 +6,8 @@ adddate() {
 
 git pull
 
-# pkill -n npm
-#
-# npm run build
-# npm run start | adddate
- npm run dev | adddate 
+pkill -n npm
+
+npm run build
+npm run start | adddate
+ # npm run dev | adddate 

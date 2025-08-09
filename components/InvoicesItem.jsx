@@ -67,7 +67,6 @@ const InvoicesItem = ({
         <span className="item-number">
           {order < 10 ? `0${order + 1}` : order}
         </span>
-        <QRCodeComponent billId="1" />
         <h3 className="item-id text-primary font-bold ">{sequence_number}</h3>
         <span className="item-valyue mr-2  md:mr-0">
           {subtotal + vat - discount} ر.س
