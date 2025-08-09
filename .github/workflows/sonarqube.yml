@@ -41,10 +41,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'  # Specify your Java version
+      # - name: Set up JDK
+      #   uses: actions/setup-java@v2
+      #   with:
+      #     java-version: '11'  # Specify your Java version
       - name: Analyze with SonarQube
 
         # You can pin the exact commit or the version.
@@ -59,7 +59,7 @@ jobs:
           args:
             # Unique key of your project. You can find it in SonarQube > [my project] > Project Information (top-right menu)
             # mandatory
-            -Dsonar.projectKey=
+            -Dsonar.projectKey=abdul-mohsen_web_afrita
             # Comma-separated paths to directories containing main source files.
             #-Dsonar.sources= # optional, default is project base directory
             # When you need the analysis to take place in a directory other than the one from which it was launched
