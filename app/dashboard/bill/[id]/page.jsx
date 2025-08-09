@@ -17,8 +17,11 @@ export default function Orders({ params }) {
         const response = await instance.get(`/api/v2/bill/` + id, {});
         console.log(response.data);
         setInvoice(response.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching invoices:", error);
+        setError(error);
+        setLoading(false);
       }
     };
     fetchInvoices();
