@@ -13,7 +13,7 @@ export default function Orders({ params }) {
         const { id } = await params;
         const response = await instance.get(`/api/v2/bill/` + id, {});
         console.log(response.data);
-        setInvoices(response.data);
+        setInvoice(response.data);
       } catch (error) {
         console.error("Error fetching invoices:", error);
       }
