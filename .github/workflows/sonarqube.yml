@@ -42,13 +42,12 @@ jobs:
 
     steps:
 
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v2
+      - name: Set up JetBrains JDK
+        uses: jetbrains/setup-java@v1
         with:
-          java-version: '17'
-          distribution: 'adopt'
-          
+          java-version: 'latest'  # Use 'latest' to get the most recent version
+          distribution: 'jetbrains'
+
       - name: Verify Java version
         run: java -version
 
