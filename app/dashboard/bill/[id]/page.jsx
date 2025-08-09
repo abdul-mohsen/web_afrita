@@ -2,12 +2,27 @@ import { InvoivePreview } from "@/components";
 import Skeleton from "@/components/Skeleton";
 
 export default function Orders({ params }) {
-	const { id } = params;
-	return (
-		<section id="orders" className="h-full">
-			<h1 className="mx-auto my-4">الطلبات</h1>
-			<Skeleton />
-			<InvoivePreview />
-		</section>
-	);
+  const { id } = params;
+  const [invoice, setInvoice] = useState({});
+
+  useEffect(() => {
+    const fetchInvoices = async () => {
+      try {
+        const response = await instance.get(`/api/v2/bill/` + id, {});
+        console.log(response.data);
+        setInvoices(response.data);
+      } catch (error) {
+        console.error("Error fetching invoices:", error);
+      }
+    };
+    fetchInvoices();
+  }, []);
+
+  return (
+    <section id="orders" className="h-full">
+      <h1 className="mx-auto my-4">الطلبات</h1>
+      <Skeleton />
+      <InvoivePreview />
+    </section>
+  );
 }
