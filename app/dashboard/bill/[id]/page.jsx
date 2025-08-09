@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 
 export default function Orders({ params }) {
   const [invoice, setInvoice] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchInvoices = async () => {
@@ -21,6 +23,9 @@ export default function Orders({ params }) {
     };
     fetchInvoices();
   }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <section id="orders" className="h-full">
