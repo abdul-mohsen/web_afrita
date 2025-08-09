@@ -43,9 +43,9 @@ jobs:
     steps:
 
       - name: Set up JetBrains JDK
-        uses: jetbrains/setup-java@v1
+        uses: actions/setup-java@v2
         with:
-          java-version: 'latest'  # Use 'latest' to get the most recent version
+          java-version: '17'  # Specify the version you want, or use 'latest' for the latest stable version
           distribution: 'jetbrains'
 
       - name: Verify Java version
@@ -65,7 +65,7 @@ jobs:
           args:
             # Unique key of your project. You can find it in SonarQube > [my project] > Project Information (top-right menu)
             # mandatory
-            -Dsonar.projectKey=abdul-mohsen_web_afrita
+            -Dsonar.projectKey=abdul-mohsen_web_afrita -X
             # Comma-separated paths to directories containing main source files.
             #-Dsonar.sources= # optional, default is project base directory
             # When you need the analysis to take place in a directory other than the one from which it was launched
