@@ -26,7 +26,7 @@ export default function Orders({ params }) {
     <section id="orders" className="h-full">
       <h1 className="mx-auto my-4">الطلبات</h1>
       <Skeleton />
-      {/* <InvoivePreview /> */}
+      <InvoivePreview togglue={true} data={invoice} />
     </section>
   );
 }
