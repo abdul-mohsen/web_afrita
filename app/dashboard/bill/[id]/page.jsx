@@ -2,12 +2,12 @@ import { InvoivePreview } from "@/components";
 import Skeleton from "@/components/Skeleton";
 
 export default function Orders({ params }) {
-  const { id } = params;
   const [invoice, setInvoice] = useState({});
 
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
+        const { id } = await params;
         const response = await instance.get(`/api/v2/bill/` + id, {});
         console.log(response.data);
         setInvoices(response.data);
