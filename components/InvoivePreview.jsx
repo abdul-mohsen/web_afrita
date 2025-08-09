@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { HiOutlineXMark } from "react-icons/hi2";
+import QRCode from "react-qr-code";
+import QRCodeComponent from "./QRCode";
 
 const InvoivePreview = ({ togglue, data }) => {
   const [todayDate, setTodayDate] = useState("");
@@ -19,9 +21,13 @@ const InvoivePreview = ({ togglue, data }) => {
   const storeAddress = "عنةان المتجر:TBD";
   const date = "تاريخ:TBD";
   const vatNumber = "رقم تسحيل ضريبة القيمة المضافة:TBD";
-  const combinedList = [...data.products, ...data.manual_products];
-  const updatedList = [...combinedList, data.maintenance_cost];
-  const result = updatedList.map((item) => {
+  var combinedList = [...data.products, ...data.manual_products];
+  const maintenance_cost = round(parseFloat(data.maintenance_cost), 2);
+  if (maintenance_cost > 0) {
+    combinedList = [...combinedList, data.maintenance_cost];
+  }
+
+  const result = combinedList.map((item) => {
     var productName = "Labor cost";
 
     var quentity = 1;
@@ -169,14 +175,14 @@ const InvoivePreview = ({ togglue, data }) => {
             </div>
           </div>
 
-          <div className=" flex items-center justify-center gap-x-6 text-white">
-            <span
-              onClick={togglue}
-              className="absolute cursor-pointer top-0 left-0 text-lg font-semibold leading-6 bg-secondry p-2 rounded-full -translate-x-1/2 -translate-y-1/2"
-            >
-              <HiOutlineXMark />
-            </span>
-          </div>
+          {data && data.url ? (
+            <QRCode value={data.url} size={64} />
+          ) : (
+            <div>
+              <h2>No Value Found</h2>
+              <p>No relevant data available.</p>
+            </div>
+          )}
         </form>
       </div>
     </div>

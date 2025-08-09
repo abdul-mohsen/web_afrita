@@ -67,7 +67,7 @@ const InvoicesItem = ({
         <span className="item-number">
           {order < 10 ? `0${order + 1}` : order}
         </span>
-        <QRCodeComponent billId="1" />
+        <QRCodeComponent billId={id} />
         <h3 className="item-id text-primary font-bold ">{sequence_number}</h3>
         <span className="item-valyue mr-2  md:mr-0">
           {subtotal + vat - discount} ر.س
@@ -95,6 +95,13 @@ const InvoicesItem = ({
         <div
           className={`${isOpenActionsList ? "flex" : "hidden"}  actions absolute text-sm text-app-gray py-2 flex-col w-max rounded-md bg-white top-8 left-8 shadow-lg shadow-primary/30 border border-primary/5`}
         >
+          <Link
+            href={`/bill/${id}`}
+            className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"
+          >
+            <HiOutlinePencil className="text-green-500" />
+            <span className="block">view bill details</span>
+          </Link>
           <Link
             href={`/dashboard/invoices/edit/${id}`}
             className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"
