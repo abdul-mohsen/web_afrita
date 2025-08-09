@@ -48,7 +48,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-
+          
+      - name: Verify Java version
+        run: java -version
 
       - name: Analyze with SonarQube
 
