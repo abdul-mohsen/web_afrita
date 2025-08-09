@@ -22,7 +22,11 @@ const InvoivePreview = ({ togglue, data }) => {
   const date = "تاريخ:TBD";
   const vatNumber = "رقم تسحيل ضريبة القيمة المضافة:TBD";
   const combinedList = [...data.products, ...data.manual_products];
-  const updatedList = [...combinedList, data.maintenance_cost];
+  const maintenance_cost = round(parseFloat(data.maintenance_cost), 2);
+  if (maintenance_cost > 0) {
+    const updatedList = [...combinedList, data.maintenance_cost];
+  }
+
   const result = updatedList.map((item) => {
     var productName = "Labor cost";
 
