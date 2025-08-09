@@ -183,15 +183,6 @@ const InvoivePreview = ({ togglue, data }) => {
               <p>No relevant data available.</p>
             </div>
           )}
-
-          <div className=" flex items-center justify-center gap-x-6 text-white">
-            <span
-              onClick={togglue}
-              className="absolute cursor-pointer top-0 left-0 text-lg font-semibold leading-6 bg-secondry p-2 rounded-full -translate-x-1/2 -translate-y-1/2"
-            >
-              <HiOutlineXMark />
-            </span>
-          </div>
         </form>
       </div>
     </div>
