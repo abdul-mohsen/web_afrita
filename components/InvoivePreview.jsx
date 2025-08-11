@@ -23,7 +23,24 @@ const InvoivePreview = ({ togglue, data }) => {
     typeof data.effective_date !== "undefined" &&
     typeof data.effective_date.Time !== "undefined"
   ) {
-    date = date + data.effective_date.Time;
+    const dateString = "2025-06-20T15:00:15Z";
+    const date1 = new Date(dateString);
+
+    // Options for formatting in Saudi Arabia timezone
+    const options = {
+      year: "numeric",
+      month: "long", // 'short' for abbreviated month names
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZone: "Asia/Riyadh", // Saudi Arabia timezone
+      timeZoneName: "short", // or 'long' for full timezone name
+    };
+
+    // Format the date
+    const formattedDate = date1.toLocaleString("en-US", options);
+    date = date + formattedDate;
   }
 
   var vatNumber = "رقم تسحيل ضريبة القيمة المضافة: ";
