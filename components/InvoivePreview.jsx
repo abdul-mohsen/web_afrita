@@ -1,24 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import { HiOutlineXMark } from "react-icons/hi2";
 import QRCode from "react-qr-code";
-import QRCodeComponent from "./QRCode";
 
 const InvoivePreview = ({ togglue, data }) => {
-  const [todayDate, setTodayDate] = useState("");
-
-  useEffect(() => {
-    const getTodayDate = () => {
-      const today = new Date();
-      const formattedDate = today.toISOString().split("T")[0];
-      setTodayDate(formattedDate);
-    };
-    getTodayDate();
-  }, []);
-
   const invoiceNumber = "رقم الفاتورة:TBD";
   const storeName = "اسم المتجر:TBD";
-  const storeAddress = "عنةان المتجر:TBD";
+  const storeAddress = "عنوان المتجر:TBD";
   const date = "تاريخ:TBD";
   const vatNumber = "رقم تسحيل ضريبة القيمة المضافة:TBD";
   var combinedList = [...data.products, ...data.manual_products];
@@ -94,12 +81,12 @@ const InvoivePreview = ({ togglue, data }) => {
                 <div className="invoice-details flex flex-row dasshed-b">
                   <div className="details flex-1 grid grid-cols-6 text-app-gray  py-6">
                     <h3 className="item-name ">المنتجات</h3>
-                    <span className="item-number">الكمبة</span>
+                    <span className="item-number">الكمية</span>
                     <span className="item-price">سعر الوحدة</span>
                     <span className="pricy-before-vat">السعر قبل الضريبة</span>
                     <span className="total-quantity">ضريبة القيمة المضافة</span>
                     <span className="item-place">
-                      العسر شامل ضريبة القيمة المضافة
+                      السعر شامل ضريبة القيمة المضافة
                     </span>
                   </div>
                 </div>
