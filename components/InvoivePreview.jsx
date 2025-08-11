@@ -31,9 +31,9 @@ const InvoivePreview = ({ togglue, data }) => {
       year: "numeric",
       month: "long", // 'short' for abbreviated month names
       day: "numeric",
-      hour: "0-digit",
-      minute: "0-digit",
-      second: "0-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
       timeZone: "Asia/Riyadh", // Saudi Arabia timezone
       timeZoneName: "short", // or 'long' for full timezone name
     };
