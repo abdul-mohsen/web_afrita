@@ -3,11 +3,31 @@ import { HiOutlineXMark } from "react-icons/hi2";
 import QRCode from "react-qr-code";
 
 const InvoivePreview = ({ togglue, data }) => {
-  const invoiceNumber = "رقم الفاتورة:TBD";
-  const storeName = "اسم المتجر:TBD";
-  const storeAddress = "عنوان المتجر:TBD";
-  const date = "تاريخ:TBD";
-  const vatNumber = "رقم تسحيل ضريبة القيمة المضافة:TBD";
+  var invoiceNumber = "رقم الفاتورة: ";
+  if (typeof data.sequence_number !== "undefined") {
+    invoiceNumber = invoiceNumber + data.sequence_number;
+  }
+
+  var storeName = "اسم المتجر: ";
+  if (typeof data.company_name !== "undefined") {
+    storeName = storeName + data.company_name;
+  }
+
+  var storeAddress = "عنوان المتجر: ";
+  if (typeof data.company_name !== "undefined") {
+    storeAddress = storeAddress + data.address;
+  }
+
+  var date = "تاريخ: ";
+  if (typeof data.effective_date !== "undefined") {
+    date = date + data.effective_date;
+  }
+
+  var vatNumber = "رقم تسحيل ضريبة القيمة المضافة: ";
+  if (typeof data.vat_registration !== "undefined") {
+    vatNumber = vatNumber + data.vat_registration;
+  }
+
   var combinedList = [...data.products, ...data.manual_products];
   const maintenance_cost = round(parseFloat(data.maintenance_cost), 2);
   if (maintenance_cost > 0) {
