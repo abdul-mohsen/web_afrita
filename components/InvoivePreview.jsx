@@ -19,8 +19,11 @@ const InvoivePreview = ({ togglue, data }) => {
   }
 
   var date = "تاريخ: ";
-  if (typeof data.effective_date !== "undefined") {
-    date = date + data.effective_date;
+  if (
+    typeof data.effective_date !== "undefined" &&
+    typeof data.effective_date.Time !== "undefined"
+  ) {
+    date = date + data.effective_date.Time;
   }
 
   var vatNumber = "رقم تسحيل ضريبة القيمة المضافة: ";
