@@ -75,7 +75,7 @@ const InvoicesItem = ({
         <span className="item-date">{effective_date.Time}</span>
         <span className="supplyer-id font-bold">{100}</span>
         <span className="item-type ">
-          {type == true ? "billn" : "purchase bill"}
+          {type == true ? "bill" : "purchase bill"}
         </span>
         <span className="item-status">{state == 1 ? "مدفوعة" : "مرفوضة"}</span>
       </div>

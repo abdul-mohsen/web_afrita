@@ -29,7 +29,7 @@ const FetchInvoices = () => {
       if (type) {
         response = await instance.post(`/api/v2/bill/credit/`, {
           bill_id: id,
-          note: "",
+          note: "NA",
         });
       } else {
         response = await instance.delete(`/api/v2/purchase_bill/${id}`);
