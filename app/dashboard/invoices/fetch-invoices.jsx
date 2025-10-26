@@ -25,9 +25,15 @@ const FetchInvoices = () => {
   // To Delete An Invoice
   const deleteInvoice = async (id, type) => {
     try {
-      const response = await instance.delete(
-        type ? `/api/v2/bill/${id}` : `/api/v2/purchase_bill/${id}`,
-      );
+      var response;
+      if (type) {
+        response = await instance.post(`/api/v2/bill/credit/`, {
+          bill_id: id,
+          note: "",
+        });
+      } else {
+        response = await instance.delete(`/api/v2/purchase_bill/${id}`);
+      }
       if (response.ok) {
         console.log(`Invoice ${id} deleted successfully.`);
       }
