@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react"; // Import useEffect and useState
+import ConfirmationDialog from "../components/ConfirmationDialog";
 import { InvoicesItem } from "@/components";
 import { toast } from "sonner";
 import instance from "../../../axios";
@@ -7,6 +8,34 @@ import { useRouter } from "next/navigation";
 
 const FetchInvoices = () => {
   const [invoices, setInvoices] = useState([]);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleOpenDialog = () => setDialogOpen(true);
+  const handleCloseDialog = () => setDialogOpen(false);
+  const handleConfirm = async (note) => {
+    try {
+      const response = await fetch(`/api/v2/bill/credit/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          bill_id: id,
+          note: note,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log("Success:", data); // Handle successful response
+    } catch (error) {
+      console.error("Error:", error); // Handle error
+    }
+  };
+
   const router = useRouter();
 
   // Fetch All Invoices
@@ -27,10 +56,7 @@ const FetchInvoices = () => {
     try {
       var response;
       if (type) {
-        response = await instance.post(`/api/v2/bill/credit/`, {
-          bill_id: id,
-          note: "NA",
-        });
+        handleOpenDialog();
       } else {
         response = await instance.delete(`/api/v2/purchase_bill/${id}`);
       }
@@ -60,6 +86,11 @@ const FetchInvoices = () => {
           deleteBtn={deleteInvoice}
         />
       ))}
+      <ConfirmationDialog
+        open={dialogOpen}
+        onClose={handleCloseDialog}
+        onConfirm={handleConfirm}
+      />
     </>
   );
 };
