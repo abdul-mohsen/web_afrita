@@ -22,6 +22,8 @@ const FetchInvoices = () => {
   };
   const handleConfirm = async (id, note) => {
     try {
+      console.log(id, note, selectedId);
+
       const response = await instance.post(`/api/v2/bill/credit`, {
         bill_id: id,
         note: note,
