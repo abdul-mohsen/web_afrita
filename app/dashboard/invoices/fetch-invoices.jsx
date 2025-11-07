@@ -9,9 +9,17 @@ import { useRouter } from "next/navigation";
 const FetchInvoices = () => {
   const [invoices, setInvoices] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
 
-  const handleOpenDialog = () => setDialogOpen(true);
-  const handleCloseDialog = () => setDialogOpen(false);
+  const handleOpenDialog = (id) => {
+    setSelectedId(id); // Set the ID of the item to delete
+    setDialogOpen(true); // Open the dialog
+  };
+
+  const handleCloseDialog = () => {
+    setSelectedId(null);
+    setDialogOpen(false);
+  };
   const handleConfirm = async (note) => {
     try {
       const response = await fetch(`/api/v2/bill/credit/`, {
@@ -20,7 +28,7 @@ const FetchInvoices = () => {
           "Content-Type": "application/json",
         },
         body: {
-          bill_id: id,
+          bill_id: selectedId,
           note: note,
         },
       });
