@@ -10,7 +10,7 @@ import {
   Button,
 } from "@mui/material";
 
-const ConfirmationDialog = ({ open, onClose, onConfirm }) => {
+const ConfirmationDialog = ({ open, onClose, onConfirm, itemId }) => {
   const [note, setNote] = useState("");
   const [error, setError] = useState(false);
 
@@ -20,15 +20,15 @@ const ConfirmationDialog = ({ open, onClose, onConfirm }) => {
       return;
     }
 
-    // Call back to the backend with the note
-    onConfirm(note);
+    // Call back to the backend with the note and itemId
+    onConfirm(itemId, note);
     setNote(""); // Clear the input after submission
     onClose(); // Close the dialog
   };
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Confirmation</DialogTitle>
+      <DialogTitle>Confirm Delete</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus

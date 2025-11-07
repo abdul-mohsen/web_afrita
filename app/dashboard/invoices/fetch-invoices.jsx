@@ -20,7 +20,7 @@ const FetchInvoices = () => {
     setSelectedId(null);
     setDialogOpen(false);
   };
-  const handleConfirm = async (note) => {
+  const handleConfirm = async (id, note) => {
     try {
       const response = await fetch(`/api/v2/bill/credit/`, {
         method: "POST",
@@ -28,7 +28,7 @@ const FetchInvoices = () => {
           "Content-Type": "application/json",
         },
         body: {
-          bill_id: selectedId,
+          bill_id: id,
           note: note,
         },
       });
@@ -98,6 +98,7 @@ const FetchInvoices = () => {
         open={dialogOpen}
         onClose={handleCloseDialog}
         onConfirm={handleConfirm}
+        itemId={selectedId}
       />
     </>
   );
