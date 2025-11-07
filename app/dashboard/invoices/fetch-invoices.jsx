@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react"; // Import useEffect and useState
-import ConfirmationDialog from "@/components";
+import { ConfirmationDialog } from "@/components";
 import { InvoicesItem } from "@/components";
 import { toast } from "sonner";
 import instance from "../../../axios";
