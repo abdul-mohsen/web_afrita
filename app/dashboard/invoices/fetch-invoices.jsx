@@ -60,7 +60,7 @@ const FetchInvoices = () => {
     try {
       var response;
       if (type) {
-        handleOpenDialog();
+        handleOpenDialog(id);
       } else {
         response = await instance.delete(`/api/v2/purchase_bill/${id}`);
         if (response.ok) {
