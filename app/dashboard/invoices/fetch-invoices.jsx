@@ -22,15 +22,9 @@ const FetchInvoices = () => {
   };
   const handleConfirm = async (id, note) => {
     try {
-      const response = await fetch(`/api/v2/bill/credit`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: {
-          bill_id: id,
-          note: note,
-        },
+      const response = await instance.post(`/api/v2/bill/credit`, {
+        bill_id: id,
+        note: note,
       });
 
       if (!response.ok) {
