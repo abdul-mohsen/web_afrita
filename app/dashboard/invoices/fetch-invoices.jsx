@@ -22,16 +22,10 @@ const FetchInvoices = () => {
   };
   const handleConfirm = async (id, note) => {
     try {
-      console.log(id, note, selectedId);
-
       const response = await instance.post(`/api/v2/bill/credit`, {
         bill_id: id,
         note: note,
       });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
 
       const data = await response.json();
       console.log("Success:", data); // Handle successful response
