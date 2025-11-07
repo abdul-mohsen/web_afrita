@@ -59,15 +59,15 @@ const FetchInvoices = () => {
         handleOpenDialog();
       } else {
         response = await instance.delete(`/api/v2/purchase_bill/${id}`);
-      }
-      if (response.ok) {
-        console.log(`Invoice ${id} deleted successfully.`);
-      }
-      toast.success(`Invoice ${id} deleted successfully`);
-      router.push("/dashboard/invoices");
-      if (!response) {
-        const { error } = response;
-        toast.error(error);
+        if (response.ok) {
+          console.log(`Invoice ${id} deleted successfully.`);
+        }
+        toast.success(`Invoice ${id} deleted successfully`);
+        router.push("/dashboard/invoices");
+        if (!response) {
+          const { error } = response;
+          toast.error(error);
+        }
       }
     } catch (error) {
       toast.error(`Invoice ${id} can't deleted`);
