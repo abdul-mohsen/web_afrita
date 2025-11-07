@@ -10,11 +10,19 @@ import {
   Button,
 } from "@mui/material";
 
-const ConfirmationDialog = ({ open, onClose }) => {
+const ConfirmationDialog = ({ open, onClose, onConfirm }) => {
   const [note, setNote] = useState("");
+  const [error, setError] = useState(false);
 
   const handleConfirm = () => {
-    console.log("User note:", note); // Handle the note as needed
+    if (!note.trim()) {
+      setError(true); // Show error if input is empty
+      return;
+    }
+
+    // Call back to the backend with the note
+    onConfirm(note);
+    setNote(""); // Clear the input after submission
     onClose(); // Close the dialog
   };
 
@@ -30,7 +38,12 @@ const ConfirmationDialog = ({ open, onClose }) => {
           fullWidth
           variant="outlined"
           value={note}
-          onChange={(e) => setNote(e.target.value)}
+          onChange={(e) => {
+            setNote(e.target.value);
+            if (e.target.value.trim()) setError(false); // Remove error if input is valid
+          }}
+          error={error}
+          helperText={error ? "This field is required" : ""}
         />
       </DialogContent>
       <DialogActions>
