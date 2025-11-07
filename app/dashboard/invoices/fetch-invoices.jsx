@@ -22,7 +22,7 @@ const FetchInvoices = () => {
   };
   const handleConfirm = async (id, note) => {
     try {
-      const response = await fetch(`/api/v2/bill/credit/`, {
+      const response = await fetch(`/api/v2/bill/credit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
