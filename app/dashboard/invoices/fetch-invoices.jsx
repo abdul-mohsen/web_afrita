@@ -26,9 +26,6 @@ const FetchInvoices = () => {
         bill_id: id,
         note: note,
       });
-
-      const data = await response.json();
-      console.log("Success:", data); // Handle successful response
     } catch (error) {
       toast.error(`Invoice ${id} can't deleted`);
       console.error("Error:", error); // Handle error
