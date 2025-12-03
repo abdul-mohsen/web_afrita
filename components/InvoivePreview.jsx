@@ -3,6 +3,10 @@ import { HiOutlineXMark } from "react-icons/hi2";
 import QRCode from "react-qr-code";
 
 const InvoivePreview = ({ togglue, data }) => {
+  var bill_title = "فاتورة ضريبية مبسطة";
+  if (data.credit_type != null) {
+    bill_title = "Credit Note";
+  }
   var invoiceNumber = "رقم الفاتورة: ";
   if (typeof data.sequence_number !== "undefined") {
     invoiceNumber = invoiceNumber + data.sequence_number;
@@ -107,14 +111,15 @@ const InvoivePreview = ({ togglue, data }) => {
       <div className="overlay fixed bg-black/30 w-screen h-screen top-0"></div>
       <div className="relative z-50 bg-white w-full md:w-fit p-8 rounded-lg">
         <form id="form-preview" action="post" className="max-w-[600px]">
-          <h1 className="text-primary text-2xl text-center">
-            فاتورة ضريبية مبسطة
-          </h1>
+          <h1 className="text-primary text-2xl text-center">{bill_title}</h1>
           <h2 className="text-primary text-2xl text-center">{invoiceNumber}</h2>
           <h3 className="text-primary text-2xl text-center">{storeName}</h3>
           <h3 className="text-primary text-2xl text-center">{storeAddress}</h3>
           <h4 className="text-primary text-2xl text-right">{date}</h4>
           <h4 className="text-primary text-2xl text-right">{vatNumber}</h4>
+          <h4 className="text-primary text-2xl text-right">
+            {credit_note ? "reason: " + data.credit_note : ""}
+          </h4>
           <div className="space-y-6 pb-6">
             <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-4 pb-6">
               <div className=" invoice-row sm:col-span-4 flex flex-col bg-white">
