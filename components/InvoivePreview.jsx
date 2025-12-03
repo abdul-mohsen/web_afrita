@@ -4,7 +4,7 @@ import QRCode from "react-qr-code";
 
 const InvoivePreview = ({ togglue, data }) => {
   var bill_title = "فاتورة ضريبية مبسطة";
-  if (data.credit_type != null) {
+  if (data.credit_state != null) {
     bill_title = "Credit Note";
   }
   var invoiceNumber = "رقم الفاتورة: ";
