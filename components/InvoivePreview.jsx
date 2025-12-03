@@ -118,7 +118,7 @@ const InvoivePreview = ({ togglue, data }) => {
           <h4 className="text-primary text-2xl text-right">{date}</h4>
           <h4 className="text-primary text-2xl text-right">{vatNumber}</h4>
           <h4 className="text-primary text-2xl text-right">
-            {credit_note ? "reason: " + data.credit_note : ""}
+            {data.credit_note ? "reason: " + data.credit_note : ""}
           </h4>
           <div className="space-y-6 pb-6">
             <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-4 pb-6">
