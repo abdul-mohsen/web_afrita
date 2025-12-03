@@ -29,6 +29,7 @@ export default function Orders({ params }) {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
+  console.log(data);
 
   return (
     <section id="orders" className="h-full">
