@@ -8,6 +8,28 @@ import {
 } from "react-icons/hi";
 import QRCodeComponent from "../components/QRCode";
 
+function getBillMsg(credit_state, state) {
+  switch (credit_state) {
+    case 1:
+      return "credit is under process";
+    case 2:
+      return "credit is processed";
+    case 3:
+      return "credit is issued to zatca";
+    default:
+      switch (state) {
+        case 1:
+          return "bill is under process";
+        case 2:
+          return "bill is processed";
+        case 3:
+          return "bill is issued to zatca";
+        default:
+          return "ERROR";
+      }
+  }
+}
+
 const InvoicesItem = ({
   itemType,
   id,
@@ -20,6 +42,7 @@ const InvoicesItem = ({
   type,
   deleteBtn,
   order,
+  credit_state,
 }) => {
   const dropRef = useRef(null);
   const [isOpenActionsList, setOpenActionsList] = useState(false);
@@ -76,6 +99,7 @@ const InvoicesItem = ({
         <span className="supplyer-id font-bold">{100}</span>
         <span className="item-type ">
           {type == true ? "bill" : "purchase bill"}
+          {getBillMsg(credit_state, state)}
         </span>
         <span className="item-status">{state == 1 ? "مدفوعة" : "مرفوضة"}</span>
       </div>
