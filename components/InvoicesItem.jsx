@@ -99,9 +99,8 @@ const InvoicesItem = ({
         <span className="supplyer-id font-bold">{100}</span>
         <span className="item-type ">
           {type == true ? "bill" : "purchase bill"}
-          {getBillMsg(credit_state, state)}
         </span>
-        <span className="item-status">{state == 1 ? "مدفوعة" : "مرفوضة"}</span>
+        <span className="item-status">{getBillMsg(credit_state, state)}</span>
       </div>
       <div
         className="actions relative flex flex-col justify-center items-center gap-4 w-[50px]"
