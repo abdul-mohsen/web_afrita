@@ -119,7 +119,7 @@ const InvoicesItem = ({
           className={`${isOpenActionsList ? "flex" : "hidden"}  actions absolute text-sm text-app-gray py-2 flex-col w-max rounded-md bg-white top-8 left-8 shadow-lg shadow-primary/30 border border-primary/5`}
         >
           <Link
-            href={`/bill/${id}`}
+            href={`/${credit_state >= 1 ? "credit_bill" : "bill"}/${id}`}
             className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"
           >
             <HiOutlinePencil className="text-green-500" />
