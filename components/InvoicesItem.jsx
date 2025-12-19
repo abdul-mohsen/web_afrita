@@ -43,6 +43,7 @@ const InvoicesItem = ({
   deleteBtn,
   order,
   credit_state,
+  qr_code,
 }) => {
   const dropRef = useRef(null);
   const [isOpenActionsList, setOpenActionsList] = useState(false);
@@ -84,13 +85,14 @@ const InvoicesItem = ({
     getInvoTodayDate(effective_date);
   }, [effective_date]);
 
+  // const qrValue = `https://ifritah.com/bill/${billId}`; // Unique URL for each bill
   return (
     <div className="item flex flex-row min-w-full w-fit bg-white hover:shadow-md">
       <div className="details flex-1 grid grid-cols-[50px_repeat(auto-fit,_minmax(120px,_1fr))] text-app-gray mr-4 py-6 md:py-10 min-w-[800px]">
         <span className="item-number">
           {order < 10 ? `0${order + 1}` : order}
         </span>
-        <QRCodeComponent billId={id} />
+        <QRCodeComponent qr_code={qr_code} />
         <h3 className="item-id text-primary font-bold ">{sequence_number}</h3>
         <span className="item-valyue mr-2  md:mr-0">
           {subtotal + vat - discount} ر.س
