@@ -10,7 +10,7 @@ interface QRCodeProps {
 const QRCodeComponent: FC<QRCodeProps> = ({ qr_code }) => {
   return (
     <div>
-      <QRCode value={qrValue} size={64} />
+      <QRCode value={qrValue} size={128} />
     </div>
   );
 };
