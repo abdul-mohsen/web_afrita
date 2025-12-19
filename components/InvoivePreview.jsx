@@ -208,7 +208,7 @@ const InvoivePreview = ({ togglue, data }) => {
           </div>
 
           {data && data.qr_code ? (
-            <QRCode value={data.qr_code} size={64} />
+            <QRCode value={data.qr_code} />
           ) : (
             <div>
               <h2>No Value Found</h2>
