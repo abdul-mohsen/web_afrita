@@ -349,7 +349,7 @@ const SaleInvoice = () => {
                   id="maintenance_cost"
                   min={0}
                   defaultValue={0}
-                  type="number"
+                  type="text"
                 />
               </div>
             </div>
