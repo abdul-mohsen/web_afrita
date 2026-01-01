@@ -39,6 +39,7 @@ const FetchInvoices = () => {
     const fetchInvoices = async () => {
       try {
         const response = await instance.post(`/api/v2/bill/all`, {});
+        console.log(response.data);
         setInvoices(response.data);
       } catch (error) {
         console.error("Error fetching invoices:", error);
