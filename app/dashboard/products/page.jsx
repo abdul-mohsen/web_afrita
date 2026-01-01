@@ -3,7 +3,7 @@ import instance from "@/axios";
 import { ProductItem } from "@/components";
 import { SectionNav } from "@/components";
 import { SectionTags } from "@/components";
-import PagesNumber from "@/components/PagesNumber";
+// import PagesNumber from "@/components/PagesNumber";
 import { unstable_noStore } from "next/cache";
 import { useEffect, useState } from "react";
 import { HiOutlineHashtag } from "react-icons/hi";
@@ -54,9 +54,7 @@ export default function Products() {
           return <ProductItem {...item} key={item._id} />;
         })}
       </div>
-      <div className="pt-4 flex justify-end">
-        <PagesNumber />
-      </div>
+      <div className="pt-4 flex justify-end"></div>
     </section>
   );
 }
