@@ -245,7 +245,6 @@ const SaleInvoice = () => {
                     id="price"
                     name="price"
                     type="text"
-                    min={0}
                     required
                   />
                 </div>
