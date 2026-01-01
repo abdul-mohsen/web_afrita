@@ -2,7 +2,7 @@ import { SectionTags } from "@/components";
 import { SectionNav } from "@/components";
 import ClientItem from "@/components/ClientItem";
 import DropdownHeading from "@/components/DropdownHeading";
-import PagesNumber from "@/components/PagesNumber";
+// import PagesNumber from "@/components/PagesNumber";
 import { HiOutlineHashtag } from "react-icons/hi";
 
 export default function Clients() {
@@ -39,9 +39,7 @@ export default function Clients() {
         <ClientItem />
         <ClientItem />
       </div>
-      <div className="pt-4 flex justify-end">
-        <PagesNumber />
-      </div>
+      <div className="pt-4 flex justify-end"></div>
     </section>
   );
 }

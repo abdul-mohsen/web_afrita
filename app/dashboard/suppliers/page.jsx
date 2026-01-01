@@ -1,7 +1,7 @@
 "use client";
 import { SectionNav, SectionTags, SupplierItem } from "@/components";
 import DropdownHeading from "@/components/DropdownHeading";
-import PagesNumber from "@/components/PagesNumber";
+// import PagesNumber from "@/components/PagesNumber";
 import { HiOutlineHashtag } from "react-icons/hi";
 import FetchSuppliers from "./fetch_supplier";
 
@@ -37,9 +37,7 @@ export default function Suppliers() {
 
         <FetchSuppliers />
       </div>
-      <div className="pt-4 flex justify-end">
-        <PagesNumber />
-      </div>
+      <div className="pt-4 flex justify-end"></div>
     </section>
   );
 }
