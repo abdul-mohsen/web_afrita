@@ -53,12 +53,16 @@ const InvoivePreview = ({ togglue, data }) => {
   }
 
   var combinedList = [...data.products, ...data.manual_products];
-  const maintenance_cost = round(
-    parseFloat(parseFloat(data.maintenance_cost)),
-    2,
-  );
+  console.log(...data.products);
+  console.log(...data.manual_products);
+  console.log(...data.maintenance_cost);
+  console.log(data.products);
+  console.log(data.manual_products);
+  console.log(data.maintenance_cost);
+  console.log(combinedList);
+  const maintenance_cost = round(parseFloat(data.maintenance_cost), 2);
   if (maintenance_cost > 0) {
-    const combinedList = [...combinedList, data.maintenance_cost];
+    combinedList = [...combinedList, data.maintenance_cost];
   }
 
   const result = combinedList.map((item) => {
