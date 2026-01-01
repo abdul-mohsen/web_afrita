@@ -246,7 +246,6 @@ const SaleInvoice = () => {
                     name="price"
                     type="text"
                     min={0}
-                    autoComplete="number"
                     required
                   />
                 </div>
