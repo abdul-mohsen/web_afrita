@@ -29,9 +29,7 @@ export default function Invoices() {
         />
         <FetchInvoices />
       </div>
-      <div className="pt-4 flex justify-end">
-        // <PagesNumber />
-      </div>
+      <div className="pt-4 flex justify-end"></div>
     </section>
   );
 }
