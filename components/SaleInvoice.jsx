@@ -244,7 +244,7 @@ const SaleInvoice = () => {
                     }}
                     id="price"
                     name="price"
-                    type="number"
+                    type="text"
                     min={0}
                     autoComplete="number"
                     required
