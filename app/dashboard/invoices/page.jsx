@@ -1,7 +1,7 @@
 import { SectionNav, SectionTags } from "@/components";
 import { HiOutlineHashtag } from "react-icons/hi";
 import { InvoicesItem } from "@/components";
-import PagesNumber from "@/components/PagesNumber";
+// import PagesNumber from "@/components/PagesNumber";
 import FetchInvoices from "./fetch-invoices";
 
 export default function Invoices() {
