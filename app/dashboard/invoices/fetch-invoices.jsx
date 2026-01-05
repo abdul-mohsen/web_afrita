@@ -5,6 +5,7 @@ import { InvoicesItem } from "@/components";
 import { toast } from "sonner";
 import instance from "../../../axios";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const FetchInvoices = () => {
   const [invoices, setInvoices] = useState([]);
