@@ -4,13 +4,18 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { SupplierItem } from "@/components";
+import { useSearchParams } from "next/navigation";
 
 const FetchSuppliers = () => {
+  const searchParams = useSearchParams();
+  const currentPage = parseInt(searchParams.get("page")) || 1; // Default to page 1
   const [suppliers, setSuppliers] = useState([]);
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
-        const response = await instance.get(`/api/v2/supplier/all`);
+        const response = await instance.get(
+          `/api/v2/supplier/all?page_number=${currentPage}`,
+        );
         console.error("Success fetching suppliers :", response.data);
         setSuppliers(response.data);
       } catch (error) {
