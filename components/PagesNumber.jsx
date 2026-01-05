@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function Pagination({ onPageChange }) {
+export default function PagesNumber({ onPageChange }) {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1); // Default to page 1
 
