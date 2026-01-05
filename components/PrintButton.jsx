@@ -6,6 +6,12 @@ const PrintButton = ({ componentId }) => {
     const printContent = document.getElementById(componentId);
     const newWindow = window.open("", "_blank");
     newWindow.document.write("<html><head><title>Print</title>");
+
+    // Link to Tailwind CSS
+    newWindow.document.write(`
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    `);
+
     newWindow.document.write("</head><body>");
     newWindow.document.write(printContent.innerHTML);
     newWindow.document.write("</body></html>");
