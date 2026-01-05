@@ -7,12 +7,6 @@ import FetchSuppliers from "./fetch_supplier";
 import React from "react";
 
 export default function Suppliers() {
-  const [refreshKey, setRefreshKey] = React.useState(0); // To trigger data refresh
-
-  const handlePageChange = () => {
-    setRefreshKey((prev) => prev + 1); // Increment to refresh data display component
-  };
-
   return (
     <section id="suppliers" className=" overflow-hidden">
       <div className="section-header">
@@ -42,10 +36,10 @@ export default function Suppliers() {
           minW={700}
         />
 
-        <FetchSuppliers key={refreshKey} />
+        <FetchSuppliers />
       </div>
       <div className="pt-4 flex justify-end">
-        <PagesNumber onPageChange={handlePageChange} />
+        <PagesNumber />
       </div>
     </section>
   );

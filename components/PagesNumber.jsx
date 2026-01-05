@@ -1,57 +1,39 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 
-export default function PagesNumber({ onPageChange }) {
-  const router = useRouter();
-  const [currentPage, setCurrentPage] = useState(1); // Default to page 1
+export default function PagesNumber() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentPage = parseInt(searchParams.get("page")) || 1;
+  const [selectedLink, setSelectedLink] = useState(currentPage);
 
   useEffect(() => {
-    const pageParam = router.query.page; // Get the page from query
-    if (pageParam) {
-      setCurrentPage(parseInt(pageParam, 10)); // Update state if a page param exists
-    }
-  }, [router.query]); // Listen for changes in the router.query
+    setSelectedLink(currentPage);
+  }, [currentPage]);
 
-  const navigateToPage = (pageNumber) => {
-    const newQuery = { ...router.query, page: pageNumber }; // Update the page number in the query
-    router.push({
-      pathname: router.pathname,
-      query: newQuery,
-    });
-    setCurrentPage(pageNumber); // Update local state for immediate feedback
-    onPageChange(); // Notify the parent component about the page change
+  const updateQueryParams = (pageNumber) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set("page", pageNumber);
+    window.history.pushState({}, "", `${pathname}?${newParams.toString()}`);
+    window.location.reload();
   };
 
-  const handleNext = () => {
-    navigateToPage(currentPage + 1); // Move to the next page
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      navigateToPage(currentPage - 1); // Move to the previous page
-    }
+  const handleLinkClick = (pageNumber) => {
+    setSelectedLink(pageNumber);
+    updateQueryParams(pageNumber);
   };
 
   return (
-    <div className="flex items-center gap-x-3">
-      <h5>الصفحة</h5>
+    <div>
       <button
-        className="py-1 px-2 text-xs rounded-md text-app-gray border-2"
-        onClick={handlePrev}
+        onClick={() => handleLinkClick(currentPage - 1)}
         disabled={currentPage === 1}
       >
         Prev
       </button>
-
-      <span className="py-1 px-2 text-xs">{currentPage}</span>
-
-      <button
-        className="py-1 px-2 text-xs rounded-md text-app-gray border-2"
-        onClick={handleNext}
-      >
-        Next
-      </button>
+      <span>{currentPage}</span>
+      <button onClick={() => handleLinkClick(currentPage + 1)}>Next</button>
     </div>
   );
 }
