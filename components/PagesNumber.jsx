@@ -2,70 +2,56 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-export default function PagesNumber({ totalPages }) {
-  const [selectedLink, setSelectedLink] = useState(0);
+export default function PagesNumber() {
   const router = useRouter();
+  const currentPage = parseInt(router.query.page) || 1; // Default to page 1
+  const [selectedLink, setSelectedLink] = useState(currentPage);
 
   useEffect(() => {
-    // Extract the page number from the URL and set it as the selected link
-    const queryPage = parseInt(router.query.page) || 1;
-    setSelectedLink(queryPage - 1);
-  }, [router.query.page]); // Run effect when the page number in the URL changes
+    setSelectedLink(currentPage);
+  }, [currentPage]);
 
-  const handleLinkClick = (index) => {
-    setSelectedLink(index);
-    // Navigate to the page as indicated by the index
-    router.push(`/your-path?page=${index + 1}`); // Change "your-path" to match your routing
+  const updateQueryParams = (pageNumber) => {
+    const newQuery = { ...router.query, page: pageNumber }; // Preserve other query params
+    router.push({
+      pathname: router.pathname,
+      query: newQuery,
+    });
   };
 
-  const renderLinks = () => {
-    const startPage = Math.max(0, selectedLink - 1);
-    const endPage = Math.min(totalPages - 1, selectedLink + 1);
+  const handleLinkClick = (pageNumber) => {
+    setSelectedLink(pageNumber); // Update local state
+    updateQueryParams(pageNumber); // Update the URL
+  };
 
-    return (
-      <>
-        {startPage > 0 && (
-          <>
-            <a
-              href="#"
-              className={`py-1 px-2 text-xs rounded-md text-app-gray border-2`}
-              onClick={() => handleLinkClick(0)}
-            >
-              1
-            </a>
-            {startPage > 1 && <span>...</span>}
-          </>
-        )}
-        {Array.from({ length: endPage - startPage + 1 }, (_, i) => (
-          <a
-            key={startPage + i}
-            href="#"
-            className={`py-1 px-2 text-xs rounded-md ${selectedLink === startPage + i ? "text-white bg-primary" : "text-app-gray"} border-2`}
-            onClick={() => handleLinkClick(startPage + i)}
-          >
-            {startPage + i + 1}
-          </a>
-        ))}
-        {endPage < totalPages - 1 && (
-          <>
-            {endPage < totalPages - 2 && <span>...</span>}
-            <a
-              href="#"
-              className={`py-1 px-2 text-xs rounded-md text-app-gray border-2`}
-              onClick={() => handleLinkClick(totalPages - 1)}
-            >
-              {totalPages}
-            </a>
-          </>
-        )}
-      </>
-    );
+  const handleNext = () => {
+    handleLinkClick(currentPage + 1); // Move to the next page
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      handleLinkClick(currentPage - 1); // Move to the previous page
+    }
   };
 
   return (
     <div className="flex items-center gap-x-3">
       <h5>الصفحة</h5>
-      <div className="flex items-center gap-x-2">{renderLinks()}</div>
+      <button
+        className="py-1 px-2 text-xs rounded-md text-app-gray border-2"
+        onClick={handlePrev}
+        disabled={currentPage === 1}
+      >
+        Prev
+      </button>
+      <span className="py-1 px-2 text-xs">{currentPage}</span>{" "}
+      {/* Display current page */}
+      <button
+        className="py-1 px-2 text-xs rounded-md text-app-gray border-2"
+        onClick={handleNext}
+      >
+        Next
+      </button>
     </div>
   );
 }
