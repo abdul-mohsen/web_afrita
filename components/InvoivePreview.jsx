@@ -232,7 +232,7 @@ const InvoivePreview = ({ togglue, data }) => {
               <HiOutlineXMark />
             </span>
           </div>
-          <PrintButton />
+          <PrintButton componentId="form-preview" />
         </form>
       </div>
     </div>
