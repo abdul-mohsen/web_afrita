@@ -1,10 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export default function PagesNumber() {
-  const router = useRouter();
-  const currentPage = parseInt(router.query.page) || 1; // Default to page 1
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentPage = parseInt(searchParams.get("page")) || 1; // Default to page 1
   const [selectedLink, setSelectedLink] = useState(currentPage);
 
   useEffect(() => {
@@ -12,11 +13,13 @@ export default function PagesNumber() {
   }, [currentPage]);
 
   const updateQueryParams = (pageNumber) => {
-    const newQuery = { ...router.query, page: pageNumber }; // Preserve other query params
-    router.push({
-      pathname: router.pathname,
-      query: newQuery,
-    });
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.set("page", pageNumber); // Update the page parameter
+    window.history.pushState(
+      {},
+      "",
+      `${pathname}?${newSearchParams.toString()}`,
+    ); // Update URL without reloading
   };
 
   const handleLinkClick = (pageNumber) => {
