@@ -232,9 +232,9 @@ const InvoivePreview = ({ togglue, data }) => {
               <HiOutlineXMark />
             </span>
           </div>
+          <PrintButton />
         </form>
       </div>
-      <PrintButton />
     </div>
   );
 };
