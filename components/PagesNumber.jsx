@@ -4,12 +4,14 @@ import { useRouter } from "next/navigation";
 
 export default function PagesNumber({ onPageChange }) {
   const router = useRouter();
-  const currentPage = parseInt(router.query.page) || 1; // Default to page 1
-  const [selectedLink, setSelectedLink] = useState(currentPage);
+  const [currentPage, setCurrentPage] = useState(1); // Default to page 1
 
   useEffect(() => {
-    setSelectedLink(currentPage); // Update local state when URL changes
-  }, [currentPage]);
+    // Ensure router.query is available and set current page
+    if (router.query && router.query.page) {
+      setCurrentPage(parseInt(router.query.page, 10));
+    }
+  }, [router.query]); // Listen for changes in the router.query
 
   const handleLinkClick = (pageNumber) => {
     // Update the URL using the router
@@ -18,7 +20,7 @@ export default function PagesNumber({ onPageChange }) {
       query: { ...router.query, page: pageNumber },
     });
 
-    setSelectedLink(pageNumber); // Update local state
+    setCurrentPage(pageNumber); // Update local state
     onPageChange(); // Notify parent of the page change
   };
 
