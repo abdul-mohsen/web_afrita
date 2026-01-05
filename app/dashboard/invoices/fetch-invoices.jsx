@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
 const FetchInvoices = () => {
+  const searchParams = useSearchParams();
   const [invoices, setInvoices] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
