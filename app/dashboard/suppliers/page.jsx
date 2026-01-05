@@ -4,6 +4,7 @@ import DropdownHeading from "@/components/DropdownHeading";
 import PagesNumber from "@/components/PagesNumber";
 import { HiOutlineHashtag } from "react-icons/hi";
 import FetchSuppliers from "./fetch_supplier";
+import React from "react";
 
 export default function Suppliers() {
   const [refreshKey, setRefreshKey] = React.useState(0); // To trigger data refresh
