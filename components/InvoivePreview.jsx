@@ -1,6 +1,7 @@
 "use client";
 import { HiOutlineXMark } from "react-icons/hi2";
 import QRCode from "react-qr-code";
+import PrintButton from "@/components/PrintButton";
 
 const InvoivePreview = ({ togglue, data }) => {
   var bill_title = "فاتورة ضريبية مبسطة";
@@ -233,6 +234,7 @@ const InvoivePreview = ({ togglue, data }) => {
           </div>
         </form>
       </div>
+      <PrintButton />
     </div>
   );
 };

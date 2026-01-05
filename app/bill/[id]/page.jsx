@@ -4,7 +4,6 @@ import instance from "@/axios";
 import { InvoivePreview } from "@/components";
 import Skeleton from "@/components/Skeleton";
 import { useEffect, useState } from "react";
-import PrintButton from "@/components/PrintButton";
 
 export default function Orders({ params }) {
   const [invoice, setInvoice] = useState({});
@@ -37,7 +36,6 @@ export default function Orders({ params }) {
       <h1 className="mx-auto my-4">الطلبات</h1>
       <Skeleton />
       <InvoivePreview togglue={true} data={invoice} />
-      <PrintButton />
     </section>
   );
 }
