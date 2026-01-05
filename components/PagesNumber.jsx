@@ -2,32 +2,34 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function PagesNumber({ onPageChange }) {
+export default function Pagination({ onPageChange }) {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1); // Default to page 1
 
   useEffect(() => {
-    // Ensure router.query is available and set current page
-    if (router.query && router.query.page) {
-      setCurrentPage(parseInt(router.query.page, 10));
+    const pageParam = router.query.page; // Get the page from query
+    if (pageParam) {
+      setCurrentPage(parseInt(pageParam, 10)); // Update state if a page param exists
     }
   }, [router.query]); // Listen for changes in the router.query
 
-  const handleLinkClick = (pageNumber) => {
-    // Update the URL using the router
+  const navigateToPage = (pageNumber) => {
+    const newQuery = { ...router.query, page: pageNumber }; // Update the page number in the query
     router.push({
       pathname: router.pathname,
-      query: { ...router.query, page: pageNumber },
+      query: newQuery,
     });
-
-    setCurrentPage(pageNumber); // Update local state
-    onPageChange(); // Notify parent of the page change
+    setCurrentPage(pageNumber); // Update local state for immediate feedback
+    onPageChange(); // Notify the parent component about the page change
   };
 
-  const handleNext = () => handleLinkClick(currentPage + 1); // Move to the next page
+  const handleNext = () => {
+    navigateToPage(currentPage + 1); // Move to the next page
+  };
+
   const handlePrev = () => {
     if (currentPage > 1) {
-      handleLinkClick(currentPage - 1); // Move to the previous page
+      navigateToPage(currentPage - 1); // Move to the previous page
     }
   };
 
