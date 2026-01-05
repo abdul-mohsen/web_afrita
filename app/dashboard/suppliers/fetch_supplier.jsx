@@ -8,11 +8,11 @@ import { useSearchParams } from "next/navigation";
 
 export default function FetchSuppliers() {
   const searchParams = useSearchParams();
-  const currentPage = parseInt(searchParams.get("page")) || 1; // Default to page 1
   const [suppliers, setSuppliers] = useState([]);
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
+        const currentPage = parseInt(searchParams.get("page")) || 1; // Default to page 1
         const response = await instance.get(
           `/api/v2/supplier/all?page_number=${currentPage}`,
         );
