@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
-export default function PagesNumber() {
+export default function PagesNumber({ onPageChange }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentPage = parseInt(searchParams.get("page")) || 1; // Default to page 1
+  const currentPage = parseInt(searchParams.get("page")) || 1;
   const [selectedLink, setSelectedLink] = useState(currentPage);
 
   useEffect(() => {
@@ -13,48 +13,27 @@ export default function PagesNumber() {
   }, [currentPage]);
 
   const updateQueryParams = (pageNumber) => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set("page", pageNumber); // Update the page parameter
-    window.history.pushState(
-      {},
-      "",
-      `${pathname}?${newSearchParams.toString()}`,
-    ); // Update URL without reloading
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set("page", pageNumber);
+    window.history.pushState({}, "", `${pathname}?${newParams.toString()}`);
   };
 
   const handleLinkClick = (pageNumber) => {
-    setSelectedLink(pageNumber); // Update local state
-    updateQueryParams(pageNumber); // Update the URL
-  };
-
-  const handleNext = () => {
-    handleLinkClick(currentPage + 1); // Move to the next page
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      handleLinkClick(currentPage - 1); // Move to the previous page
-    }
+    setSelectedLink(pageNumber);
+    updateQueryParams(pageNumber);
+    onPageChange(); // Notify parent of the page change
   };
 
   return (
-    <div className="flex items-center gap-x-3">
-      <h5>الصفحة</h5>
+    <div>
       <button
-        className="py-1 px-2 text-xs rounded-md text-app-gray border-2"
-        onClick={handlePrev}
+        onClick={() => handleLinkClick(currentPage - 1)}
         disabled={currentPage === 1}
       >
         Prev
       </button>
-      <span className="py-1 px-2 text-xs">{currentPage}</span>{" "}
-      {/* Display current page */}
-      <button
-        className="py-1 px-2 text-xs rounded-md text-app-gray border-2"
-        onClick={handleNext}
-      >
-        Next
-      </button>
+      <span>{currentPage}</span>
+      <button onClick={() => handleLinkClick(currentPage + 1)}>Next</button>
     </div>
   );
 }

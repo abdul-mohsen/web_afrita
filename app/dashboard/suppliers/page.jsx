@@ -6,6 +6,12 @@ import { HiOutlineHashtag } from "react-icons/hi";
 import FetchSuppliers from "./fetch_supplier";
 
 export default function Suppliers() {
+  const [refreshKey, setRefreshKey] = React.useState(0); // To trigger data refresh
+
+  const handlePageChange = () => {
+    setRefreshKey((prev) => prev + 1); // Increment to refresh data display component
+  };
+
   return (
     <section id="suppliers" className=" overflow-hidden">
       <div className="section-header">
@@ -35,10 +41,10 @@ export default function Suppliers() {
           minW={700}
         />
 
-        <FetchSuppliers />
+        <FetchSuppliers key={refreshKey} />
       </div>
       <div className="pt-4 flex justify-end">
-        <PagesNumber />
+        <PagesNumber onPageChange={handlePageChange} />
       </div>
     </section>
   );

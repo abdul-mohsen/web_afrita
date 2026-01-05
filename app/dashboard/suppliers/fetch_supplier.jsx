@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { SupplierItem } from "@/components";
 import { useSearchParams } from "next/navigation";
 
-const FetchSuppliers = () => {
+export default function FetchSuppliers() {
   const searchParams = useSearchParams();
   const currentPage = parseInt(searchParams.get("page")) || 1; // Default to page 1
   const [suppliers, setSuppliers] = useState([]);
@@ -55,6 +55,4 @@ const FetchSuppliers = () => {
       })}
     </>
   );
-};
-
-export default FetchSuppliers;
+}
