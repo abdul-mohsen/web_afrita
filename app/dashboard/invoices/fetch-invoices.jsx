@@ -39,11 +39,10 @@ const FetchInvoices = () => {
   // Fetch All Invoices
   useEffect(() => {
     const fetchInvoices = async () => {
-      const currentPage = parseInt(searchParams.get("page")) || 1; // Default to page 1
+      const currentPage = parseInt(searchParams.get("page")) || 0; // Default to page 1
       try {
         const response = await instance.post(`/api/v2/bill/all`, {
           page_number: currentPage,
-          page_size: 1,
         });
         if (response.data != null) {
           setInvoices(response.data);

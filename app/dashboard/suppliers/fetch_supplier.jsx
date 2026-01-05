@@ -12,7 +12,7 @@ export default function FetchSuppliers() {
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
-        const currentPage = parseInt(searchParams.get("page")) || 1; // Default to page 1
+        const currentPage = parseInt(searchParams.get("page")) || 0; // Default to page 1
         const response = await instance.get(
           `/api/v2/supplier/all?page_number=${currentPage}`,
         );

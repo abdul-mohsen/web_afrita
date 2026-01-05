@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 export default function PagesNumber() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentPage = parseInt(searchParams.get("page")) || 1;
+  const currentPage = parseInt(searchParams.get("page")) || 0;
   const [selectedLink, setSelectedLink] = useState(currentPage);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function PagesNumber() {
     <div>
       <button
         onClick={() => handleLinkClick(currentPage - 1)}
-        disabled={currentPage === 1}
+        disabled={currentPage === 0}
       >
         Prev
       </button>
