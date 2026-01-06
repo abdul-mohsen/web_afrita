@@ -31,8 +31,8 @@ const Nav = () => {
 
   useEffect(() => {
     // Set the input value from the query parameter when the component mounts
-    if (searchParams.get("page")) {
-      setQuery(searchParams.get("page"));
+    if (searchParams.get("query")) {
+      setQuery(searchParams.get("query"));
     }
   }, []); // Run effect when the query parameters change
 
