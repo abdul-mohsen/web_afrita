@@ -40,9 +40,11 @@ const FetchInvoices = () => {
   useEffect(() => {
     const fetchInvoices = async () => {
       const currentPage = parseInt(searchParams.get("page")) || 0; // Default to page 1
+      const query = searchParams.get("query") || ""; // Default to page 1
       try {
         const response = await instance.post(`/api/v2/bill/all`, {
           page_number: currentPage,
+          query: query,
         });
         if (response.data != null) {
           setInvoices(response.data);

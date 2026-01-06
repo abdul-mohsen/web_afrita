@@ -7,7 +7,6 @@ let instance = axios.create({
   headers: {
     "content-type": "application/json",
     accept: "application/json",
-    "Access-Control-Allow-Origin": "*",
   },
 });
 
