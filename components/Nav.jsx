@@ -35,19 +35,21 @@ const Nav = () => {
     window.history.pushState(
       {},
       "",
-      `${pathname}?${newParams.toString()}&${newParams.toString()}`,
+      `${pathname}?${newParams.toString()}&${newParams2.toString()}`,
     );
 
     window.location.reload();
   };
 
   const handleLinkClick = (event) => {
-    const text = event?.target?.value;
-    console.log();
-    if (text.length > 2) {
-      updateQueryParams(text);
-    } else {
-      updateQueryParams("");
+    if (event.key === "Enter") {
+      const text = event?.target?.value;
+      console.log();
+      if (text.length > 2) {
+        updateQueryParams(text);
+      } else {
+        updateQueryParams("");
+      }
     }
   };
 
