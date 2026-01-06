@@ -42,8 +42,10 @@ const Nav = () => {
   };
 
   const handleLinkClick = (event) => {
-    if (event.target.value.length > 2) {
-      updateQueryParams(event?.target?.value);
+    const text = event?.target?.value;
+    console.log();
+    if (text.length > 2) {
+      updateQueryParams(text);
     } else {
       updateQueryParams("");
     }
