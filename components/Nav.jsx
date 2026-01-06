@@ -1,5 +1,4 @@
 "use client";
-import React, { useState, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import useDropdown from "@/hooks/useDropdown";
 import FilterNavbar from "./FilterNavbar";
@@ -11,7 +10,7 @@ import {
   HiUser,
 } from "react-icons/hi2";
 import { IoNotificationsOutline, IoSearchOutline } from "react-icons/io5";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { searchItemsAction } from "@/actions/search-result";
 import { ComboboxDemo } from "./combo-box";
