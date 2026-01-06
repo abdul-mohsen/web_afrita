@@ -34,7 +34,7 @@ const Nav = () => {
     if (searchParams.get("page")) {
       setQuery(searchParams.get("page"));
     }
-  })();
+  }, []); // Run effect when the query parameters change
 
   const updateQueryParams = (query) => {
     const newParams = new URLSearchParams(searchParams.toString());
