@@ -30,11 +30,13 @@ const Nav = () => {
   const updateQueryParams = (query) => {
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.set("query", query);
-    window.history.pushState({}, "", `${pathname}?${newParams.toString()}`);
-
     const newParams2 = new URLSearchParams(searchParams.toString());
     newParams2.set("page", 0);
-    window.history.pushState({}, "", `${pathname}?${newParams2.toString()}`);
+    window.history.pushState(
+      {},
+      "",
+      `${pathname}?${newParams.toString()}&${newParams.toString()}`,
+    );
 
     window.location.reload();
   };
@@ -150,7 +152,7 @@ const Nav = () => {
               autoSave="off"
               autoCorrect="off"
               type=""
-              onChange={handleLinkClick}
+              onKeyDown={handleLinkClick}
               name="search"
               id="search"
               className=" bg-app-light-gray text-primary flex-1 px-6 focus:outline-[0_!important]  border-[transparent_!important] focus:border-[transparent_!important] w-[inherit]"
