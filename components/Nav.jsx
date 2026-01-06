@@ -1,4 +1,6 @@
 "use client";
+import React, { useState, useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import useDropdown from "@/hooks/useDropdown";
 import FilterNavbar from "./FilterNavbar";
 import AvatarImage from "/public/avatar.svg";
@@ -24,23 +26,30 @@ const Nav = () => {
   const [userSearchText, setUserSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  console.log("searchResults", searchResults);
+  const updateQueryParams = (query) => {
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
-  const searchItems = async (searchText) => {
-    const url = `/api/v2/cars/search?query=${searchText}`;
-    if (!searchText) return;
-    const response = await instance.get(url);
-    if (response?.data?.length) {
-      setSearchResults(response?.data);
-      if (!isOpen) handleClick();
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set("query", query);
+    window.history.pushState({}, "", `${pathname}?${newParams.toString()}`);
+
+    const newParams2 = new URLSearchParams(searchParams.toString());
+    newParams2.set("page", 0);
+    window.history.pushState({}, "", `${pathname}?${newParams2.toString()}`);
+
+    window.location.reload();
+  };
+
+  const handleLinkClick = (event) => {
+    if (event.target.value.length > 2) {
+      updateQueryParams(event?.target?.value);
+    } else {
+      updateQueryParams("");
     }
   };
 
-  useEffect(() => {
-    if (userSearchText.length > 2) {
-      searchItems(userSearchText);
-    }
-  }, [userSearchText]);
+  console.log("searchResults", searchResults);
 
   const userInfo = () => {
     setUserInfo(!isUserInfo);
@@ -141,13 +150,8 @@ const Nav = () => {
               autoSave="off"
               autoCorrect="off"
               type=""
-              onChange={(event) => {
-                if (event.target.value.length > 2) {
-                  setUserSearchText(event?.target?.value);
-                } else {
-                  setSearchResults([]);
-                }
-              }}
+              onChange={(event) => {}}
+              onKeyDown={handleLinkClick}
               name="search"
               id="search"
               className=" bg-app-light-gray text-primary flex-1 px-6 focus:outline-[0_!important]  border-[transparent_!important] focus:border-[transparent_!important] w-[inherit]"
