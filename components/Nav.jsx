@@ -24,11 +24,10 @@ const Nav = () => {
   const [isSearchBar, setSearchBar] = useState(false);
   const [userSearchText, setUserSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const updateQueryParams = (query) => {
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
-
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.set("query", query);
     window.history.pushState({}, "", `${pathname}?${newParams.toString()}`);
