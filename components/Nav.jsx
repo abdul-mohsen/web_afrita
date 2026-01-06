@@ -44,7 +44,7 @@ const Nav = () => {
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.set("query", query);
     newParams.set("page", 0);
-    window.history.pushState({}, "", `${pathname}?${newParams.toString()}}`);
+    window.history.pushState({}, "", `${pathname}?${newParams.toString()}`);
 
     window.location.reload();
   };
