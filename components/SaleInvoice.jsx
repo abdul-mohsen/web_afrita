@@ -83,6 +83,10 @@ const SaleInvoice = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const buttonValue = e.nativeEvent.submitter.value;
+    if (buttonValue === "temp") {
+      setFormData({ ...formData, state: 0 });
+    }
     addInvoice(formData);
   };
 
@@ -398,8 +402,10 @@ const SaleInvoice = () => {
             </span>
           </div>
           <div className="flex items-center justify-end gap-x-6">
-            <button type="button">حفظ مسودة</button>
-            <button className="button-secondary" type="submit">
+            <button type="submit" value="temp">
+              حفظ مسودة
+            </button>
+            <button className="button-secondary" type="submit" value="submit">
               حفظ الفاتورة
             </button>
           </div>
