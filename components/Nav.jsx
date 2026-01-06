@@ -150,8 +150,7 @@ const Nav = () => {
               autoSave="off"
               autoCorrect="off"
               type=""
-              onChange={(event) => {}}
-              onKeyDown={handleLinkClick}
+              onChange={handleLinkClick}
               name="search"
               id="search"
               className=" bg-app-light-gray text-primary flex-1 px-6 focus:outline-[0_!important]  border-[transparent_!important] focus:border-[transparent_!important] w-[inherit]"
