@@ -36,6 +36,10 @@ const Nav = () => {
     }
   }, []); // Run effect when the query parameters change
 
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
+
   const updateQueryParams = (query) => {
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.set("query", query);
@@ -159,6 +163,7 @@ const Nav = () => {
               value={query}
               autoCorrect="off"
               type=""
+              onChange={handleInputChange}
               onKeyDown={handleLinkClick}
               name="search"
               id="search"
