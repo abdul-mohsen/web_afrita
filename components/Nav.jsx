@@ -27,16 +27,20 @@ const Nav = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    // Set the input value from the query parameter when the component mounts
+    if (searchParams.get("page")) {
+      setQuery(searchParams.get("page"));
+    }
+  }, [router.query]); // Run effect when the query parameters change
+
   const updateQueryParams = (query) => {
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.set("query", query);
-    const newParams2 = new URLSearchParams(searchParams.toString());
-    newParams2.set("page", 0);
-    window.history.pushState(
-      {},
-      "",
-      `${pathname}?${newParams.toString()}&${newParams2.toString()}`,
-    );
+    newParams.set("page", 0);
+    window.history.pushState({}, "", `${pathname}?${newParams.toString()}}`);
 
     window.location.reload();
   };
@@ -152,6 +156,7 @@ const Nav = () => {
             <input
               autoComplete="off"
               autoSave="off"
+              value={query}
               autoCorrect="off"
               type=""
               onKeyDown={handleLinkClick}
