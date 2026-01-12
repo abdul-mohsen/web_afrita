@@ -3,6 +3,7 @@ import { HiOutlineHashtag } from "react-icons/hi";
 import { InvoicesItem } from "@/components";
 import PagesNumber from "@/components/PagesNumber";
 import FetchInvoices from "./fetch-invoices";
+import { Suspense } from "react";
 
 export default function Invoices() {
   return (
@@ -27,10 +28,14 @@ export default function Invoices() {
           ]}
           minW={800}
         />
-        <FetchInvoices />
+        <Suspense>
+          <FetchInvoices />
+        </Suspense>
       </div>
       <div className="pt-4 flex justify-end">
-        <PagesNumber />
+        <Suspense>
+          <PagesNumber />
+        </Suspense>
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ import DropdownHeading from "@/components/DropdownHeading";
 import PagesNumber from "@/components/PagesNumber";
 import { HiOutlineHashtag } from "react-icons/hi";
 import FetchSuppliers from "./fetch_supplier";
-import React from "react";
+import { Suspense, React } from "react";
 
 export default function Suppliers() {
   return (
@@ -36,10 +36,14 @@ export default function Suppliers() {
           minW={700}
         />
 
-        <FetchSuppliers />
+        <Suspense>
+          <FetchSuppliers />
+        </Suspense>
       </div>
       <div className="pt-4 flex justify-end">
-        <PagesNumber />
+        <Suspense>
+          <PagesNumber />
+        </Suspense>
       </div>
     </section>
   );

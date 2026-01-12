@@ -1,5 +1,6 @@
 import Aside from "@/components/Aside";
 import Nav from "@/components/Nav";
+import { Suspense } from "react";
 
 function DashboardLayout({ children }) {
   return (
@@ -9,7 +10,9 @@ function DashboardLayout({ children }) {
       </section>
       <section className="page w-full h-screen ">
         <section className=" w-full">
-          <Nav />
+          <Suspense>
+            <Nav />
+          </Suspense>
         </section>
         <section className="wrapper h-[calc(100vh-108px)] max-lg:w-[calc(100vw_-_82px)] lg:w-[calc(100vw_-_320px)] overflow-y-auto padding-l py-6 pr-8">
           {children}
