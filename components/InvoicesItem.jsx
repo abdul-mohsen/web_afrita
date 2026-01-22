@@ -18,6 +18,8 @@ function getBillMsg(credit_state, state) {
       return "credit is issued to zatca";
     default:
       switch (state) {
+        case 0:
+          return "draft";
         case 1:
           return "bill is under process";
         case 2:
@@ -119,13 +121,23 @@ const InvoicesItem = ({
         <div
           className={`${isOpenActionsList ? "flex" : "hidden"}  actions absolute text-sm text-app-gray py-2 flex-col w-max rounded-md bg-white top-8 left-8 shadow-lg shadow-primary/30 border border-primary/5`}
         >
-          <Link
-            href={`/api/v2/${credit_state >= 1 ? "credit_bill_pdf" : "bill_pdf"}/${id}`}
-            className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"
-          >
-            <HiOutlinePencil className="text-green-500" />
-            <span className="block">view bill details</span>
-          </Link>
+          {state >= 0 ? (
+            <Link
+              href={`/api/v2/${credit_state >= 1 ? "credit_bill_pdf" : "bill_pdf"}/${id}`}
+              className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"
+            >
+              <HiOutlinePencil className="text-green-500" />
+              <span className="block">view bill details</span>:
+            </Link>
+          ) : (
+            <Link
+              href={`/dashboard/invoice/add-invoice?id=${id}`}
+              className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"
+            >
+              <HiOutlinePencil className="text-green-500" />
+              <span className="block">view bill details</span>:
+            </Link>
+          )}
           <Link
             href={`/dashboard/invoices/edit/${id}`}
             className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"

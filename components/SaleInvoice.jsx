@@ -13,6 +13,30 @@ import VerifyInput from "./VerifyInput";
 
 const SaleInvoice = () => {
   const router = useRouter();
+
+  useEffect(() => {
+    if (!router.isReady) return; // guard against early render
+    const { id } = router.query;
+
+    // -------------------------------------------------
+    // 2️⃣ Convert the id to a number
+    // -------------------------------------------------
+    const numericId = Array.isArray(id) ? NaN : Number(id);
+    if (Number.isNaN(numericId)) {
+      return;
+    }
+    const fetchItem = async () => {
+      try {
+        const response = await instance.get(`/api/v2/bill/` + id);
+        setFormData(response.data);
+        setItem(data);
+      } catch (e) {
+        console.log(e);
+      } finally {
+      }
+    };
+    fetchItem();
+  }, [router.isReady]);
   const handleAdd = () => {
     return {
       part_name: "",
@@ -79,13 +103,14 @@ const SaleInvoice = () => {
     total_amount: 0,
     discount: "0.0",
     maintenance_cost: "0.0",
+    state: 1,
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const buttonValue = e.nativeEvent.submitter.value;
     if (buttonValue === "temp") {
-      setFormData({ ...formData, state: 0 });
+      formData.state = 0;
     }
     addInvoice(formData);
   };
