@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { HiOutlineEye } from "react-icons/hi";
 import { HiOutlinePrinter } from "react-icons/hi2";
-import { InvoivePreview } from ".";
+import { Button, InvoivePreview } from ".";
 import { markRequiredInputs } from "@/utils/utils";
 import instance from "../axios";
 import { useRouter } from "next/navigation";
@@ -201,8 +201,8 @@ const SaleInvoice = () => {
 
             <Adapter
               initialList={[]}
-              renderItem={(setItems, index, item, _) => (
-                <div className="grid grid-cols-5 ">
+              renderItem={(setItems, index, item, onDelete) => (
+                <div className="grid grid-cols-6 ">
                   <label
                     htmlFor="part_name"
                     className="block text-lg font-medium leading-6  text-primary col-span-3"
@@ -251,6 +251,7 @@ const SaleInvoice = () => {
                     type="text"
                     required
                   />
+                  <Button onClick={onDelete}>حذف</Button>
                 </div>
               )}
               onAdd={handleAdd}
@@ -260,8 +261,8 @@ const SaleInvoice = () => {
 
             <Adapter
               initialList={[]}
-              renderItem={(setItems, index, item, _) => (
-                <div className="grid grid-cols-5 ">
+              renderItem={(setItems, index, item, onDelete) => (
+                <div className="grid grid-cols-6 ">
                   <label
                     htmlFor="part_name"
                     className="block text-lg font-medium leading-6  text-primary col-span-3"
@@ -313,6 +314,7 @@ const SaleInvoice = () => {
                     autoComplete="number"
                     required
                   />
+                  <Button onClick={onDelete}>حذف</Button>
                 </div>
               )}
               onAdd={handleAdd}
