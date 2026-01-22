@@ -251,7 +251,7 @@ const SaleInvoice = () => {
                     type="text"
                     required
                   />
-                  <Button onClick={onDelete}>حذف</Button>
+                  <button onClick={onDelete}>حذف</button>
                 </div>
               )}
               onAdd={handleAdd}
@@ -314,7 +314,7 @@ const SaleInvoice = () => {
                     autoComplete="number"
                     required
                   />
-                  <Button onClick={onDelete}>حذف</Button>
+                  <button onClick={onDelete}>حذف</button>
                 </div>
               )}
               onAdd={handleAdd}
