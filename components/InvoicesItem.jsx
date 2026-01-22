@@ -135,7 +135,7 @@ const InvoicesItem = ({
               className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"
             >
               <HiOutlinePencil className="text-green-500" />
-              <span className="block">view bill details</span>:
+              <span className="block">edit bill </span>:
             </Link>
           )}
           <Link
