@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { HiOutlineEye } from "react-icons/hi";
 import { HiOutlinePrinter } from "react-icons/hi2";
-import { Button, InvoivePreview } from ".";
 import { markRequiredInputs } from "@/utils/utils";
 import instance from "../axios";
 import { useRouter } from "next/navigation";
@@ -11,13 +10,10 @@ import Adapter from "./Adapter";
 import QueryInput from "./QueryInput";
 import VerifyInput from "./VerifyInput";
 
-const SaleInvoice = () => {
+const SaleInvoice = ({ id }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!router.isReady) return; // guard against early render
-    const { id } = router.query;
-
     // -------------------------------------------------
     // 2️⃣ Convert the id to a number
     // -------------------------------------------------
@@ -36,7 +32,7 @@ const SaleInvoice = () => {
       }
     };
     fetchItem();
-  }, [router.isReady]);
+  }, []);
   const handleAdd = () => {
     return {
       part_name: "",
