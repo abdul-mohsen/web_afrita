@@ -131,7 +131,7 @@ const InvoicesItem = ({
             </Link>
           ) : (
             <Link
-              href={`/dashboard/invoice/add-invoice?id=${id}`}
+              href={`/dashboard/invoice/edit/${id}`}
               className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"
             >
               <HiOutlinePencil className="text-green-500" />
