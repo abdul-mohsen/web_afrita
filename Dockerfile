@@ -3,29 +3,27 @@ FROM node:20-alpine AS base
 WORKDIR /app
 ENV NODE_ENV=production
 
-
 FROM base AS deps
-# copy only lockfile and package.json to leverage layer cache
 COPY package*.json ./
-# enable npm cache in a persistent location and install deps
 RUN --mount=type=cache,target=/root/.npm \
-    npm i
-
+    --mount=type=cache,target=/root/.cache \
+    --mount=type=cache,target=/app/node_modules \
+    npm ci --prefer-offline --no-audit --no-fund
 
 FROM base AS builder
-# copy deps from previous stage
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# cache Next build cache (optional) and build
 RUN --mount=type=cache,target=/root/.next/cache \
     npm run build
 
 FROM node:20-alpine AS runner
-ARG PORT
-ENV PORT=${PORT:-3000}
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/node_modules ./node_modules
+WORKDIR /app
+ENV NODE_ENV=production
+ARG PORT=3000
+ENV PORT=${PORT}
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
 EXPOSE ${PORT}
-CMD ["sh","-c","npx","next","start"]
+CMD ["sh","-c","npm","run","start"]
