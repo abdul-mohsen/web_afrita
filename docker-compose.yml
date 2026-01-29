@@ -1,8 +1,11 @@
 version: "3.8"
 services:
   app:
-    build: .
-    image: my-node-app:latest
+    build:
+      context: .
+      args:
+        - PORT=${PORT:-3000}
+    image: nextjs-app:prod
     env_file:
       - .env
     ports:
