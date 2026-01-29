@@ -7,11 +7,47 @@ import instance from "../axios";
 import { useRouter } from "next/navigation";
 import Dropdown from "./Dropdown";
 import Adapter from "./Adapter";
+import Loading from "./Loading";
 import QueryInput from "./QueryInput";
 import VerifyInput from "./VerifyInput";
+import { useMemo } from "react";
 
 const SaleInvoice = ({ id }) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [formData, setFormData] = useState({
+    store_id: 0,
+    products: [],
+    manual_products: [],
+    total_amount: "", // was 0
+    discount: "0.0",
+    maintenance_cost: "0.0",
+    state: 1,
+    vin: "",
+    user_name: "",
+    user_phone_number: "",
+    note: "",
+  });
+
+  function mapResponseToForm(src = {}) {
+    const asString = (v, fallback = "") => (v == null ? fallback : String(v));
+    const asArray = (v) => (Array.isArray(v) ? v : []);
+
+    return {
+      store_id: src.store_id ?? 0,
+      products: asArray(src.products),
+      manual_products: asArray(src.manual_products),
+      total_amount: src.total ?? asString(src.total, ""), // keep as string for controlled input
+      discount: src.discount != null ? String(src.discount) : "0.0",
+      maintenance_cost:
+        src.maintenance_cost != null ? String(src.maintenance_cost) : "0.0",
+      state: src.state ?? 1,
+      vin: "", // response doesn't include vin
+      user_name: src.user_name ?? "",
+      user_phone_number: src.user_phone_number ?? "",
+      note: src.note ?? "",
+    };
+  }
 
   useEffect(() => {
     // -------------------------------------------------
@@ -19,16 +55,18 @@ const SaleInvoice = ({ id }) => {
     // -------------------------------------------------
     const numericId = Array.isArray(id) ? NaN : Number(id);
     if (Number.isNaN(numericId)) {
+      setLoading(false);
       return;
     }
     const fetchItem = async () => {
       try {
         const response = await instance.get(`/api/v2/bill/` + id);
-        setFormData(response.data);
-        setItem(data);
+        setFormData(mapResponseToForm(response.data));
+        setLoading(false);
       } catch (e) {
         console.log(e);
       } finally {
+        setLoading(false);
       }
     };
     fetchItem();
@@ -46,13 +84,13 @@ const SaleInvoice = ({ id }) => {
   };
 
   const handleUpdate = (updatedList) => {
-    console.log("new upate");
+    console.log("@handleUpdate: upate - " + updatedList);
     formData.products = updatedList;
     handleInputPruductChange();
   };
 
   const handleUpdateManual = (updatedList) => {
-    console.log("new upate");
+    console.log("@handleUpdateManual: upate - " + updatedList);
     formData.manual_products = updatedList;
     handleInputPruductChange();
   };
@@ -60,17 +98,41 @@ const SaleInvoice = ({ id }) => {
   const apiUrl = `/api/v2/stores/all`;
   const verifyVinApiUrl = `/api/v2/vin/`;
 
+  function clean(value) {
+    if (Array.isArray(value)) {
+      const arr = value.map(clean).filter((v) => v !== null && v !== undefined);
+      return arr.length ? arr : undefined;
+    }
+    if (value && typeof value === "object") {
+      const obj = Object.fromEntries(
+        Object.entries(value)
+          .map(([k, v]) => [k, clean(v)])
+          .filter(([, v]) => v !== undefined),
+      );
+      return Object.keys(obj).length ? obj : undefined;
+    }
+    return value === null ? undefined : value;
+  }
+
   const handleSelect = (selectedOption) => {
-    formData["store_id"] = selectedOption.id;
-    setFormData({ ...formData });
-    console.log("Selected option:", selectedOption);
+    // formData["store_id"] = selectedOption.id;
+    setFormData((formData) => ({ ...formData, store_id: selectedOption.id }));
+    // console.log("Selected option:", selectedOption);
     // You can perform additional actions with the selected option here
   };
 
   const addInvoice = async (newData) => {
     try {
       await instance.post(`/api/v2/bill`, newData);
+      router.back();
+    } catch (error) {
+      console.error(`Error add invoice: `, error.message);
+    }
+  };
 
+  const updateInvoice = async (newData, id) => {
+    try {
+      await instance.post(`/api/v2/bill/` + id, newData);
       router.back();
     } catch (error) {
       console.error(`Error add invoice: `, error.message);
@@ -92,23 +154,20 @@ const SaleInvoice = ({ id }) => {
     markRequiredInputs();
   }, []);
 
-  const [formData, setFormData] = useState({
-    store_id: 0,
-    products: [],
-    manual_products: [],
-    total_amount: 0,
-    discount: "0.0",
-    maintenance_cost: "0.0",
-    state: 1,
-  });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const buttonValue = e.nativeEvent.submitter.value;
     if (buttonValue === "temp") {
       formData.state = 0;
+    } else {
+      formData.state = 1;
     }
-    addInvoice(formData);
+    const numericId = Array.isArray(id) ? NaN : Number(id);
+    if (Number.isNaN(numericId)) {
+      addInvoice(formData);
+    } else {
+      updateInvoice(formData, numericId);
+    }
   };
 
   const handleInputPruductChange = () => {
@@ -128,9 +187,11 @@ const SaleInvoice = ({ id }) => {
       calculatedValue * 1.15 * (1 - (formData.discount ?? 0) / 100),
     ).toFixed(2);
     if (totalAmount != formData.total_amount) {
-      setFormData({ ...formData, total_amount: totalAmount });
+      setFormData((formData) => ({ ...formData, total_amount: totalAmount }));
     }
+    return totalAmount;
   };
+  const total = useMemo(handleInputPruductChange, [formData]);
 
   const mapItemToString = (item) => {
     return `${item.oem_number} - ${item.type} `;
@@ -139,14 +200,18 @@ const SaleInvoice = ({ id }) => {
   const handleForum = (e) => {
     const { name, value } = e.target;
     if (formData[name] != value) {
-      formData[name] = value;
-      setFormData({ ...formData });
+      setFormData((formData) => ({ ...formData, [name]: value }));
+      handleInputPruductChange();
     }
   };
 
   const handleInputChange = (value) => {
     setFormData({ ...formData, vin: value });
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -178,6 +243,7 @@ const SaleInvoice = ({ id }) => {
                   onChange={handleForum}
                   type="text"
                   name="user_name"
+                  defaultValue={formData.user_name}
                   id="user_name"
                 />
               </div>
@@ -193,6 +259,7 @@ const SaleInvoice = ({ id }) => {
                 <input
                   onChange={handleForum}
                   type="text"
+                  defaultValue={formData.user_phone_number}
                   name="user_phone_number"
                   id="user_phone_number"
                 />
@@ -209,6 +276,7 @@ const SaleInvoice = ({ id }) => {
                 <input
                   onChange={handleForum}
                   type="text"
+                  defaultValue={formData.note}
                   name="note"
                   id="note"
                 />
@@ -221,7 +289,7 @@ const SaleInvoice = ({ id }) => {
             </h3>
 
             <Adapter
-              initialList={[]}
+              initialList={formData.products ?? []}
               renderItem={(setItems, index, item, onDelete) => (
                 <div className="grid grid-cols-6 ">
                   <label
@@ -248,6 +316,7 @@ const SaleInvoice = ({ id }) => {
                       setItems("id", item.id, index);
                       setItems("part_name", mapItemToString(item), index);
                     }}
+                    defaultValue={mapItemToString(item)}
                     mapItemToString={mapItemToString}
                     classname="col-span-3"
                   />
@@ -257,6 +326,7 @@ const SaleInvoice = ({ id }) => {
                       setItems(e.target.name, Number(e.target.value), index);
                     }}
                     id="quantity"
+                    defaultValue={item.quantity}
                     name="quantity"
                     type="number"
                     autoComplete="number"
@@ -268,6 +338,7 @@ const SaleInvoice = ({ id }) => {
                       setItems(e.target.name, e.target.value, index);
                     }}
                     id="price"
+                    defaultValue={String(item.price)}
                     name="price"
                     type="text"
                     required
@@ -281,7 +352,7 @@ const SaleInvoice = ({ id }) => {
             />
 
             <Adapter
-              initialList={[]}
+              initialList={formData.manual_products ?? []}
               renderItem={(setItems, index, item, onDelete) => (
                 <div className="grid grid-cols-6 ">
                   <label
@@ -307,6 +378,7 @@ const SaleInvoice = ({ id }) => {
                     onChange={(e) => {
                       setItems(e.target.name, e.target.value, index);
                     }}
+                    defaultValue={item.part_name}
                     id="part_name"
                     name="part_name"
                     type="text"
@@ -320,6 +392,7 @@ const SaleInvoice = ({ id }) => {
                     id="quantity"
                     name="quantity"
                     type="number"
+                    defaultValue={item.quantity}
                     autoComplete="number"
                     min={0}
                     required
@@ -331,6 +404,7 @@ const SaleInvoice = ({ id }) => {
                     id="price"
                     name="price"
                     type="text"
+                    defaultValue={String(item.price)}
                     min={0}
                     autoComplete="number"
                     required
@@ -375,7 +449,7 @@ const SaleInvoice = ({ id }) => {
                   name="maintenance_cost"
                   id="maintenance_cost"
                   min={0}
-                  defaultValue={0}
+                  defaultValue={String(parseFloat(formData.maintenance_cost))}
                   type="text"
                 />
               </div>
@@ -403,7 +477,7 @@ const SaleInvoice = ({ id }) => {
                   id="total_amount"
                   name="total_amount"
                   type="text"
-                  value={formData.total_amount}
+                  value={total}
                   autoComplete="number"
                   disabled
                 />

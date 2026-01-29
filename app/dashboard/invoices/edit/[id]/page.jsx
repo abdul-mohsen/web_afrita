@@ -1,6 +1,6 @@
 import { AddInvoiceForm } from "@/components";
 
-export default function EditInvoice({ params }) {
-  const { id } = params;
+export default async function EditInvoice({ params }) {
+  const { id } = await params;
   return <AddInvoiceForm action={"edit"} id={id} />;
 }

@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import LogoImage from "/public/afrita-logo.svg";
-import MobileLogo from "/public/afrita-mob-logo.svg";
 import Image from "next/image";
 import NavLinks from "./NavLinks";
 import { HiOutlineArrowRightOnRectangle } from "react-icons/hi2";
@@ -15,11 +13,19 @@ const Aside = () => {
           href="./"
         >
           <Image
-            src={LogoImage}
+            src="/afrita-logo.svg"
+            width={100}
+            height={100}
             alt="Afrita Logo"
             className="max-lg:hidden w-3/5"
           />
-          <Image src={MobileLogo} alt="Afrita Logo" className="lg:hidden" />
+          <Image
+            src="/afrita-mob-logo.svg"
+            width={100}
+            height={100}
+            alt="Afrita Logo"
+            className="lg:hidden"
+          />
         </a>
         <NavLinks />
         <div className="lg:px-6 my-6">

@@ -5,10 +5,16 @@ import { useState, useEffect } from "react";
 const Adapter = ({ initialList, renderItem, onAdd, onDelete, onUpdate }) => {
   const [items, setItems] = useState(initialList);
 
+  // Sync when parent provides a new initialList
+  useEffect(() => {
+    setItems(initialList);
+    onUpdate(initialList);
+  }, []);
+
   // Effect to call onUpdate whenever items change
   useEffect(() => {
     onUpdate(items);
-  }, [items, onUpdate]);
+  }, [items]);
 
   const handleAddItem = () => {
     const addedItem = onAdd ? onAdd() : null;

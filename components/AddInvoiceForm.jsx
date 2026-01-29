@@ -25,7 +25,7 @@ const AddInvoiceForm = ({ action, id }) => {
       </div>
       <div className="add-form w-full bg-white p-8 rounded-xl">
         {action === "edit" ? (
-          <SaleInvoice action={"edit"} {...invoiceToEdit} />
+          <SaleInvoice action={"edit"} id={id} />
         ) : (
           <>
             <Tabs items={invoicesTypes} useStateIn={setSelectedTab} />

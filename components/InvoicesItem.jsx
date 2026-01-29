@@ -41,6 +41,9 @@ const InvoicesItem = ({
   discount,
   vat,
   sequence_number,
+  total,
+  total_vat,
+  total_before_vat,
   type,
   deleteBtn,
   order,
@@ -95,9 +98,7 @@ const InvoicesItem = ({
           {order < 10 ? `0${order + 1}` : order}
         </span>
         <h3 className="item-id text-primary font-bold ">{sequence_number}</h3>
-        <span className="item-valyue mr-2  md:mr-0">
-          {subtotal + vat - discount} ر.س
-        </span>
+        <span className="item-valyue mr-2  md:mr-0">{total} ر.س</span>
         <span className="item-date">{effective_date.Time}</span>
         <span className="supplyer-id font-bold">{100}</span>
         <span className="item-type ">
@@ -131,7 +132,7 @@ const InvoicesItem = ({
             </Link>
           ) : (
             <Link
-              href={`/dashboard/invoice/edit/${id}`}
+              href={`/dashboard/invoices/edit/${id}`}
               className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"
             >
               <HiOutlinePencil className="text-green-500" />

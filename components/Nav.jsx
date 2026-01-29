@@ -2,7 +2,6 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import useDropdown from "@/hooks/useDropdown";
 import FilterNavbar from "./FilterNavbar";
-import AvatarImage from "/public/avatar.svg";
 import Image from "next/image";
 import {
   HiOutlineAdjustmentsHorizontal,
@@ -106,7 +105,13 @@ const Nav = () => {
           onClick={userInfo}
           className="user-info relative flex flex-row justify-center items-center gap-2"
         >
-          <Image src={AvatarImage} alt="User Image" id="user_image" />
+          <Image
+            src="avatar.svg"
+            width={100}
+            height={100}
+            alt="User Image"
+            id="user_image"
+          />
           <div
             className={`${
               isUserInfo ? "flex flex-col gap-2" : "max-lg:hidden"
