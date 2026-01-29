@@ -3,11 +3,16 @@ services:
   app:
     build: .
     image: my-node-app:latest
+    env_file:
+      - .env
     ports:
-      - "3001:3001"
+      - "${PORT}:3000"
     volumes:
-      - ./:/usr/src/app:cached
-      - /usr/src/app/node_modules
+      - ./:/app:cached
+      - /app/node_modules
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=${NODE_ENV}
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      - NEXT_PUBLIC_BACKEND_API_URL=${NEXT_PUBLIC_BACKEND_API_URL}
+      - NEXT_PUBLIC_BACKEND_API_URLL=${NEXT_PUBLIC_BACKEND_API_URLL}
     command: npm run start

@@ -1,8 +1,15 @@
 FROM node:latest
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY package*.json ./
 RUN npm i
-RUN npm run build
 COPY . .
-EXPOSE 3000
+RUN npm run build
+ENV NODE_ENV=production
+ARG PORT
+ENV PORT=${PORT:-3000}
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+EXPOSE ${PORT}
 CMD ["node", "index.js"]
