@@ -32,11 +32,15 @@ const SaleInvoice = ({ id }) => {
   function mapResponseToForm(src = {}) {
     const asString = (v, fallback = "") => (v == null ? fallback : String(v));
     const asArray = (v) => (Array.isArray(v) ? v : []);
+    let x = asArray(src.products);
+    x.forEach((x) => (x.price = String(x.price)));
+    let y = asArray(src.manual_products);
+    y.forEach((x) => (x.price = String(x.price)));
 
     return {
       store_id: src.store_id ?? 0,
-      products: asArray(src.products),
-      manual_products: asArray(src.manual_products),
+      products: x,
+      manual_products: y,
       total_amount: src.total ?? asString(src.total, ""), // keep as string for controlled input
       discount: src.discount != null ? String(src.discount) : "0.0",
       maintenance_cost:
@@ -157,6 +161,7 @@ const SaleInvoice = ({ id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const buttonValue = e.nativeEvent.submitter.value;
+
     if (buttonValue === "temp") {
       formData.state = 0;
     } else {
@@ -404,7 +409,7 @@ const SaleInvoice = ({ id }) => {
                     id="price"
                     name="price"
                     type="text"
-                    defaultValue={String(item.price)}
+                    defaultValue={String(parseFloat(formData.maintenance_cost))}
                     min={0}
                     autoComplete="number"
                     required
