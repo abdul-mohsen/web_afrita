@@ -1,29 +1,23 @@
-# syntax=docker/dockerfile:1.4
-FROM node:20-alpine AS base
+# Build stage
+FROM node:20-alpine AS builder
 WORKDIR /app
-ENV NODE_ENV=production
-
-FROM base AS deps
-COPY package*.json ./
-RUN --mount=type=cache,target=/root/.npm \
-    --mount=type=cache,target=/root/.cache \
-    --mount=type=cache,target=/app/node_modules \
-    npm ci --prefer-offline --no-audit --no-fund
-
-FROM base AS builder
-COPY --from=deps /app/node_modules ./node_modules
+COPY package.json package-lock.json* ./
+RUN npm ci --silent
 COPY . .
-RUN --mount=type=cache,target=/root/.next/cache \
-    npm run build
+RUN npm run build
 
+# Production stage
 FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-ARG PORT=3000
-ENV PORT=${PORT}
+# Install a small set of packages for Next.js production runtime if needed
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
+ARG PORT=3000
+ENV PORT=${PORT}
 EXPOSE ${PORT}
-CMD ["sh","-c","npm","run","start"]
+CMD ["npm", "run", "start"]
+
+
