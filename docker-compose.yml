@@ -10,7 +10,6 @@ services:
     ports:
       - "${PORT}:${PORT}"
     volumes:
-      - ./:/app:cached
       - /app/node_modules
     environment:
       - NODE_ENV=${NODE_ENV}
