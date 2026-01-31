@@ -147,7 +147,7 @@ const InvoicesItem = ({
             <span className="block">تعديل الفاتورة</span>
           </Link>
           <button
-            onClick={() => deleteBtn(id, type)}
+            onClick={() => deleteBtn(id, type, state == 0)}
             className="flex flex-row justify-center items-center gap-2 px-4 py-1 hover:bg-app-light-gray"
           >
             <HiOutlineTrash className=" text-red-500" />

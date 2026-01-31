@@ -24,10 +24,11 @@ const FetchInvoices = () => {
   };
   const handleConfirm = async (id, note) => {
     try {
-      const response = await instance.post(`/api/v2/bill/credit`, {
+      await instance.post(`/api/v2/bill/credit`, {
         bill_id: id,
         note: note,
       });
+      window.location.reload();
     } catch (error) {
       toast.error(`Invoice ${id} can't deleted`);
       console.error("Error:", error); // Handle error
@@ -59,11 +60,23 @@ const FetchInvoices = () => {
   }, []);
 
   // To Delete An Invoice
-  const deleteInvoice = async (id, type) => {
+  const deleteInvoice = async (id, type, isDraft) => {
     try {
       var response;
       if (type) {
-        handleOpenDialog(id);
+        if (isDraft) {
+          response = await instance.delete(`/api/v2/bill/${id}`);
+          if (response.status < 300) {
+            console.log(`Invoice ${id} deleted successfully.`);
+            toast.success(`Invoice ${id} deleted successfully`);
+            window.location.reload();
+          } else {
+            const { error } = response;
+            toast.error(error);
+          }
+        } else {
+          handleOpenDialog(id);
+        }
       } else {
         response = await instance.delete(`/api/v2/purchase_bill/${id}`);
         if (response.ok) {
