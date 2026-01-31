@@ -409,7 +409,7 @@ const SaleInvoice = ({ id }) => {
                     id="price"
                     name="price"
                     type="text"
-                    defaultValue={String(parseFloat(formData.maintenance_cost))}
+                    defaultValue={String(item.price)}
                     min={0}
                     autoComplete="number"
                     required
